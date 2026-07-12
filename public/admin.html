@@ -50,6 +50,8 @@
 
     <!-- Login Passcode Gate (Space-Theme Illustration) -->
     <div id="loginGate" class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-[#04020a] overflow-hidden">
+        <!-- Canvas for animated particles -->
+        <canvas id="loginCanvas" class="absolute inset-0 z-0 pointer-events-none"></canvas>
         <!-- Celestial elements & clouds background -->
         <div class="absolute top-10 left-10 w-24 h-24 rounded-full bg-[#e7d8ff]/10 blur-xl"></div>
         <div class="absolute top-20 right-20 w-36 h-36 rounded-full bg-indigo-500/10 blur-2xl"></div>
@@ -71,9 +73,9 @@
         <!-- Central Login Card -->
         <div class="w-full max-w-sm z-10 text-center space-y-6">
             <!-- Circular Avatar Frame with logo -->
-            <div class="h-28 w-28 rounded-full border border-[#b8c0ff]/30 bg-[#0d0a21]/80 backdrop-blur-md flex items-center justify-center p-4 mx-auto shadow-2xl relative">
+            <div class="h-28 w-28 rounded-full border border-[#b8c0ff]/30 bg-[#0d0a21]/80 backdrop-blur-md flex items-center justify-center overflow-hidden mx-auto shadow-2xl relative">
                 <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-[#b8c0ff]/10 to-[#e7d8ff]/10 animate-pulse pointer-events-none"></div>
-                <img src="logo.png" alt="Harsh Apex Logo" class="h-14 w-14 object-contain" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=100&q=80'">
+                <img src="logo.png" alt="Harsh Apex Logo" class="h-full w-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=100&q=80'">
             </div>
 
             <!-- Titles -->
@@ -498,10 +500,69 @@
         const loginBtn = document.getElementById('loginBtn');
         const loginError = document.getElementById('loginError');
 
+        // Login Background Particle Animation
+        const loginCanvas = document.getElementById('loginCanvas');
+        let loginAnimationId;
+        if (loginCanvas) {
+            const lCtx = loginCanvas.getContext('2d');
+            let loginParticlesArray = [];
+
+            function resizeLoginCanvas() {
+                loginCanvas.width = window.innerWidth;
+                loginCanvas.height = window.innerHeight;
+            }
+            resizeLoginCanvas();
+            window.addEventListener('resize', resizeLoginCanvas);
+
+            class LoginParticle {
+                constructor() {
+                    this.x = Math.random() * loginCanvas.width;
+                    this.y = Math.random() * loginCanvas.height;
+                    this.size = Math.random() * 1.6 + 0.4;
+                    this.speedX = Math.random() * 0.1 - 0.05;
+                    this.speedY = -(Math.random() * 0.15 + 0.05);
+                    this.alpha = Math.random() * 0.5 + 0.2;
+                    this.color = Math.random() > 0.5 ? 'rgba(184, 192, 255, ' : 'rgba(231, 216, 255, ';
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.y < 0) {
+                        this.y = loginCanvas.height;
+                        this.x = Math.random() * loginCanvas.width;
+                    }
+                    if (this.x < 0 || this.x > loginCanvas.width) {
+                        this.x = Math.random() * loginCanvas.width;
+                    }
+                }
+                draw() {
+                    lCtx.fillStyle = this.color + this.alpha + ')';
+                    lCtx.beginPath();
+                    lCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    lCtx.fill();
+                }
+            }
+
+            for (let i = 0; i < 60; i++) {
+                loginParticlesArray.push(new LoginParticle());
+            }
+
+            function animateLoginParticles() {
+                lCtx.clearRect(0, 0, loginCanvas.width, loginCanvas.height);
+                loginParticlesArray.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                loginAnimationId = requestAnimationFrame(animateLoginParticles);
+            }
+            animateLoginParticles();
+        }
+
         loginBtn.addEventListener('click', () => {
             const inputEmail = loginEmail.value.trim().toLowerCase();
             if (inputEmail === 'chamilka.ch@gmail.com' && passcode.value === activePasscode) {
                 loginGate.classList.add('hidden');
+                if (loginAnimationId) cancelAnimationFrame(loginAnimationId); // stop particle loop
                 initChart(); // render Chart once authorized
                 loadAllDatabase();
             } else {
