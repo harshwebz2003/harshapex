@@ -173,7 +173,7 @@ export default function Process() {
                             <span className="text-xs font-mono text-[#B8C0FF]/40 tracking-widest">{step.num} / STEP</span>
                           </div>
                           <h3 className="text-xl md:text-2xl font-bold text-white mb-4" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                            {step.title} <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent italic font-serif text-lg font-normal ml-1">{step.sinhala}</span>
+                            {step.title}
                           </h3>
                           <p className="text-sm text-[#E7D8FF]/60 leading-relaxed">{step.desc}</p>
                         </div>
@@ -202,7 +202,7 @@ export default function Process() {
                           <span className="text-xs font-mono text-[#B8C0FF]/40 tracking-widest">{step.num} / STEP</span>
                         </div>
                         <h3 className="text-xl md:text-2xl font-bold text-white mb-4" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                          {step.title} <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent italic font-serif text-lg font-normal ml-1">{step.sinhala}</span>
+                          {step.title}
                         </h3>
                         <p className="text-sm text-[#E7D8FF]/60 leading-relaxed">{step.desc}</p>
                       </div>
