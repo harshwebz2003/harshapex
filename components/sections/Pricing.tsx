@@ -3,7 +3,7 @@
 const plans = [
   {
     name: 'Starter',
-    price: 'LKR 45,000',
+    price: 'Rs. 15,000',
     period: 'one-time',
     desc: 'Perfect for small businesses and solo entrepreneurs looking to establish a professional digital presence.',
     features: [
@@ -21,7 +21,7 @@ const plans = [
   },
   {
     name: 'Growth',
-    price: 'LKR 95,000',
+    price: 'Rs. 50,000',
     period: 'one-time',
     desc: 'Ideal for growing businesses that need a powerful, feature-rich digital presence to scale.',
     features: [

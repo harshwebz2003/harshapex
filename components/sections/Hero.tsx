@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 export default function Hero() {
@@ -10,6 +10,29 @@ export default function Hero() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [videoSrc, setVideoSrc] = useState('logo video.mp4');
+
+  // Handle Video Orientation
+  useEffect(() => {
+    const updateVideoSource = () => {
+      const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+      setVideoSrc(isLandscape ? 'logo video landscape.mp4' : 'logo video.mp4');
+    };
+    updateVideoSource();
+    const mediaQueryList = window.matchMedia('(orientation: landscape)');
+    try {
+      mediaQueryList.addEventListener('change', updateVideoSource);
+    } catch (e) {
+      mediaQueryList.addListener(updateVideoSource);
+    }
+    return () => {
+      try {
+        mediaQueryList.removeEventListener('change', updateVideoSource);
+      } catch (e) {
+        mediaQueryList.removeListener(updateVideoSource);
+      }
+    };
+  }, []);
 
   // Mouse glow
   useEffect(() => {
@@ -117,6 +140,18 @@ export default function Hero() {
     >
       {/* Canvas blobs */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
+
+      {/* Video Background */}
+      <video
+        key={videoSrc}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="hero-video-bg"
+      >
+        <source src={`/${videoSrc}`} type="video/mp4" />
+      </video>
 
       {/* Noise texture */}
       <div

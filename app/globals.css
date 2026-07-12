@@ -21,6 +21,7 @@
   --animate-marquee-reverse: marquee-reverse 30s linear infinite;
   --animate-float-1: float1 8s ease-in-out infinite;
   --animate-float-2: float2 10s ease-in-out infinite;
+  --animate-drift: drift 45s ease-in-out infinite;
 }
 
 /* ——— Keyframes ——— */
@@ -47,6 +48,13 @@
 @keyframes spin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
+}
+
+@keyframes drift {
+  0% { transform: scale(1) translate(0, 0); }
+  33% { transform: scale(1.04) translate(1.5%, -1%); }
+  66% { transform: scale(1.02) translate(-1%, 1.5%); }
+  100% { transform: scale(1) translate(0, 0); }
 }
 
 /* ——— Base ——— */
@@ -114,5 +122,18 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .hero-video-bg {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.16;
+    pointer-events: none;
+    mix-blend-mode: screen;
   }
 }
