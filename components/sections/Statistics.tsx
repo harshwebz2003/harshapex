@@ -8,9 +8,9 @@ import Image from 'next/image';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: 50, suffix: '+', label: 'Projects Delivered', sub: 'Across 15 countries' },
+  { value: 15, suffix: '+', label: 'Projects Delivered', sub: 'Across 3 countries' },
   { value: 98, suffix: '%', label: 'Client Satisfaction', sub: '5-star reviews' },
-  { value: 5, suffix: '+', label: 'Years of Excellence', sub: 'Industry expertise' },
+  { value: 2, suffix: '+', label: 'Years of Excellence', sub: 'Industry expertise' },
   { value: 3, suffix: '×', label: 'Avg. Traffic Growth', sub: 'Within 90 days' },
 ];
 

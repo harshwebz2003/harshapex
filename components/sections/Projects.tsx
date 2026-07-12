@@ -153,10 +153,37 @@ export default function Projects() {
             img: imgPath,
             tags: tagsArr,
             link: p.link || '#',
-            recent: idx < 3 // Top 3 projects are flagged as RECENT
+            recent: false
           };
         });
-        setProjectList(formatted);
+
+        // Reorder so that Serendib, Neat Construction, and 3D Scrolling Tourism are always at the top
+        const sorted = [...formatted].sort((a, b) => {
+          const titleA = a.title.toLowerCase();
+          const titleB = b.title.toLowerCase();
+          
+          const isA_Top = titleA.includes('serendib') || titleA.includes('neat construction') || titleA.includes('3d scrolling') || titleA.includes('luxeceylon');
+          const isB_Top = titleB.includes('serendib') || titleB.includes('neat construction') || titleB.includes('3d scrolling') || titleB.includes('luxeceylon');
+          
+          if (isA_Top && !isB_Top) return -1;
+          if (!isA_Top && isB_Top) return 1;
+          
+          if (isA_Top && isB_Top) {
+            const order = ['serendib', 'neat construction', '3d scrolling', 'luxeceylon'];
+            const idxA = order.findIndex(term => titleA.includes(term));
+            const idxB = order.findIndex(term => titleB.includes(term));
+            return idxA - idxB;
+          }
+          
+          return 0;
+        });
+
+        const finalProjects = sorted.map((p, idx) => ({
+          ...p,
+          recent: idx < 3
+        }));
+
+        setProjectList(finalProjects);
       }
     });
 
@@ -238,8 +265,8 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Masonry-style grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
+        {/* Modern 3-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((project, i) => (
             <div
               key={project.title}
@@ -248,37 +275,43 @@ export default function Projects() {
                   window.open(project.link, '_blank');
                 }
               }}
-              className="project-card break-inside-avoid group relative overflow-hidden rounded-3xl border border-[#B8C0FF]/10 hover:border-[#B8C0FF]/30 transition-all duration-500 cursor-pointer"
+              className="project-card group flex flex-col gap-4 cursor-pointer"
             >
-              <div className={`relative w-full ${i % 3 === 0 ? 'aspect-[4/3]' : i % 3 === 1 ? 'aspect-square' : 'aspect-[3/4]'}`}>
+              {/* Image Frame */}
+              <div className="relative w-full aspect-[16/10] overflow-hidden rounded-[24px] border border-[#B8C0FF]/10 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#B8C0FF]/30 transition-all duration-500 shadow-md">
                 <Image
                   src={project.img}
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 
                 {/* Recent Badge */}
                 {project.recent && (
-                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-[10px] font-bold px-3.5 py-1.5 rounded-full shadow-lg border border-[#B8C0FF]/30 tracking-wider">
+                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-[9px] font-extrabold px-3.5 py-1.5 rounded-full shadow-lg border border-[#B8C0FF]/30 tracking-wider">
                     RECENT
                   </div>
                 )}
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0D0B1A]/90 via-[#0D0B1A]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-
-                {/* Info reveal */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-out">
-                  <p className="text-xs text-[#B8C0FF] mb-1 tracking-wider uppercase">{project.category}</p>
-                  <h3 className="text-lg font-bold text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                    {project.title}
-                  </h3>
-                  <div className="mt-3 flex items-center gap-2 text-[#E7D8FF]/60 text-sm">
-                    <span>View project</span>
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                {/* Dark Hover overlay for arrow icon */}
+                <div className="absolute inset-0 bg-[#0D0B1A]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    <span className="text-white text-lg">→</span>
                   </div>
                 </div>
+              </div>
+
+              {/* Title & Category Details below the card */}
+              <div className="flex flex-col gap-1.5 px-2">
+                <span className="text-[10px] tracking-[0.15em] uppercase text-[#B8C0FF]/50 font-mono font-bold">
+                  {project.category}
+                </span>
+                <h3 
+                  className="text-lg font-bold text-white group-hover:text-[#B8C0FF] transition-colors duration-300"
+                  style={{ fontFamily: 'Clash Display, sans-serif' }}
+                >
+                  {project.title}
+                </h3>
               </div>
             </div>
           ))}
