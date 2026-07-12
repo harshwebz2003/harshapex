@@ -163,6 +163,13 @@ export default function Projects() {
     return () => unsubscribe();
   }, []);
 
+  // Recalculate GSAP ScrollTrigger markers to prevent layout shift glitches
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  }, [projectList]);
+
   const filtered =
     activeFilter === 'All'
       ? projectList
