@@ -17,22 +17,85 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #090716;
+            overflow-x: hidden;
         }
         h1, h2, h3, h4 {
             font-family: 'Space Grotesk', sans-serif;
         }
-        .glow-button {
-            transition: all 0.3s ease;
+        
+        /* Figma-style smooth sidebar transitions */
+        .sidebar-icon {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
         }
-        .glow-button:hover {
-            box-shadow: 0 0 20px rgba(184, 192, 255, 0.3);
-            transform: translateY(-1px);
+        .sidebar-icon:hover {
+            transform: translateX(4px);
+            background-color: rgba(184, 192, 255, 0.06);
+            color: #ffffff;
         }
         .sidebar-icon.active {
             background-color: rgba(184, 192, 255, 0.1);
             color: #b8c0ff;
-            border-left: 3px solid #b8c0ff;
         }
+        .sidebar-icon.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            height: 60%;
+            width: 3.5px;
+            background: #b8c0ff;
+            border-radius: 9999px;
+            box-shadow: 0 0 10px rgba(184, 192, 255, 0.6);
+        }
+
+        /* Tab Transition Animation */
+        .tab-panel {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .tab-panel.active-tab {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Figma-style Modal Animation */
+        .figma-modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .figma-modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .figma-modal-content {
+            transform: scale(0.96) translateY(12px);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .figma-modal.open .figma-modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .glow-button {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(184, 192, 255, 0.3);
+            transform: translateY(-1.5px);
+        }
+
+        /* Hover animations for metric cards */
+        .metric-card {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .metric-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(184, 192, 255, 0.3);
+            box-shadow: 0 12px 30px rgba(9, 7, 22, 0.6), 0 0 15px rgba(184, 192, 255, 0.05);
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
@@ -177,25 +240,25 @@
             </div>
 
             <!-- TAB 1: ANALYTICS -->
-            <div id="tab-analytics" class="space-y-6">
+            <div id="tab-analytics" class="tab-panel active-tab space-y-6">
                 <!-- Grid metrics row -->
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
-                    <div class="bg-[#120f26]/60 border border-[#b8c0ff]/10 p-5 rounded-2xl relative">
+                    <div class="metric-card bg-[#120f26]/60 border border-[#b8c0ff]/10 p-5 rounded-2xl relative">
                         <p class="text-[10px] text-[#b8c0ff]/55 uppercase tracking-widest font-semibold">Total Clicks</p>
                         <p class="text-3xl font-extrabold text-white mt-2">1,842</p>
                         <span class="text-[10px] text-emerald-400 font-bold block mt-1">▲ +12.4% vs last 30d</span>
                     </div>
-                    <div class="bg-[#120f26]/60 border border-[#b8c0ff]/10 p-5 rounded-2xl relative">
+                    <div class="metric-card bg-[#120f26]/60 border border-[#b8c0ff]/10 p-5 rounded-2xl relative">
                         <p class="text-[10px] text-[#b8c0ff]/55 uppercase tracking-widest font-semibold">Impressions</p>
                         <p class="text-3xl font-extrabold text-white mt-2">32,640</p>
                         <span class="text-[10px] text-emerald-400 font-bold block mt-1">▲ +8.1% vs last 30d</span>
                     </div>
-                    <div class="bg-[#120f26]/60 border border-[#b8c0ff]/10 p-5 rounded-2xl relative">
+                    <div class="metric-card bg-[#120f26]/60 border border-[#b8c0ff]/10 p-5 rounded-2xl relative">
                         <p class="text-[10px] text-[#b8c0ff]/55 uppercase tracking-widest font-semibold">Avg. Engagement</p>
                         <p class="text-3xl font-extrabold text-white mt-2">5.64%</p>
                         <span class="text-[10px] text-[#b8c0ff] font-bold block mt-1">● Stable</span>
                     </div>
-                    <div class="bg-[#120f26]/60 border border-[#b8c0ff]/10 p-5 rounded-2xl relative">
+                    <div class="metric-card bg-[#120f26]/60 border border-[#b8c0ff]/10 p-5 rounded-2xl relative">
                         <p class="text-[10px] text-[#b8c0ff]/55 uppercase tracking-widest font-semibold">Avg Position</p>
                         <p class="text-3xl font-extrabold text-white mt-2">14.2</p>
                         <span class="text-[10px] text-emerald-400 font-bold block mt-1">▲ +1.5 rankings</span>
@@ -230,7 +293,7 @@
             </div>
 
             <!-- TAB 2: PROJECTS -->
-            <div id="tab-projects" class="space-y-6 hidden">
+            <div id="tab-projects" class="tab-panel space-y-6 hidden">
                 <div class="flex items-center justify-between border-b border-[#b8c0ff]/10 pb-4">
                     <h3 class="text-sm font-semibold tracking-wider uppercase text-white">Portfolio Projects</h3>
                     <button onclick="openProjectModal(null)" class="glow-button px-4 py-2 rounded-xl bg-gradient-to-r from-[#b8c0ff] to-[#e7d8ff] text-[#0d0a21] text-xs font-bold shadow-lg cursor-pointer">+ Add New Project</button>
@@ -254,7 +317,7 @@
             </div>
 
             <!-- TAB 3: SERVICES & PRICING -->
-            <div id="tab-services" class="grid grid-cols-1 lg:grid-cols-2 gap-6 hidden">
+            <div id="tab-services" class="tab-panel grid grid-cols-1 lg:grid-cols-2 gap-6 hidden">
                 <!-- Services column -->
                 <div class="bg-[#120f26]/40 border border-[#b8c0ff]/10 p-6 rounded-3xl space-y-6">
                     <div class="flex items-center justify-between border-b border-[#b8c0ff]/10 pb-3">
@@ -274,7 +337,7 @@
             </div>
 
             <!-- TAB 4: TEXT CONTENT & REVIEWS -->
-            <div id="tab-textreviews" class="grid grid-cols-1 lg:grid-cols-2 gap-6 hidden">
+            <div id="tab-textreviews" class="tab-panel grid grid-cols-1 lg:grid-cols-2 gap-6 hidden">
                 <!-- Hero & Philosophy Text settings -->
                 <div class="bg-[#120f26]/40 border border-[#b8c0ff]/10 p-6 rounded-3xl space-y-6">
                     <h3 class="text-sm font-semibold tracking-wider uppercase text-white border-b border-[#b8c0ff]/10 pb-3">Hero & Creed Wording</h3>
@@ -317,7 +380,7 @@
             </div>
 
             <!-- TAB 5: SECURITY -->
-            <div id="tab-security" class="space-y-6 hidden">
+            <div id="tab-security" class="tab-panel space-y-6 hidden">
                 <div class="max-w-md bg-[#120f26]/40 border border-[#b8c0ff]/10 p-6 md:p-8 rounded-3xl space-y-6">
                     <h3 class="text-sm font-semibold tracking-wider uppercase text-white border-b border-[#b8c0ff]/10 pb-3">Update Access Security</h3>
                     <div class="space-y-4">
@@ -337,8 +400,8 @@
     </div>
 
     <!-- MODAL: Projects Add/Edit -->
-    <div id="projectModal" class="fixed inset-0 z-40 items-center justify-center p-6 bg-[#000000]/80 backdrop-blur-sm hidden">
-        <div class="w-full max-w-lg bg-[#120f26] border border-[#b8c0ff]/15 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+    <div id="projectModal" class="figma-modal fixed inset-0 z-40 items-center justify-center p-6 bg-[#000000]/80 backdrop-blur-sm hidden">
+        <div class="figma-modal-content w-full max-w-lg bg-[#120f26] border border-[#b8c0ff]/15 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
             <h3 id="modalTitle" class="text-xl font-bold text-white mb-6 border-b border-[#b8c0ff]/10 pb-4">Add Portfolio Entry</h3>
             <input type="hidden" id="modalIndex">
             <div class="space-y-4">
@@ -388,8 +451,8 @@
     </div>
 
     <!-- MODAL: Services Add/Edit -->
-    <div id="serviceModal" class="fixed inset-0 z-40 items-center justify-center p-6 bg-[#000000]/80 backdrop-blur-sm hidden">
-        <div class="w-full max-w-lg bg-[#120f26] border border-[#b8c0ff]/15 rounded-3xl p-8 shadow-2xl relative">
+    <div id="serviceModal" class="figma-modal fixed inset-0 z-40 items-center justify-center p-6 bg-[#000000]/80 backdrop-blur-sm hidden">
+        <div class="figma-modal-content w-full max-w-lg bg-[#120f26] border border-[#b8c0ff]/15 rounded-3xl p-8 shadow-2xl relative">
             <h3 id="serviceModalTitle" class="text-xl font-bold text-white mb-6 border-b border-[#b8c0ff]/10 pb-4">Add Solution</h3>
             <input type="hidden" id="serviceModalIndex">
             <div class="space-y-4">
@@ -410,8 +473,8 @@
     </div>
 
     <!-- MODAL: Reviews Add/Edit -->
-    <div id="reviewModal" class="fixed inset-0 z-40 items-center justify-center p-6 bg-[#000000]/80 backdrop-blur-sm hidden">
-        <div class="w-full max-w-lg bg-[#120f26] border border-[#b8c0ff]/15 rounded-3xl p-8 shadow-2xl relative">
+    <div id="reviewModal" class="figma-modal fixed inset-0 z-40 items-center justify-center p-6 bg-[#000000]/80 backdrop-blur-sm hidden">
+        <div class="figma-modal-content w-full max-w-lg bg-[#120f26] border border-[#b8c0ff]/15 rounded-3xl p-8 shadow-2xl relative">
             <h3 id="reviewModalTitle" class="text-xl font-bold text-white mb-6 border-b border-[#b8c0ff]/10 pb-4">Add Client Evaluation</h3>
             <input type="hidden" id="reviewModalIndex">
             <div class="space-y-4">
@@ -683,18 +746,29 @@
             }
         });
 
-        // Switch Active Tabs
+        // Switch Active Tabs with Figma Easing Transitions
         window.switchTab = function(tabName) {
-            document.getElementById('tab-analytics').classList.add('hidden');
-            document.getElementById('tab-projects').classList.add('hidden');
-            document.getElementById('tab-services').classList.add('hidden');
-            document.getElementById('tab-textreviews').classList.add('hidden');
-            document.getElementById('tab-security').classList.add('hidden');
+            const tabs = ['analytics', 'projects', 'services', 'textreviews', 'security'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                if (el) {
+                    el.classList.add('hidden');
+                    el.classList.remove('active-tab');
+                }
+            });
 
             document.querySelectorAll('.sidebar-icon').forEach(btn => btn.classList.remove('active'));
 
-            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
-            document.getElementById(`nav-btn-${tabName}`).classList.add('active');
+            const activeEl = document.getElementById(`tab-${tabName}`);
+            if (activeEl) {
+                activeEl.classList.remove('hidden');
+                // trigger transition in the next paint frame
+                setTimeout(() => {
+                    activeEl.classList.add('active-tab');
+                }, 10);
+            }
+            const activeBtn = document.getElementById(`nav-btn-${tabName}`);
+            if (activeBtn) activeBtn.classList.add('active');
         };
 
         // Render Projects List
@@ -805,11 +879,32 @@
             });
         }
 
+        // Figma-style Modal Animation Helpers
+        window.showModal = function(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.remove('hidden');
+                el.classList.add('flex');
+                setTimeout(() => {
+                    el.classList.add('open');
+                }, 10);
+            }
+        };
+
+        window.hideModal = function(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.remove('open');
+                setTimeout(() => {
+                    el.classList.remove('flex');
+                    el.classList.add('hidden');
+                }, 250);
+            }
+        };
+
         // CRUD Services Modal Actions
         window.openServiceModal = function(index) {
-            const modal = document.getElementById('serviceModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            showModal('serviceModal');
             if (index !== null) {
                 document.getElementById('serviceModalTitle').textContent = "Edit Solution";
                 document.getElementById('serviceModalIndex').value = index;
@@ -824,8 +919,7 @@
         };
 
         window.closeServiceModal = function() {
-            document.getElementById('serviceModal').classList.add('hidden');
-            document.getElementById('serviceModal').classList.remove('flex');
+            hideModal('serviceModal');
         };
 
         document.getElementById('modalServiceSaveBtn').addEventListener('click', async () => {
@@ -867,9 +961,7 @@
 
         // CRUD Testimonials Modal Actions
         window.openReviewModal = function(index) {
-            const modal = document.getElementById('reviewModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            showModal('reviewModal');
             if (index !== null) {
                 document.getElementById('reviewModalTitle').textContent = "Edit Evaluation";
                 document.getElementById('reviewModalIndex').value = index;
@@ -888,8 +980,7 @@
         };
 
         window.closeReviewModal = function() {
-            document.getElementById('reviewModal').classList.add('hidden');
-            document.getElementById('reviewModal').classList.remove('flex');
+            hideModal('reviewModal');
         };
 
         document.getElementById('modalReviewSaveBtn').addEventListener('click', async () => {
@@ -933,9 +1024,7 @@
 
         // CRUD Projects Modal Actions
         window.openProjectModal = function(index) {
-            const modal = document.getElementById('projectModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            showModal('projectModal');
             
             // reset file progress
             uploadProgress.classList.add('hidden');
@@ -961,8 +1050,7 @@
         };
 
         window.closeProjectModal = function() {
-            document.getElementById('projectModal').classList.add('hidden');
-            document.getElementById('projectModal').classList.remove('flex');
+            hideModal('projectModal');
         };
 
         document.getElementById('modalSaveBtn').addEventListener('click', async () => {
