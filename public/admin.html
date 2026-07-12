@@ -681,6 +681,22 @@
                 if (projectsSnap.exists()) {
                     projectsData = projectsSnap.val();
                     if (!Array.isArray(projectsData)) projectsData = Object.values(projectsData);
+                    
+                    // Auto-migrate "projects/" paths back to "Assests/" (for static hosting sync) and correct HiruZone casing
+                    let migrated = false;
+                    projectsData.forEach(p => {
+                        if (p.img && p.img.includes('projects/')) {
+                            p.img = p.img.replace('projects/', 'Assests/');
+                            migrated = true;
+                        }
+                        if (p.img && p.img.includes('HiruZone')) {
+                            p.img = p.img.replace('HiruZone', 'Hiruzone');
+                            migrated = true;
+                        }
+                    });
+                    if (migrated) {
+                        await set(projectsRef, projectsData);
+                    }
                 } else {
                     projectsData = [
                         { title: 'HiruZone Tech Portal', category: 'Web Application', img: 'Assests/Hiruzone Tourism.png', tags: ['Web', 'Tourism'], link: 'https://hiruzone.netlify.app' },
