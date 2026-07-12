@@ -694,11 +694,40 @@
                             migrated = true;
                         }
                     });
+
+                    // Add new Serendib and Neat Construction projects at the top if they do not exist
+                    const hasNeat = projectsData.some(p => p.link && p.link.includes('neat-construction.com'));
+                    const hasSerendib = projectsData.some(p => p.link && p.link.includes('tourism-webpage'));
+
+                    if (!hasNeat) {
+                        projectsData.unshift({
+                            title: 'Neat Construction',
+                            category: 'Industrial Construction',
+                            img: 'Assests/Neat Construction.png',
+                            tags: ['Web', 'Corporate'],
+                            link: 'https://www.neat-construction.com/'
+                        });
+                        migrated = true;
+                    }
+
+                    if (!hasSerendib) {
+                        projectsData.unshift({
+                            title: 'Serendib - Sri Lanka Tourism',
+                            category: 'Tourism Webpage',
+                            img: 'Assests/Serendib.png',
+                            tags: ['Web', 'Tourism'],
+                            link: 'https://harshwebz2003.github.io/tourism-webpage/#hero'
+                        });
+                        migrated = true;
+                    }
+
                     if (migrated) {
                         await set(projectsRef, projectsData);
                     }
                 } else {
                     projectsData = [
+                        { title: 'Serendib - Sri Lanka Tourism', category: 'Tourism Webpage', img: 'Assests/Serendib.png', tags: ['Web', 'Tourism'], link: 'https://harshwebz2003.github.io/tourism-webpage/#hero' },
+                        { title: 'Neat Construction', category: 'Industrial Construction', img: 'Assests/Neat Construction.png', tags: ['Web', 'Corporate'], link: 'https://www.neat-construction.com/' },
                         { title: 'HiruZone Tech Portal', category: 'Web Application', img: 'Assests/Hiruzone Tourism.png', tags: ['Web', 'Tourism'], link: 'https://hiruzone.netlify.app' },
                         { title: 'Driftwear Flagship Store', category: 'Retail &middot; E-Commerce', img: 'Assests/Clothing Site.png', tags: ['E-Commerce', 'Retail'], link: 'https://driftware.netlify.app' },
                         { title: 'Five Season Luxury Salon', category: 'B2C Enterprise Site', img: 'Assests/Five Season Salon.png', tags: ['Web', 'Brand'], link: 'https://fiveseasonsalon.netlify.app' }
