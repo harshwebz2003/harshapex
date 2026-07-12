@@ -18,6 +18,7 @@ import Pricing from '@/components/sections/Pricing';
 import FAQ from '@/components/sections/FAQ';
 import CTA from '@/components/sections/CTA';
 import Footer from '@/components/sections/Footer';
+import WhatsAppButton from '@/components/sections/WhatsAppButton';
 
 const LoadingScreen = dynamic(() => import('@/components/sections/LoadingScreen'), { ssr: false });
 
@@ -43,6 +44,7 @@ export default function HomePage() {
         <FAQ />
         <CTA />
         <Footer />
+        <WhatsAppButton />
       </main>
     </>
   );
