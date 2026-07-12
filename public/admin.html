@@ -778,7 +778,7 @@
                 uploadProgress.className = "text-xs text-emerald-400";
             } catch (err) {
                 console.error("Storage upload failed: ", err);
-                uploadProgress.textContent = "Upload failed!";
+                uploadProgress.textContent = "Error: " + (err.code || err.message || err);
                 uploadProgress.className = "text-xs text-rose-400";
             }
         });
