@@ -278,7 +278,7 @@ export default function Projects() {
               className="project-card group flex flex-col gap-4 cursor-pointer"
             >
               {/* Image Frame */}
-              <div className="relative w-full aspect-[16/10] overflow-hidden rounded-[24px] border border-[#B8C0FF]/10 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#B8C0FF]/30 transition-all duration-500 shadow-md">
+              <div className="relative w-full aspect-square overflow-hidden rounded-[24px] border border-[#B8C0FF]/10 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#B8C0FF]/30 transition-all duration-500 shadow-md">
                 <Image
                   src={project.img}
                   alt={project.title}
