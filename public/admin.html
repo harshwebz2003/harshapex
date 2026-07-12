@@ -695,29 +695,43 @@
                         }
                     });
 
-                    // Add new Serendib and Neat Construction projects at the top if they do not exist
-                    const hasNeat = projectsData.some(p => p.link && p.link.includes('neat-construction.com'));
-                    const hasSerendib = projectsData.some(p => p.link && p.link.includes('tourism-webpage'));
+                    // Add and rename Serendib, Neat Construction, and LuxeCeylon projects at the top in correct order
+                    const matchesDesired = 
+                        projectsData.length >= 3 &&
+                        projectsData[0].title === 'Serendib Tourism Webpage' &&
+                        projectsData[1].title === 'Neat Construction' &&
+                        projectsData[2].title === '3D Scrolling Tourism Webpage';
 
-                    if (!hasNeat) {
-                        projectsData.unshift({
-                            title: 'Neat Construction',
-                            category: 'Industrial Construction',
-                            img: 'Assests/Neat Construction.png',
-                            tags: ['Web', 'Corporate'],
-                            link: 'https://www.neat-construction.com/'
-                        });
-                        migrated = true;
-                    }
-
-                    if (!hasSerendib) {
-                        projectsData.unshift({
-                            title: 'Serendib - Sri Lanka Tourism',
-                            category: 'Tourism Webpage',
-                            img: 'Assests/Serendib.png',
-                            tags: ['Web', 'Tourism'],
-                            link: 'https://harshwebz2003.github.io/tourism-webpage/#hero'
-                        });
+                    if (!matchesDesired) {
+                        projectsData = projectsData.filter(p => 
+                            p.link && 
+                            !p.link.includes('Modern-Tourism-') && 
+                            !p.link.includes('neat-construction.com') && 
+                            !p.link.includes('tourism-webpage')
+                        );
+                        projectsData.unshift(
+                            {
+                                title: 'Serendib Tourism Webpage',
+                                category: 'Tourism Webpage',
+                                img: 'Assests/Serendib.png',
+                                tags: ['Web', 'Tourism'],
+                                link: 'https://harshwebz2003.github.io/tourism-webpage/#hero'
+                            },
+                            {
+                                title: 'Neat Construction',
+                                category: 'Industrial Construction',
+                                img: 'Assests/Neat Construction.png',
+                                tags: ['Web', 'Corporate'],
+                                link: 'https://www.neat-construction.com/'
+                            },
+                            {
+                                title: '3D Scrolling Tourism Webpage',
+                                category: 'Luxury Tourism',
+                                img: 'Assests/LuxeCeylon.jpg',
+                                tags: ['Web', 'Tourism'],
+                                link: 'https://raveenn10-bit.github.io/Modern-Tourism-/'
+                            }
+                        );
                         migrated = true;
                     }
 
@@ -726,8 +740,9 @@
                     }
                 } else {
                     projectsData = [
-                        { title: 'Serendib - Sri Lanka Tourism', category: 'Tourism Webpage', img: 'Assests/Serendib.png', tags: ['Web', 'Tourism'], link: 'https://harshwebz2003.github.io/tourism-webpage/#hero' },
+                        { title: 'Serendib Tourism Webpage', category: 'Tourism Webpage', img: 'Assests/Serendib.png', tags: ['Web', 'Tourism'], link: 'https://harshwebz2003.github.io/tourism-webpage/#hero' },
                         { title: 'Neat Construction', category: 'Industrial Construction', img: 'Assests/Neat Construction.png', tags: ['Web', 'Corporate'], link: 'https://www.neat-construction.com/' },
+                        { title: '3D Scrolling Tourism Webpage', category: 'Luxury Tourism', img: 'Assests/LuxeCeylon.jpg', tags: ['Web', 'Tourism'], link: 'https://raveenn10-bit.github.io/Modern-Tourism-/' },
                         { title: 'HiruZone Tech Portal', category: 'Web Application', img: 'Assests/Hiruzone Tourism.png', tags: ['Web', 'Tourism'], link: 'https://hiruzone.netlify.app' },
                         { title: 'Driftwear Flagship Store', category: 'Retail &middot; E-Commerce', img: 'Assests/Clothing Site.png', tags: ['E-Commerce', 'Retail'], link: 'https://driftware.netlify.app' },
                         { title: 'Five Season Luxury Salon', category: 'B2C Enterprise Site', img: 'Assests/Five Season Salon.png', tags: ['Web', 'Brand'], link: 'https://fiveseasonsalon.netlify.app' }
