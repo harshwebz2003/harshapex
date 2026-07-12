@@ -35,7 +35,7 @@ export default function SplitText({
 
     el.innerHTML = units
       .map(
-        (unit, i) =>
+        (unit) =>
           `<span class="split-unit" style="display:inline-block; overflow:hidden; vertical-align:top;"><span class="split-inner" style="display:inline-block;">${unit === ' ' ? '&nbsp;' : unit}</span></span>`
       )
       .join(type === 'words' ? ' ' : '');

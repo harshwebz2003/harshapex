@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
 
@@ -9,7 +9,6 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
   const progressBarRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -40,7 +39,6 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         ease: 'power1.inOut',
         onUpdate: () => {
           const v = Math.round(obj.val);
-          setProgress(v);
           if (counterRef.current) counterRef.current.textContent = `${v}%`;
           if (progressBarRef.current) progressBarRef.current.style.width = `${v}%`;
         },
