@@ -54,6 +54,9 @@
 
     <!-- Login Passcode Gate (Vanta.js Clouds Background) -->
     <div id="loginGate" class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-[#04020a] overflow-hidden">
+        <!-- Glowing Crescent Moon -->
+        <div class="absolute top-12 right-12 md:right-24 w-16 h-16 rounded-full border-l-4 border-t border-[#fdf6e2] -rotate-45 shadow-[0_0_25px_rgba(253,246,226,0.35)] opacity-80 pointer-events-none z-10 animate-pulse" style="animation-duration: 4s;"></div>
+        
         <!-- Central Login Card -->
         <div class="w-full max-w-sm z-10 text-center space-y-6">
             <!-- Circular Avatar Frame with logo -->
@@ -73,7 +76,7 @@
                 <input type="email" id="loginEmail" class="w-full bg-white text-[#090716] rounded-full px-6 py-3.5 text-xs text-center outline-none font-bold placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-400 transition-all" placeholder="USER NAME" value="chamilka.ch@gmail.com">
                 <div class="relative w-full">
                     <input type="password" id="passcode" class="w-full bg-white text-[#090716] rounded-full px-6 py-3.5 pr-12 text-xs text-center outline-none font-bold placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-400 transition-all" placeholder="PASSWORD">
-                    <button type="button" id="togglePasscode" class="absolute right-4 top-3.5 text-[#090716]/60 hover:text-[#090716] transition-colors focus:outline-none cursor-pointer">
+                    <button type="button" id="togglePasscode" class="absolute right-4 top-3.5 z-10 text-[#090716]/60 hover:text-[#090716] transition-colors focus:outline-none cursor-pointer">
                         <svg id="eyeIcon" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -512,6 +515,23 @@
             });
         } catch (err) {
             console.error("Vanta.js clouds failed: ", err);
+        }
+
+        // Generate stars dynamically on top of Vanta Clouds
+        const loginGateEl = document.getElementById('loginGate');
+        if (loginGateEl) {
+            for (let i = 0; i < 40; i++) {
+                const star = document.createElement('div');
+                star.className = 'absolute bg-white rounded-full pointer-events-none animate-pulse z-10';
+                const size = Math.random() * 2 + 1; // 1px to 3px
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.opacity = (Math.random() * 0.7 + 0.3).toString();
+                star.style.animationDuration = `${Math.random() * 3 + 1.5}s`;
+                loginGateEl.appendChild(star);
+            }
         }
 
         loginBtn.addEventListener('click', () => {
