@@ -165,8 +165,8 @@ export default function CTA() {
         {/* Contact info */}
         <div className="mt-12 flex flex-wrap justify-center gap-8 text-center">
           {[
-            { icon: '✉', label: 'Email', value: 'hello@harshapex.com.lk' },
-            { icon: '📞', label: 'Phone', value: '+94 77 XXX XXXX' },
+            { icon: '✉', label: 'Email', value: 'chamilka.ch@gmail.com' },
+            { icon: '📞', label: 'Phone', value: '+94 77 066 3154' },
             { icon: '📍', label: 'Location', value: 'Sri Lanka' },
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-3">

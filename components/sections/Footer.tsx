@@ -5,14 +5,14 @@ import Image from 'next/image';
 const links = {
   Services: ['Web Design', 'UI/UX Design', 'Web Development', 'Branding', 'SEO', 'Performance'],
   Company: ['About Us', 'Our Work', 'Process', 'Pricing', 'Blog'],
-  Contact: ['hello@harshapex.com.lk', '+94 77 XXX XXXX', 'Sri Lanka'],
+  Contact: ['chamilka.ch@gmail.com', '+94 77 066 3154', 'Sri Lanka'],
 };
 
 const socials = [
-  { label: 'Facebook', href: '#', icon: 'f' },
-  { label: 'Instagram', href: '#', icon: '◯' },
-  { label: 'LinkedIn', href: '#', icon: 'in' },
-  { label: 'Twitter', href: '#', icon: '✕' },
+  { label: 'Facebook', href: 'https://www.facebook.com/harshapex', icon: 'f' },
+  { label: 'Instagram', href: 'https://www.instagram.com/c_harshz/', icon: '◯' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/chamilka-harshan', icon: 'in' },
+  { label: 'GitHub', href: 'https://github.com/chamilka-ch', icon: 'gh' },
 ];
 
 export default function Footer() {
