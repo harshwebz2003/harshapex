@@ -151,7 +151,7 @@
             <!-- Remember me & Forgot Pass -->
             <div class="flex items-center justify-between px-2 text-[10px] text-[#b8c0ff]/60 font-medium">
                 <label class="flex items-center gap-1.5 cursor-pointer">
-                    <input type="checkbox" checked class="rounded border-[#b8c0ff]/30 text-indigo-400 bg-transparent focus:ring-0">
+                    <input type="checkbox" id="rememberMe" checked class="rounded border-[#b8c0ff]/30 text-indigo-400 bg-transparent focus:ring-0">
                     <span>Remember me</span>
                 </label>
                 <a href="#" class="hover:underline">Forgot password?</a>
@@ -597,9 +597,30 @@
             }
         }
 
+        // Check localStorage for saved credentials
+        const savedEmail = localStorage.getItem('admin_remembered_email');
+        const savedPass = localStorage.getItem('admin_remembered_passcode');
+        const rememberMeCheckbox = document.getElementById('rememberMe');
+        
+        if (savedEmail) {
+            loginEmail.value = savedEmail;
+        }
+        if (savedPass) {
+            passcode.value = savedPass;
+        }
+
         loginBtn.addEventListener('click', () => {
             const inputEmail = loginEmail.value.trim().toLowerCase();
             if (inputEmail === 'chamilka.ch@gmail.com' && passcode.value === activePasscode) {
+                // Save or clear credentials based on "Remember me" checkbox
+                if (rememberMeCheckbox && rememberMeCheckbox.checked) {
+                    localStorage.setItem('admin_remembered_email', inputEmail);
+                    localStorage.setItem('admin_remembered_passcode', passcode.value);
+                } else {
+                    localStorage.removeItem('admin_remembered_email');
+                    localStorage.removeItem('admin_remembered_passcode');
+                }
+
                 loginGate.classList.add('hidden');
                 if (vantaEffect) vantaEffect.destroy(); // destroy WebGL context
                 initChart(); // render Chart once authorized
