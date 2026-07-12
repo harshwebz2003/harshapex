@@ -11,7 +11,7 @@ const stats = [
   { num: '50+', label: 'Projects' },
   { num: '5+', label: 'Years' },
   { num: '98%', label: 'Satisfaction' },
-  { num: '3', label: 'Countries' },
+  { num: '15', label: 'Countries' },
 ];
 
 export default function AgencyIntro() {
