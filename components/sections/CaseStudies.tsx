@@ -48,14 +48,34 @@ export default function CaseStudies() {
     let intervalId: NodeJS.Timeout;
 
     const startAutoScroll = () => {
-      if (window.innerWidth >= 768) return;
       intervalId = setInterval(() => {
         const maxScroll = container.scrollWidth - container.clientWidth;
-        if (container.scrollLeft >= maxScroll - 10) {
-          container.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          const cardWidth = container.firstElementChild?.getBoundingClientRect().width ?? 280;
-          container.scrollBy({ left: cardWidth + 32, behavior: 'smooth' });
+        if (maxScroll <= 0) return; // Only scroll if content overflows (e.g. mobile list)
+
+        const cards = Array.from(container.children) as HTMLElement[];
+        if (cards.length === 0) return;
+
+        let currentIndex = 0;
+        let minDiff = Infinity;
+        const containerLeft = container.getBoundingClientRect().left;
+
+        cards.forEach((card, idx) => {
+          const rect = card.getBoundingClientRect();
+          const diff = Math.abs(rect.left - containerLeft);
+          if (diff < minDiff) {
+            minDiff = diff;
+            currentIndex = idx;
+          }
+        });
+
+        const nextIndex = (currentIndex + 1) % cards.length;
+        const nextCard = cards[nextIndex];
+        if (nextCard) {
+          const targetLeft = container.scrollLeft + nextCard.getBoundingClientRect().left - container.getBoundingClientRect().left;
+          container.scrollTo({
+            left: targetLeft,
+            behavior: 'smooth'
+          });
         }
       }, 3500);
     };
