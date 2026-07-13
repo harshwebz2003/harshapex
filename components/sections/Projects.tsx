@@ -118,8 +118,46 @@ const filters = ['All', 'Web', 'E-Commerce', 'Brand', 'App'];
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [activeFilter, setActiveFilter] = useState('All');
   const [projectList, setProjectList] = useState<any[]>(initialProjects);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let intervalId: NodeJS.Timeout;
+
+    const startAutoScroll = () => {
+      if (window.innerWidth >= 768) return;
+      intervalId = setInterval(() => {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        if (container.scrollLeft >= maxScroll - 10) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          const cardWidth = container.firstElementChild?.getBoundingClientRect().width ?? 280;
+          container.scrollBy({ left: cardWidth + 32, behavior: 'smooth' });
+        }
+      }, 3500);
+    };
+
+    startAutoScroll();
+
+    const pause = () => clearInterval(intervalId);
+    const resume = () => {
+      clearInterval(intervalId);
+      startAutoScroll();
+    };
+
+    container.addEventListener('touchstart', pause);
+    container.addEventListener('touchend', resume);
+
+    return () => {
+      clearInterval(intervalId);
+      container.removeEventListener('touchstart', pause);
+      container.removeEventListener('touchend', resume);
+    };
+  }, []);
 
   // Load projects dynamically from Firebase Realtime Database
   useEffect(() => {
@@ -266,7 +304,7 @@ export default function Projects() {
         </div>
 
         {/* Modern 3-Column Grid */}
-        <div className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-8 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
+        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-8 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
           {filtered.map((project, i) => (
             <div
               key={project.title}

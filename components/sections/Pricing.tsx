@@ -1,5 +1,7 @@
 
 
+import { useEffect, useRef } from 'react';
+
 const plans = [
   {
     name: 'Starter',
@@ -63,6 +65,45 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let intervalId: NodeJS.Timeout;
+
+    const startAutoScroll = () => {
+      if (window.innerWidth >= 768) return;
+      intervalId = setInterval(() => {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        if (container.scrollLeft >= maxScroll - 10) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          const cardWidth = container.firstElementChild?.getBoundingClientRect().width ?? 280;
+          container.scrollBy({ left: cardWidth + 24, behavior: 'smooth' });
+        }
+      }, 3500);
+    };
+
+    startAutoScroll();
+
+    const pause = () => clearInterval(intervalId);
+    const resume = () => {
+      clearInterval(intervalId);
+      startAutoScroll();
+    };
+
+    container.addEventListener('touchstart', pause);
+    container.addEventListener('touchend', resume);
+
+    return () => {
+      clearInterval(intervalId);
+      container.removeEventListener('touchstart', pause);
+      container.removeEventListener('touchend', resume);
+    };
+  }, []);
+
   return (
     <section id="pricing" className="py-32 md:py-40 bg-[#0A0918]">
       <div className="max-w-7xl mx-auto px-6">
@@ -84,7 +125,7 @@ export default function Pricing() {
         </div>
 
         {/* Cards */}
-        <div className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-6 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
+        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-6 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
           {plans.map((plan) => (
             <div
               key={plan.name}

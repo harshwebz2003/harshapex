@@ -177,6 +177,44 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let intervalId: NodeJS.Timeout;
+
+    const startAutoScroll = () => {
+      if (window.innerWidth >= 768) return;
+      intervalId = setInterval(() => {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        if (container.scrollLeft >= maxScroll - 10) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          const cardWidth = container.firstElementChild?.getBoundingClientRect().width ?? 280;
+          container.scrollBy({ left: cardWidth + 20, behavior: 'smooth' });
+        }
+      }, 3500);
+    };
+
+    startAutoScroll();
+
+    const pause = () => clearInterval(intervalId);
+    const resume = () => {
+      clearInterval(intervalId);
+      startAutoScroll();
+    };
+
+    container.addEventListener('touchstart', pause);
+    container.addEventListener('touchend', resume);
+
+    return () => {
+      clearInterval(intervalId);
+      container.removeEventListener('touchstart', pause);
+      container.removeEventListener('touchend', resume);
+    };
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -216,7 +254,7 @@ export default function Services() {
         </div>
 
         {/* Grid */}
-        <div className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-5 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
+        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-5 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
           {services.map((service, i) => (
             <div key={service.title} className="service-card-wrap w-[85vw] md:w-full shrink-0 snap-center">
               <ServiceCard service={service} index={i} />
