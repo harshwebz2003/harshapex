@@ -11,7 +11,6 @@ const steps = [
   {
     num: '01',
     title: 'Discovery',
-    sinhala: 'හඳුනාගැනීම',
     desc: 'We dive deep into your brand, goals, and audience to understand what success looks like for your unique project.',
     icon: Search,
     color: 'from-[#b8c0ff] to-[#e7d8ff]',
@@ -20,7 +19,6 @@ const steps = [
   {
     num: '02',
     title: 'Strategy',
-    sinhala: 'සැලසුම්කරණය',
     desc: 'We map out a detailed roadmap — architecture, tech stack, design direction, and milestones — before writing a single line of code.',
     icon: Compass,
     color: 'from-[#e7d8ff] to-[#b8c0ff]',
@@ -29,7 +27,6 @@ const steps = [
   {
     num: '03',
     title: 'Design',
-    sinhala: 'නිර්මාණය',
     desc: 'Our designers craft pixel-perfect mockups in Figma, iterating until the visual and UX experience is flawless.',
     icon: Palette,
     color: 'from-[#b8c0ff] to-[#e7d8ff]',
@@ -38,7 +35,6 @@ const steps = [
   {
     num: '04',
     title: 'Development',
-    sinhala: 'කේතනය',
     desc: 'Our engineers build your project with clean, optimised, production-ready code — tested and performance-tuned.',
     icon: Terminal,
     color: 'from-[#e7d8ff] to-[#b8c0ff]',
@@ -47,7 +43,6 @@ const steps = [
   {
     num: '05',
     title: 'Launch',
-    sinhala: 'දියත් කිරීම',
     desc: 'We deploy with precision, monitor performance, and stay by your side through launch and beyond.',
     icon: Rocket,
     color: 'from-[#b8c0ff] to-[#e7d8ff]',
