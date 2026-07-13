@@ -79,11 +79,11 @@ export default function CaseStudies() {
         </div>
 
         {/* Case cards */}
-        <div className="space-y-8">
+        <div className="flex md:flex-col flex-row overflow-x-auto md:overflow-visible gap-8 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
           {cases.map((c, i) => (
             <div
               key={c.client}
-              className="case-card group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-[#B8C0FF]/10 hover:border-[#B8C0FF]/30 transition-all duration-500"
+              className="case-card group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-[#B8C0FF]/10 hover:border-[#B8C0FF]/30 transition-all duration-500 w-[85vw] md:w-full shrink-0 snap-center"
             >
               {/* Image side */}
               <div className={`relative aspect-[16/9] md:aspect-auto overflow-hidden ${i % 2 === 1 ? 'md:order-2' : ''}`}>

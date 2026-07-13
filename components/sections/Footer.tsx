@@ -20,9 +20,9 @@ export default function Footer() {
     <footer className="bg-[#080616] border-t border-[#B8C0FF]/10">
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-6 py-20">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <Image src="/logo.png" alt="Harsh Apex" width={130} height={48} className="object-contain mb-6" />
             <p className="text-sm text-[#E7D8FF]/40 leading-relaxed mb-8">
               Crafting world-class digital experiences that convert visitors into loyal customers.
@@ -44,7 +44,7 @@ export default function Footer() {
 
           {/* Links */}
           {Object.entries(links).map(([section, items]) => (
-            <div key={section}>
+            <div key={section} className={section === 'Contact' ? 'col-span-2 md:col-span-1' : 'col-span-1'}>
               <h4
                 className="text-xs tracking-[0.3em] uppercase text-[#B8C0FF] mb-6"
                 style={{ fontFamily: 'Clash Display, sans-serif' }}

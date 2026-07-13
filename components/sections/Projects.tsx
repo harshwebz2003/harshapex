@@ -266,7 +266,7 @@ export default function Projects() {
         </div>
 
         {/* Modern 3-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-8 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
           {filtered.map((project, i) => (
             <div
               key={project.title}
@@ -275,7 +275,7 @@ export default function Projects() {
                   window.open(project.link, '_blank');
                 }
               }}
-              className="project-card group flex flex-col gap-4 cursor-pointer"
+              className="project-card group flex flex-col gap-4 cursor-pointer w-[85vw] md:w-full shrink-0 snap-center"
             >
               {/* Image Frame */}
               <div className="relative w-full aspect-square overflow-hidden rounded-[24px] border border-[#B8C0FF]/10 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#B8C0FF]/30 transition-all duration-500 shadow-md">

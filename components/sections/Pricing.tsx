@@ -84,11 +84,11 @@ export default function Pricing() {
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-6 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative p-8 rounded-3xl flex flex-col transition-all duration-300 ${
+              className={`relative p-8 rounded-3xl flex flex-col transition-all duration-300 w-[85vw] md:w-full shrink-0 snap-center ${
                 plan.popular
                   ? 'border-2 border-[#B8C0FF]/60 bg-gradient-to-br from-[#1A1630]/80 to-[#0D0B1A] shadow-[0_0_60px_rgba(184,192,255,0.15)]'
                   : 'border border-[#B8C0FF]/10 bg-gradient-to-br from-[#1A1630]/30 to-[#0D0B1A]/80 hover:border-[#B8C0FF]/30'

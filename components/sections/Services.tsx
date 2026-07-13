@@ -216,9 +216,9 @@ export default function Services() {
         </div>
 
         {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-5 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
           {services.map((service, i) => (
-            <div key={service.title} className="service-card-wrap">
+            <div key={service.title} className="service-card-wrap w-[85vw] md:w-full shrink-0 snap-center">
               <ServiceCard service={service} index={i} />
             </div>
           ))}
