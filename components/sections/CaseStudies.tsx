@@ -115,7 +115,7 @@ export default function CaseStudies() {
   }, []);
 
   return (
-    <section id="case-studies" ref={sectionRef} className="py-32 md:py-40 bg-[#0D0B1A]">
+    <section id="case-studies" ref={sectionRef} className="py-32 md:py-40 bg-transparent">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="mb-20">

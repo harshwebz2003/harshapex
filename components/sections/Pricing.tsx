@@ -125,7 +125,7 @@ export default function Pricing() {
   }, []);
 
   return (
-    <section id="pricing" className="py-32 md:py-40 bg-[#0A0918]">
+    <section id="pricing" className="py-32 md:py-40 bg-transparent">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">

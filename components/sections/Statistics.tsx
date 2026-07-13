@@ -51,7 +51,7 @@ export default function Statistics() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 md:py-40 bg-[#0D0B1A] relative overflow-hidden">
+    <section ref={sectionRef} className="py-32 md:py-40 bg-transparent relative overflow-hidden">
       {/* Grid overlay texture */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"

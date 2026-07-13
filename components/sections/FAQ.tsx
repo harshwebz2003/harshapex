@@ -45,7 +45,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-32 md:py-40 bg-[#0D0B1A]">
+    <section className="py-32 md:py-40 bg-transparent">
       <div className="max-w-3xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">

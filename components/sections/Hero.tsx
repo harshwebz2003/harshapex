@@ -136,7 +136,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0D0B1A]"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent"
     >
       {/* Canvas blobs */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />

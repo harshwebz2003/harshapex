@@ -101,7 +101,7 @@ export default function Process() {
   }, []);
 
   return (
-    <section id="process" ref={sectionRef} className="py-32 md:py-40 bg-[#0D0B1A] relative overflow-hidden">
+    <section id="process" ref={sectionRef} className="py-32 md:py-40 bg-transparent relative overflow-hidden">
       {/* Background Glow Meshes matching the Figma vibe */}
       <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full bg-[#B8C0FF]/4 blur-[120px] pointer-events-none" />
       <div className="absolute top-2/4 right-0 w-[450px] h-[450px] rounded-full bg-[#e7d8ff]/3 blur-[150px] pointer-events-none" />

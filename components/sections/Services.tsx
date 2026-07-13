@@ -254,7 +254,7 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-32 md:py-44 bg-[#0A0918] relative overflow-hidden">
+    <section id="services" ref={sectionRef} className="py-32 md:py-44 bg-transparent relative overflow-hidden">
       {/* Ambient blobs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#B8C0FF]/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#E7D8FF]/4 blur-[100px] pointer-events-none" />

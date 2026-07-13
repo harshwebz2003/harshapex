@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import LenisProvider from '@/components/LenisProvider';
 import CustomCursor from '@/components/CustomCursor';
+import GlobalBackground from '@/components/GlobalBackground';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://harshapex.com.lk'),
@@ -98,6 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-[#0D0B1A] text-white antialiased overflow-x-hidden">
         <LenisProvider>
+          <GlobalBackground />
           <CustomCursor />
           {children}
         </LenisProvider>

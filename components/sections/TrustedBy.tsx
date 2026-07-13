@@ -8,7 +8,7 @@ const companies = [
 
 export default function TrustedBy() {
   return (
-    <section id="trusted" className="py-20 bg-[#0D0B1A] border-y border-[#B8C0FF]/10 overflow-hidden">
+    <section id="trusted" className="py-20 bg-transparent border-y border-[#B8C0FF]/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-10">
         <p className="text-center text-xs tracking-[0.4em] uppercase text-[#B8C0FF]/40">
           Trusted by Innovative Companies

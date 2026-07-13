@@ -57,7 +57,7 @@ function StarRating({ count }: { count: number }) {
 
 export default function Testimonials() {
   return (
-    <section className="py-32 md:py-40 bg-[#0D0B1A] overflow-hidden">
+    <section className="py-32 md:py-40 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-16">
         <div className="text-center">
           <p className="text-xs tracking-[0.4em] uppercase text-[#B8C0FF] mb-4">Client Stories</p>

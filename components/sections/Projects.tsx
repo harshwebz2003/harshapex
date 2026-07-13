@@ -288,7 +288,7 @@ export default function Projects() {
   }, [activeFilter]);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-32 md:py-40 bg-[#0D0B1A]">
+    <section id="projects" ref={sectionRef} className="py-32 md:py-40 bg-transparent">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">

@@ -82,7 +82,7 @@ export default function AgencyIntro() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-32 md:py-40 bg-[#0D0B1A] overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-32 md:py-40 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Big bg text */}
         <div className="relative mb-20">

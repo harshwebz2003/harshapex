@@ -26,7 +26,7 @@ export default function CTA() {
   };
 
   return (
-    <section id="contact" className="py-32 md:py-40 bg-[#0A0918] relative overflow-hidden">
+    <section id="contact" className="py-32 md:py-40 bg-transparent relative overflow-hidden">
       {/* Background radial */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[#B8C0FF]/8 blur-[120px]" />
