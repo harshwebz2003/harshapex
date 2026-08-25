@@ -3,6 +3,7 @@ import './globals.css';
 import LenisProvider from '@/components/LenisProvider';
 import CustomCursor from '@/components/CustomCursor';
 import GlobalBackground from '@/components/GlobalBackground';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://harshapex.com.lk'),
@@ -319,11 +320,16 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="canonical" href="https://harshapex.com.lk" />
         <meta name="theme-color" content="#0D0B1A" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('harsh-apex-theme');if(t==='light'){document.documentElement.classList.add('light');document.documentElement.classList.remove('dark');}}catch(e){}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -331,12 +337,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="bg-[#0D0B1A] text-white antialiased overflow-x-hidden">
-        <LenisProvider>
-          <GlobalBackground />
-          <CustomCursor />
-          {children}
-        </LenisProvider>
+      <body className="bg-[#0D0B1A] text-white antialiased overflow-x-hidden transition-colors duration-500">
+        <ThemeProvider>
+          <LenisProvider>
+            <GlobalBackground />
+            <CustomCursor />
+            {children}
+          </LenisProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

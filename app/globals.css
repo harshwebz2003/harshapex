@@ -18,6 +18,14 @@
   --color-mint-1: #6DD5C4;
   --color-mint-2: #DFF6F0;
 
+  /* Palette 01: Eucalyptus Glow */
+  --color-eucalyptus-1: #A7C4A0;
+  --color-eucalyptus-2: #F4EFE6;
+
+  /* Palette 04: Peach Champagne */
+  --color-peach-1: #FFD3B6;
+  --color-peach-2: #DFF7FF;
+
   --color-apex-primary: #B8C0FF;
   --color-apex-accent: #E7D8FF;
   --color-apex-mint: #6DD5C4;
@@ -186,7 +194,7 @@
     border: 1px solid rgba(184,192,255,0.1);
   }
 
-  /* Palette 05: Dreamy Periwinkle Gradient */
+  /* Palette 05: Dreamy Periwinkle */
   .text-gradient,
   .text-gradient-periwinkle {
     background: linear-gradient(135deg, #B8C0FF 0%, #E7D8FF 100%);
@@ -203,9 +211,26 @@
     background-clip: text;
   }
 
-  /* Dual Harmony Accent Gradient (Mint Lagoon -> Dreamy Periwinkle) */
+  /* Palette 01: Eucalyptus Glow Gradient */
+  .text-gradient-eucalyptus {
+    background: linear-gradient(135deg, #A7C4A0 0%, #F4EFE6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Palette 04: Peach Champagne Gradient */
+  .text-gradient-peach {
+    background: linear-gradient(135deg, #FFD3B6 0%, #DFF7FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Master Luxury Tri-Harmony Gradient (Eucalyptus -> Periwinkle -> Peach Champagne) */
+  .text-gradient-tri,
   .text-gradient-dual {
-    background: linear-gradient(135deg, #6DD5C4 0%, #B8C0FF 50%, #E7D8FF 100%);
+    background: linear-gradient(135deg, #A7C4A0 0%, #B8C0FF 50%, #FFD3B6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -224,3 +249,160 @@
     mix-blend-mode: screen;
   }
 }
+
+/* ——— Light Theme Mode (Shine White, Polished Gray & Palette Harmony) ——— */
+html.light,
+html.light body {
+  background-color: #F8F9FC !important;
+  color: #0F172A !important;
+}
+
+html.light nav {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 30px rgba(167, 196, 160, 0.12) !important;
+}
+
+html.light .glass {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  box-shadow: 0 10px 30px rgba(167, 196, 160, 0.08) !important;
+}
+
+/* Headings in Light Mode */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6 {
+  color: #0F172A !important;
+}
+
+html.light .text-white {
+  color: #0F172A !important;
+}
+
+html.light .text-white\/90,
+html.light .text-white\/80 {
+  color: #1E293B !important;
+}
+
+html.light .text-white\/70,
+html.light .text-white\/60,
+html.light .text-white\/50,
+html.light .text-white\/45,
+html.light .text-white\/40,
+html.light .text-white\/30,
+html.light .text-white\/20 {
+  color: #475569 !important;
+}
+
+html.light .text-\[\#E7D8FF\]\/80,
+html.light .text-\[\#E7D8FF\]\/75,
+html.light .text-\[\#E7D8FF\]\/70,
+html.light .text-\[\#E7D8FF\]\/60,
+html.light .text-\[\#E7D8FF\]\/50,
+html.light .text-\[\#E7D8FF\] {
+  color: #475569 !important;
+}
+
+html.light .text-\[\#B8C0FF\]\/80,
+html.light .text-\[\#B8C0FF\]\/70,
+html.light .text-\[\#B8C0FF\]\/60,
+html.light .text-\[\#B8C0FF\]\/50,
+html.light .text-\[\#B8C0FF\]\/40,
+html.light .text-\[\#B8C0FF\] {
+  color: #334155 !important;
+}
+
+html.light .text-\[\#6DD5C4\] {
+  color: #2D6A53 !important;
+}
+
+/* Light Mode Card Styling (Shine White & Gray with refined ambient depth) */
+html.light .service-card,
+html.light .case-card,
+html.light .stat-card,
+html.light .pricing-card,
+html.light .faq-item,
+html.light .why-item {
+  background: linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+  box-shadow: 0 10px 30px -5px rgba(167, 196, 160, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.9) inset !important;
+}
+
+html.light .service-card:hover,
+html.light .pricing-card:hover,
+html.light .case-card:hover {
+  border-color: #A7C4A0 !important;
+  box-shadow: 0 16px 45px -8px rgba(167, 196, 160, 0.28), 0 0 0 1px #A7C4A0 inset !important;
+}
+
+/* Light Mode Text Gradients */
+html.light .text-gradient,
+html.light .text-gradient-periwinkle {
+  background: linear-gradient(135deg, #4F5BB5 0%, #7E8CE0 50%, #A7C4A0 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+html.light .text-gradient-mint,
+html.light .text-gradient-eucalyptus {
+  background: linear-gradient(135deg, #246B52 0%, #4FA685 50%, #A7C4A0 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+html.light .text-gradient-peach {
+  background: linear-gradient(135deg, #C25424 0%, #F28C5C 50%, #FFD3B6 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+html.light .text-gradient-tri,
+html.light .text-gradient-dual {
+  background: linear-gradient(135deg, #266E56 0%, #4D5AB3 50%, #C45524 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Light Mode Budget Banner */
+html.light .services-budget-banner {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4EFE6 50%, #F8F9FC 100%) !important;
+  border: 1px solid rgba(167, 196, 160, 0.45) !important;
+  box-shadow: 0 15px 45px rgba(167, 196, 160, 0.18) !important;
+}
+
+/* Light Mode Footer */
+html.light footer {
+  background-color: #F1F5F9 !important;
+  border-top-color: rgba(203, 213, 225, 0.8) !important;
+}
+
+html.light footer .text-white {
+  color: #0F172A !important;
+}
+
+html.light footer a {
+  color: #334155 !important;
+}
+
+html.light footer a:hover {
+  color: #266E56 !important;
+}
+
+/* Light Mode Marquee items */
+html.light #trusted {
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+html.light #trusted div[class*="border-[#B8C0FF]"] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(226, 232, 240, 0.9) !important;
+}
+
+html.light #trusted span {
+  color: #334155 !important;
+}
+

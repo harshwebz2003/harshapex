@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTheme } from '../ThemeProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,6 +22,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -84,30 +86,73 @@ export default function Navigation() {
             ))}
           </ul>
 
-          {/* CTA */}
-          <button
-            onClick={() => scrollTo('#contact')}
-            className="hidden md:flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-xs font-semibold uppercase tracking-[0.08em] shadow-[0_0_25px_rgba(109,213,196,0.3)] hover:shadow-[0_0_35px_rgba(109,213,196,0.5)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] cursor-pointer font-mono"
-          >
-            Book a Call
-          </button>
+          {/* Right Actions: Theme Toggle + CTA */}
+          <div className="hidden md:flex items-center gap-4">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle light/dark theme"
+              className="relative p-2.5 rounded-full border border-[#B8C0FF]/25 bg-white/[0.04] text-[#B8C0FF] hover:border-[#6DD5C4] hover:bg-white/[0.08] hover:scale-110 active:scale-95 transition-all duration-300 shadow-sm cursor-pointer group"
+              title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+            >
+              {theme === 'dark' ? (
+                // Sun icon for switching to light mode
+                <svg className="w-4 h-4 fill-none stroke-current stroke-2 group-hover:rotate-45 transition-transform duration-500" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="5" />
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                </svg>
+              ) : (
+                // Moon icon for switching to dark mode
+                <svg className="w-4 h-4 fill-none stroke-current stroke-2 group-hover:-rotate-12 transition-transform duration-500" viewBox="0 0 24 24">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2 z-10 cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            <span
-              className={`block w-6 h-px bg-[#E7D8FF] transition-all duration-300 ease-out ${isOpen ? 'rotate-45 translate-y-2' : ''}`}
-            />
-            <span
-              className={`block w-6 h-px bg-[#E7D8FF] transition-all duration-300 ease-out ${isOpen ? 'opacity-0' : ''}`}
-            />
-            <span
-              className={`block w-6 h-px bg-[#E7D8FF] transition-all duration-300 ease-out ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}
-            />
-          </button>
+            {/* CTA */}
+            <button
+              onClick={() => scrollTo('#contact')}
+              className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-xs font-semibold uppercase tracking-[0.08em] shadow-[0_0_25px_rgba(109,213,196,0.3)] hover:shadow-[0_0_35px_rgba(109,213,196,0.5)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] cursor-pointer font-mono"
+            >
+              Book a Call
+            </button>
+          </div>
+
+          {/* Mobile Actions (Theme Toggle + Hamburger) */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle light/dark theme"
+              className="p-2 rounded-full border border-[#B8C0FF]/25 bg-white/[0.04] text-[#B8C0FF] hover:border-[#6DD5C4] active:scale-90 transition-all duration-300"
+            >
+              {theme === 'dark' ? (
+                <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="5" />
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                </svg>
+              ) : (
+                <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex flex-col gap-1.5 p-2 z-10 cursor-pointer"
+              aria-label="Toggle menu"
+            >
+              <span
+                className={`block w-6 h-px bg-[#E7D8FF] transition-all duration-300 ease-out ${isOpen ? 'rotate-45 translate-y-2' : ''}`}
+              />
+              <span
+                className={`block w-6 h-px bg-[#E7D8FF] transition-all duration-300 ease-out ${isOpen ? 'opacity-0' : ''}`}
+              />
+              <span
+                className={`block w-6 h-px bg-[#E7D8FF] transition-all duration-300 ease-out ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}
+              />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -128,6 +173,17 @@ export default function Navigation() {
                 </button>
               </li>
             ))}
+
+            <li className="menu-item opacity-0 flex items-center gap-3 pt-2">
+              <span className="text-xs font-mono tracking-widest text-[#E7D8FF]/60 uppercase">Theme:</span>
+              <button
+                onClick={toggleTheme}
+                className="px-4 py-2 rounded-full border border-[#B8C0FF]/30 bg-white/[0.06] text-sm font-mono text-[#6DD5C4] flex items-center gap-2"
+              >
+                {theme === 'dark' ? '☀️ Switch to Light' : '🌙 Switch to Dark'}
+              </button>
+            </li>
+
             <li className="menu-item mt-4 opacity-0">
               <button
                 onClick={() => scrollTo('#contact')}

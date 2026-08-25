@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useTheme } from './ThemeProvider';
 
 export default function GlobalBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -21,16 +23,24 @@ export default function GlobalBackground() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Color palette options
-    // Palette 05 (Dreamy Periwinkle) & Palette 06 (Mint Lagoon)
-    const starColors = [
-      '184, 192, 255', // #B8C0FF (Dreamy Periwinkle)
-      '231, 216, 255', // #E7D8FF (Periwinkle Light)
-      '109, 213, 196', // #6DD5C4 (Mint Lagoon)
-      '223, 246, 240', // #DFF6F0 (Mint Light)
-    ];
+    const isLight = theme === 'light';
 
-    // Particle class for background stars
+    // Particle star/shimmer colors depending on theme
+    const starColors = isLight
+      ? [
+          '167, 196, 160', // #A7C4A0 (Eucalyptus Glow)
+          '255, 182, 138', // #FFB68A (Peach Champagne)
+          '148, 161, 255', // #94A1FF (Dreamy Periwinkle)
+          '110, 120, 160', // Soft slate
+        ]
+      : [
+          '184, 192, 255', // #B8C0FF (Dreamy Periwinkle)
+          '231, 216, 255', // #E7D8FF (Periwinkle Light)
+          '109, 213, 196', // #6DD5C4 (Mint Lagoon)
+          '223, 246, 240', // #DFF6F0 (Mint Light)
+        ];
+
+    // Particle class for background stars/shimmers
     class Star {
       x: number;
       y: number;
@@ -43,10 +53,10 @@ export default function GlobalBackground() {
       constructor(width: number, height: number) {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 1.3 + 0.3;
+        this.size = isLight ? Math.random() * 1.6 + 0.5 : Math.random() * 1.3 + 0.3;
         this.speedX = Math.random() * 0.05 - 0.025;
         this.speedY = Math.random() * 0.05 - 0.025;
-        this.alpha = Math.random() * 0.45 + 0.15;
+        this.alpha = isLight ? Math.random() * 0.35 + 0.1 : Math.random() * 0.45 + 0.15;
         this.color = starColors[Math.floor(Math.random() * starColors.length)];
       }
 
@@ -76,13 +86,21 @@ export default function GlobalBackground() {
       stars.push(new Star(canvas.width, canvas.height));
     }
 
-    // Drifting background nebulas / glow blobs (Dreamy Periwinkle + Mint Lagoon)
-    const nebulas = [
-      { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: 380, color: 'rgba(184, 192, 255, 0.035)' }, // Periwinkle
-      { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: 420, color: 'rgba(231, 216, 255, 0.025)' }, // Periwinkle light
-      { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 350, color: 'rgba(109, 213, 196, 0.03)' }, // Mint Lagoon
-      { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 320, color: 'rgba(223, 246, 240, 0.02)' }, // Mint Light
-    ];
+    // Drifting background nebulas / glow blobs
+    // In Light mode: Eucalyptus Glow + Peach Champagne + Dreamy Periwinkle + Shine White
+    const nebulas = isLight
+      ? [
+          { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: 420, color: 'rgba(167, 196, 160, 0.18)' }, // Eucalyptus
+          { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: 460, color: 'rgba(255, 211, 182, 0.22)' }, // Peach Champagne
+          { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 400, color: 'rgba(184, 192, 255, 0.18)' }, // Periwinkle
+          { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 360, color: 'rgba(223, 247, 255, 0.25)' }, // Glacier Sheen
+        ]
+      : [
+          { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: 380, color: 'rgba(184, 192, 255, 0.035)' }, // Periwinkle
+          { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: 420, color: 'rgba(231, 216, 255, 0.025)' }, // Periwinkle light
+          { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 350, color: 'rgba(109, 213, 196, 0.03)' }, // Mint Lagoon
+          { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 320, color: 'rgba(223, 246, 240, 0.02)' }, // Mint Light
+        ];
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -105,7 +123,7 @@ export default function GlobalBackground() {
         ctx.fill();
       });
 
-      // Draw Stars
+      // Draw Stars/Shimmers
       stars.forEach((star) => {
         star.update(canvas.width, canvas.height);
         star.draw();
@@ -120,12 +138,14 @@ export default function GlobalBackground() {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-[-1] bg-[#0D0B1A]"
+      className={`fixed inset-0 w-full h-full pointer-events-none z-[-1] transition-colors duration-700 ${
+        theme === 'light' ? 'bg-[#F8F9FC]' : 'bg-[#0D0B1A]'
+      }`}
     />
   );
 }
