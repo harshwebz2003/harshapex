@@ -62,8 +62,9 @@ export default function Hero() {
 
     const blobs = [
       { x: canvas.width * 0.2, y: canvas.height * 0.3, r: 280, color: 'rgba(184,192,255,0.12)', vx: 0.3, vy: 0.2 },
-      { x: canvas.width * 0.7, y: canvas.height * 0.6, r: 220, color: 'rgba(231,216,255,0.10)', vx: -0.2, vy: 0.3 },
-      { x: canvas.width * 0.5, y: canvas.height * 0.2, r: 180, color: 'rgba(184,192,255,0.08)', vx: 0.15, vy: -0.25 },
+      { x: canvas.width * 0.7, y: canvas.height * 0.6, r: 240, color: 'rgba(231,216,255,0.10)', vx: -0.2, vy: 0.3 },
+      { x: canvas.width * 0.45, y: canvas.height * 0.75, r: 200, color: 'rgba(109,213,196,0.10)', vx: 0.2, vy: -0.2 },
+      { x: canvas.width * 0.8, y: canvas.height * 0.25, r: 180, color: 'rgba(223,246,240,0.08)', vx: -0.15, vy: 0.25 },
     ];
 
     let animId: number;
@@ -179,9 +180,9 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#B8C0FF]/20 bg-[#B8C0FF]/5 mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B8C0FF] animate-pulse" />
-          <span className="text-xs tracking-widest text-[#B8C0FF] uppercase">Premium Digital Agency</span>
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#6DD5C4]/30 bg-[#6DD5C4]/5 mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#6DD5C4] animate-pulse" />
+          <span className="text-xs tracking-widest bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] bg-clip-text text-transparent font-medium uppercase">Premium Digital Agency</span>
         </div>
 
         {/* Headline */}
@@ -199,7 +200,9 @@ export default function Hero() {
               <span
                 style={{ display: 'inline-block' }}
                 className={
-                  word === 'Convert' || word === 'Digital'
+                  word === 'Convert'
+                    ? 'bg-gradient-to-r from-[#6DD5C4] to-[#DFF6F0] bg-clip-text text-transparent'
+                    : word === 'Digital'
                     ? 'bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent'
                     : ''
                 }
@@ -213,7 +216,7 @@ export default function Hero() {
         {/* Sub */}
         <p
           ref={subRef}
-          className="max-w-2xl mx-auto text-lg md:text-xl text-[#E7D8FF]/60 leading-relaxed mb-12 opacity-0"
+          className="max-w-2xl mx-auto text-lg md:text-xl text-[#E7D8FF]/70 leading-relaxed mb-12 opacity-0"
         >
           Harsh Apex Digital Solutions crafts high-performance websites, immersive UI/UX, and
           growth-driven digital strategies for forward-thinking brands.
@@ -223,13 +226,13 @@ export default function Hero() {
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0">
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group px-8 py-4 rounded-full bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-base hover:shadow-[0_0_50px_rgba(184,192,255,0.5)] transition-all duration-300 hover:scale-105"
+            className="group px-8 py-4 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-base hover:shadow-[0_0_50px_rgba(109,213,196,0.4)] transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             Start Your Project →
           </button>
           <button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 rounded-full border border-[#B8C0FF]/30 text-[#E7D8FF] text-base hover:border-[#B8C0FF] hover:bg-[#B8C0FF]/10 transition-all duration-300"
+            className="px-8 py-4 rounded-full border border-[#B8C0FF]/30 text-[#E7D8FF] text-base hover:border-[#6DD5C4] hover:text-white hover:bg-[#6DD5C4]/10 transition-all duration-300 cursor-pointer"
           >
             View Our Work
           </button>

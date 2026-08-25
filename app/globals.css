@@ -9,8 +9,18 @@
 @theme {
   --color-apex-bg: #0D0B1A;
   --color-apex-surface: #1A1630;
+  
+  /* Palette 05: Dreamy Periwinkle */
+  --color-periwinkle-1: #B8C0FF;
+  --color-periwinkle-2: #E7D8FF;
+  
+  /* Palette 06: Mint Lagoon */
+  --color-mint-1: #6DD5C4;
+  --color-mint-2: #DFF6F0;
+
   --color-apex-primary: #B8C0FF;
   --color-apex-accent: #E7D8FF;
+  --color-apex-mint: #6DD5C4;
   --color-apex-muted: #9AA0D4;
 
   --font-clash: 'Clash Display', sans-serif;
@@ -79,19 +89,19 @@
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: #0D0B1A; }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #B8C0FF, #E7D8FF);
+    background: linear-gradient(to bottom, #6DD5C4, #B8C0FF, #E7D8FF);
     border-radius: 4px;
   }
 
   /* Selection */
-  ::selection { background: rgba(184,192,255,0.3); color: white; }
+  ::selection { background: rgba(109,213,196,0.3); color: white; }
 
   /* Focus */
   button:focus-visible,
   input:focus-visible,
   textarea:focus-visible,
   select:focus-visible {
-    outline: 2px solid rgba(184,192,255,0.5);
+    outline: 2px solid rgba(109,213,196,0.5);
     outline-offset: 2px;
   }
 }
@@ -117,8 +127,26 @@
     border: 1px solid rgba(184,192,255,0.1);
   }
 
-  .text-gradient {
+  /* Palette 05: Dreamy Periwinkle Gradient */
+  .text-gradient,
+  .text-gradient-periwinkle {
     background: linear-gradient(135deg, #B8C0FF 0%, #E7D8FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Palette 06: Mint Lagoon Gradient */
+  .text-gradient-mint {
+    background: linear-gradient(135deg, #6DD5C4 0%, #DFF6F0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Dual Harmony Accent Gradient (Mint Lagoon -> Dreamy Periwinkle) */
+  .text-gradient-dual {
+    background: linear-gradient(135deg, #6DD5C4 0%, #B8C0FF 50%, #E7D8FF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

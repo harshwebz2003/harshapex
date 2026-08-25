@@ -21,6 +21,15 @@ export default function GlobalBackground() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
+    // Color palette options
+    // Palette 05 (Dreamy Periwinkle) & Palette 06 (Mint Lagoon)
+    const starColors = [
+      '184, 192, 255', // #B8C0FF (Dreamy Periwinkle)
+      '231, 216, 255', // #E7D8FF (Periwinkle Light)
+      '109, 213, 196', // #6DD5C4 (Mint Lagoon)
+      '223, 246, 240', // #DFF6F0 (Mint Light)
+    ];
+
     // Particle class for background stars
     class Star {
       x: number;
@@ -29,14 +38,16 @@ export default function GlobalBackground() {
       speedX: number;
       speedY: number;
       alpha: number;
+      color: string;
 
       constructor(width: number, height: number) {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 1.2 + 0.3;
+        this.size = Math.random() * 1.3 + 0.3;
         this.speedX = Math.random() * 0.05 - 0.025;
         this.speedY = Math.random() * 0.05 - 0.025;
-        this.alpha = Math.random() * 0.4 + 0.1;
+        this.alpha = Math.random() * 0.45 + 0.15;
+        this.color = starColors[Math.floor(Math.random() * starColors.length)];
       }
 
       update(width: number, height: number) {
@@ -53,23 +64,24 @@ export default function GlobalBackground() {
         if (!ctx) return;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(184, 192, 255, ${this.alpha})`;
+        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
         ctx.fill();
       }
     }
 
     const stars: Star[] = [];
-    const starCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 20000));
+    const starCount = Math.min(85, Math.floor((canvas.width * canvas.height) / 18000));
 
     for (let i = 0; i < starCount; i++) {
       stars.push(new Star(canvas.width, canvas.height));
     }
 
-    // Drifting background nebulas / glow blobs
+    // Drifting background nebulas / glow blobs (Dreamy Periwinkle + Mint Lagoon)
     const nebulas = [
-      { x: canvas.width * 0.2, y: canvas.height * 0.3, vx: 0.03, vy: 0.02, r: 350, color: 'rgba(184, 192, 255, 0.03)' },
-      { x: canvas.width * 0.8, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: 400, color: 'rgba(231, 216, 255, 0.02)' },
-      { x: canvas.width * 0.5, y: canvas.height * 0.1, vx: 0.015, vy: -0.02, r: 300, color: 'rgba(184, 192, 255, 0.025)' },
+      { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: 380, color: 'rgba(184, 192, 255, 0.035)' }, // Periwinkle
+      { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: 420, color: 'rgba(231, 216, 255, 0.025)' }, // Periwinkle light
+      { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 350, color: 'rgba(109, 213, 196, 0.03)' }, // Mint Lagoon
+      { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 320, color: 'rgba(223, 246, 240, 0.02)' }, // Mint Light
     ];
 
     const animate = () => {
