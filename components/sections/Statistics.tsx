@@ -22,10 +22,15 @@ export default function Statistics() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Animate section in with luxury decel
-      gsap.fromTo('.stat-card', { opacity: 0, y: 35 }, {
-        opacity: 1, y: 0, stagger: 0.08, duration: 0.85, ease: 'expo.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', once: true },
+      // Animate section in with luxury decel & exit fade out
+      gsap.fromTo('.stat-card', { opacity: 0, y: 40, filter: 'blur(6px)' }, {
+        opacity: 1, y: 0, filter: 'blur(0px)', stagger: 0.08, duration: 0.9, ease: 'expo.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+          end: 'bottom 15%',
+          toggleActions: 'play reverse play reverse',
+        },
       });
 
       // Count-up numbers with smooth exponential decel

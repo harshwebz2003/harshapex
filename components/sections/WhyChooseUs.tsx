@@ -41,16 +41,22 @@ export default function WhyChooseUs() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Left content entrance
+      // Left content entrance & exit fade
       gsap.fromTo(
         '.why-left-content',
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 40, filter: 'blur(6px)' },
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
+          filter: 'blur(0px)',
+          duration: 0.9,
           ease: 'expo.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', once: true },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
 
@@ -65,23 +71,34 @@ export default function WhyChooseUs() {
             width: `${target}%`,
             duration: 1.2,
             ease: 'expo.out',
-            scrollTrigger: { trigger: fill, start: 'top 85%', once: true },
+            scrollTrigger: {
+              trigger: fill,
+              start: 'top 85%',
+              end: 'bottom 15%',
+              toggleActions: 'play reverse play reverse',
+            },
           }
         );
       });
 
-      // Right grid cards
+      // Right grid cards with bidirectional fade in/out
       const items = sectionRef.current?.querySelectorAll('.why-item') ?? [];
       gsap.fromTo(
         items,
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 40, filter: 'blur(6px)' },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.09,
-          duration: 0.85,
+          filter: 'blur(0px)',
+          stagger: 0.08,
+          duration: 0.9,
           ease: 'expo.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
     }, sectionRef);

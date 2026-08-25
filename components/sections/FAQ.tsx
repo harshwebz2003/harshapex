@@ -52,27 +52,39 @@ export default function FAQ() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.faq-header',
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 40, filter: 'blur(8px)' },
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
+          filter: 'blur(0px)',
+          duration: 0.9,
           ease: 'expo.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
 
       const items = sectionRef.current?.querySelectorAll('.faq-item') ?? [];
       gsap.fromTo(
         items,
-        { opacity: 0, y: 25 },
+        { opacity: 0, y: 35, filter: 'blur(5px)' },
         {
           opacity: 1,
           y: 0,
+          filter: 'blur(0px)',
           stagger: 0.06,
-          duration: 0.8,
+          duration: 0.85,
           ease: 'expo.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
     }, sectionRef);

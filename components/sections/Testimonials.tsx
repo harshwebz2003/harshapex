@@ -77,13 +77,19 @@ export default function Testimonials() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.testimonials-header',
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 40, filter: 'blur(8px)' },
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
+          filter: 'blur(0px)',
+          duration: 0.9,
           ease: 'expo.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
     }, sectionRef);

@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -100,7 +103,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
     };
   }, []);
 
-  // Luxury Entrance Animation
+  // Luxury Entrance & Scroll Fade-Out Animations
   useEffect(() => {
     if (!isLoaded || !headlineRef.current || !subRef.current || !ctaRef.current) return;
 
@@ -167,6 +170,27 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
         '-=0.5'
       );
     }
+
+    // Scroll-Linked Fade-Out on scroll descent
+    const ctx = gsap.context(() => {
+      gsap.to(
+        [headlineRef.current, subRef.current, ctaRef.current, stats, badge],
+        {
+          opacity: 0,
+          y: -40,
+          filter: 'blur(6px)',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: 'bottom 40%',
+            scrub: 0.8,
+          },
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
   }, [isLoaded]);
 
   const headline = 'We Craft Digital Experiences That Convert';

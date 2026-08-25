@@ -213,28 +213,61 @@ export default function Services() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
+      // Header bidirectional fade in/out
       gsap.fromTo(
         '.services-header',
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 40, filter: 'blur(8px)' },
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
+          filter: 'blur(0px)',
+          duration: 0.9,
           ease: 'expo.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
 
+      // Cards bidirectional staggered fade in/out
       gsap.fromTo(
         '.service-card-wrap',
-        { opacity: 0, y: 45 },
+        { opacity: 0, y: 45, filter: 'blur(6px)' },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.06,
+          filter: 'blur(0px)',
+          stagger: 0.07,
           duration: 0.9,
           ease: 'expo.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
+        }
+      );
+
+      // Budget banner bidirectional fade in/out
+      gsap.fromTo(
+        '.services-budget-banner',
+        { opacity: 0, y: 40, filter: 'blur(6px)' },
+        {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.9,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: '.services-budget-banner',
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
     }, sectionRef);
@@ -270,7 +303,7 @@ export default function Services() {
         </div>
 
         {/* Budget-Friendly Custom Systems Highlight Banner */}
-        <div className="p-8 md:p-12 rounded-[32px] border border-[#6DD5C4]/35 bg-gradient-to-r from-[#1A1630]/90 via-[#120F26]/95 to-[#0D0B1A] relative overflow-hidden backdrop-blur-xl shadow-[0_10px_45px_rgba(109,213,196,0.09)]">
+        <div className="services-budget-banner opacity-0 p-8 md:p-12 rounded-[32px] border border-[#6DD5C4]/35 bg-gradient-to-r from-[#1A1630]/90 via-[#120F26]/95 to-[#0D0B1A] relative overflow-hidden backdrop-blur-xl shadow-[0_10px_45px_rgba(109,213,196,0.09)]">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#6DD5C4]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
             <div className="max-w-2xl">
