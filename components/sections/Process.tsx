@@ -163,7 +163,7 @@ export default function Process() {
                   <div className="w-full md:w-[44%] pl-14 md:pl-0">
                     <div className="process-card-wrapper w-full">
                       <div
-                        className="w-full p-8 md:p-10 rounded-[32px] border border-[#B8C0FF]/15 bg-[#120F26]/70 backdrop-blur-md transition-all duration-500 hover:border-[#6DD5C4]/40 group hover:-translate-y-1.5 shadow-xl hover:shadow-[0_15px_40px_rgba(109,213,196,0.08)]"
+                        className="process-card w-full p-8 md:p-10 rounded-[32px] border border-[#B8C0FF]/15 bg-[#120F26]/70 backdrop-blur-md transition-all duration-500 hover:border-[#6DD5C4]/40 group hover:-translate-y-1.5 shadow-xl hover:shadow-[0_15px_40px_rgba(109,213,196,0.08)]"
                         style={{ boxShadow: `0 0 50px -12px ${step.glow}` }}
                       >
                         <div className="flex items-center justify-between mb-6">

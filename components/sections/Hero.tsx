@@ -222,7 +222,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
       </video>
 
       {/* Radial overlay for seamless video blending */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0D0B1A]/80 via-[#0D0B1A]/30 to-[#0D0B1A] pointer-events-none" />
+      <div className="hero-radial-overlay absolute inset-0 bg-gradient-to-b from-[#0D0B1A]/80 via-[#0D0B1A]/30 to-[#0D0B1A] pointer-events-none" />
 
       {/* Interactive mouse follow glow */}
       <div
@@ -238,7 +238,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
         {/* Badge */}
         <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#6DD5C4]/30 bg-[#6DD5C4]/5 mb-8 opacity-0">
           <span className="w-1.5 h-1.5 rounded-full bg-[#6DD5C4] animate-pulse" />
-          <span className="text-xs tracking-[0.3em] bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] bg-clip-text text-transparent font-medium uppercase font-mono">
+          <span className="text-xs tracking-[0.3em] text-gradient-dual font-medium uppercase font-mono">
             Premium Digital Agency
           </span>
         </div>
@@ -256,9 +256,9 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
               <span
                 className={`word-inner inline-block opacity-0 ${
                   word === 'Convert'
-                    ? 'bg-gradient-to-r from-[#6DD5C4] to-[#DFF6F0] bg-clip-text text-transparent'
+                    ? 'text-gradient-mint'
                     : word === 'Digital'
-                    ? 'bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent'
+                    ? 'text-gradient-periwinkle'
                     : ''
                 }`}
               >

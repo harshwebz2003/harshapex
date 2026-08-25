@@ -257,19 +257,38 @@ html.light body {
   color: #0F172A !important;
 }
 
+/* Nav in Light Mode */
 html.light nav {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-color: rgba(226, 232, 240, 0.9) !important;
-  box-shadow: 0 4px 30px rgba(167, 196, 160, 0.12) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(226, 232, 240, 0.95) !important;
+  box-shadow: 0 4px 25px rgba(148, 163, 184, 0.12) !important;
 }
 
-html.light .glass {
-  background: rgba(255, 255, 255, 0.8) !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  box-shadow: 0 10px 30px rgba(167, 196, 160, 0.08) !important;
+html.light nav a,
+html.light nav button {
+  color: #1E293B !important;
 }
 
-/* Headings in Light Mode */
+html.light nav a:hover,
+html.light nav button:hover {
+  color: #246B52 !important;
+}
+
+/* Hero Section in Light Mode */
+html.light .hero-radial-overlay {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(248, 249, 252, 0.2) 50%, #F8F9FC 100%) !important;
+}
+
+html.light .hero-video-bg {
+  display: none !important;
+}
+
+html.light .hero-badge {
+  background: rgba(167, 196, 160, 0.15) !important;
+  border-color: rgba(167, 196, 160, 0.45) !important;
+}
+
+/* Headings and Text in Light Mode */
 html.light h1,
 html.light h2,
 html.light h3,
@@ -294,7 +313,8 @@ html.light .text-white\/50,
 html.light .text-white\/45,
 html.light .text-white\/40,
 html.light .text-white\/30,
-html.light .text-white\/20 {
+html.light .text-white\/20,
+html.light .text-white\/10 {
   color: #475569 !important;
 }
 
@@ -303,6 +323,7 @@ html.light .text-\[\#E7D8FF\]\/75,
 html.light .text-\[\#E7D8FF\]\/70,
 html.light .text-\[\#E7D8FF\]\/60,
 html.light .text-\[\#E7D8FF\]\/50,
+html.light .text-\[\#E7D8FF\]\/40,
 html.light .text-\[\#E7D8FF\] {
   color: #475569 !important;
 }
@@ -312,57 +333,117 @@ html.light .text-\[\#B8C0FF\]\/70,
 html.light .text-\[\#B8C0FF\]\/60,
 html.light .text-\[\#B8C0FF\]\/50,
 html.light .text-\[\#B8C0FF\]\/40,
+html.light .text-\[\#B8C0FF\]\/25,
 html.light .text-\[\#B8C0FF\] {
   color: #334155 !important;
 }
 
 html.light .text-\[\#6DD5C4\] {
-  color: #2D6A53 !important;
+  color: #246B52 !important;
 }
 
-/* Light Mode Card Styling (Shine White & Gray with refined ambient depth) */
+html.light .text-\[\#6DD5C4\]\/60 {
+  color: #2E7D63 !important;
+}
+
+/* ALL CARDS & CONTAINERS in Light Mode (Shine White, Smooth Silver Borders & Soft Ambient Shadows) */
 html.light .service-card,
 html.light .case-card,
 html.light .stat-card,
 html.light .pricing-card,
 html.light .faq-item,
-html.light .why-item {
+html.light .why-item,
+html.light .process-card,
+html.light .process-card-wrapper > div,
+html.light .cta-form-container,
+html.light [class*="from-[#16132A]"],
+html.light [class*="from-[#1A1630]"],
+html.light [class*="from-[#120F26]"],
+html.light [class*="bg-[#120F26]"],
+html.light [class*="bg-[#16132A]"],
+html.light [class*="bg-[#1A1630]"] {
   background: linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%) !important;
-  border: 1px solid rgba(226, 232, 240, 0.95) !important;
-  box-shadow: 0 10px 30px -5px rgba(167, 196, 160, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.9) inset !important;
+  border-color: rgba(226, 232, 240, 0.95) !important;
+  color: #0F172A !important;
+  box-shadow: 0 10px 30px -5px rgba(148, 163, 184, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.9) inset !important;
 }
 
+/* Hover States for Cards in Light Mode */
 html.light .service-card:hover,
+html.light .case-card:hover,
 html.light .pricing-card:hover,
-html.light .case-card:hover {
+html.light .why-item:hover,
+html.light .process-card:hover {
   border-color: #A7C4A0 !important;
   box-shadow: 0 16px 45px -8px rgba(167, 196, 160, 0.28), 0 0 0 1px #A7C4A0 inset !important;
+}
+
+/* Tag Pills & Badges in Light Mode */
+html.light [class*="bg-[#B8C0FF]/8"],
+html.light [class*="bg-[#B8C0FF]/5"],
+html.light [class*="bg-[#6DD5C4]/10"],
+html.light [class*="bg-[#6DD5C4]/5"],
+html.light .service-card span[class*="bg-[#B8C0FF]"] {
+  background: #EEF2F6 !important;
+  border-color: rgba(203, 213, 225, 0.8) !important;
+  color: #334155 !important;
+}
+
+/* Process Timeline Specifics */
+html.light .process-node {
+  background: #FFFFFF !important;
+  border-color: #A7C4A0 !important;
+  box-shadow: 0 0 25px rgba(167, 196, 160, 0.45) !important;
+}
+
+html.light .process-node div {
+  background: #246B52 !important;
+}
+
+html.light svg path[stroke*="rgba(184, 192, 255"] {
+  stroke: rgba(167, 196, 160, 0.45) !important;
+}
+
+/* Form Inputs in Light Mode */
+html.light .cta-form-container input,
+html.light .cta-form-container textarea,
+html.light .cta-form-container select {
+  background: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+html.light .cta-form-container input:focus,
+html.light .cta-form-container textarea:focus,
+html.light .cta-form-container select:focus {
+  border-color: #246B52 !important;
+  background: #FFFFFF !important;
 }
 
 /* Light Mode Text Gradients */
 html.light .text-gradient,
 html.light .text-gradient-periwinkle {
-  background: linear-gradient(135deg, #4F5BB5 0%, #7E8CE0 50%, #A7C4A0 100%) !important;
+  background: linear-gradient(135deg, #3747AC 0%, #6372CC 50%, #8795E8 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 html.light .text-gradient-mint,
 html.light .text-gradient-eucalyptus {
-  background: linear-gradient(135deg, #246B52 0%, #4FA685 50%, #A7C4A0 100%) !important;
+  background: linear-gradient(135deg, #1C5A44 0%, #368C6D 50%, #5EAD90 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 html.light .text-gradient-peach {
-  background: linear-gradient(135deg, #C25424 0%, #F28C5C 50%, #FFD3B6 100%) !important;
+  background: linear-gradient(135deg, #B54718 0%, #E3713B 50%, #F59869 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 html.light .text-gradient-tri,
 html.light .text-gradient-dual {
-  background: linear-gradient(135deg, #266E56 0%, #4D5AB3 50%, #C45524 100%) !important;
+  background: linear-gradient(135deg, #1C5A44 0%, #3B4AB5 50%, #B54718 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -370,14 +451,14 @@ html.light .text-gradient-dual {
 /* Light Mode Budget Banner */
 html.light .services-budget-banner {
   background: linear-gradient(135deg, #FFFFFF 0%, #F4EFE6 50%, #F8F9FC 100%) !important;
-  border: 1px solid rgba(167, 196, 160, 0.45) !important;
-  box-shadow: 0 15px 45px rgba(167, 196, 160, 0.18) !important;
+  border: 1px solid rgba(167, 196, 160, 0.6) !important;
+  box-shadow: 0 15px 45px rgba(167, 196, 160, 0.2) !important;
 }
 
 /* Light Mode Footer */
 html.light footer {
   background-color: #F1F5F9 !important;
-  border-top-color: rgba(203, 213, 225, 0.8) !important;
+  border-top-color: rgba(203, 213, 225, 0.85) !important;
 }
 
 html.light footer .text-white {
@@ -389,17 +470,17 @@ html.light footer a {
 }
 
 html.light footer a:hover {
-  color: #266E56 !important;
+  color: #1C5A44 !important;
 }
 
 /* Light Mode Marquee items */
 html.light #trusted {
-  border-color: rgba(226, 232, 240, 0.8) !important;
+  border-color: rgba(226, 232, 240, 0.9) !important;
 }
 
 html.light #trusted div[class*="border-[#B8C0FF]"] {
   background-color: #FFFFFF !important;
-  border-color: rgba(226, 232, 240, 0.9) !important;
+  border-color: rgba(226, 232, 240, 0.95) !important;
 }
 
 html.light #trusted span {

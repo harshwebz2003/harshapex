@@ -146,7 +146,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group relative p-8 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#16132A]/85 to-[#0D0B1A] overflow-hidden hover:border-[#6DD5C4]/40 transition-border duration-300 cursor-default h-full flex flex-col justify-between"
+      className="service-card group relative p-8 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#16132A]/85 to-[#0D0B1A] overflow-hidden hover:border-[#6DD5C4]/40 transition-all duration-300 cursor-default h-full flex flex-col justify-between"
       style={{ transformStyle: 'preserve-3d' }}
     >
       {/* Cursor spotlight */}
