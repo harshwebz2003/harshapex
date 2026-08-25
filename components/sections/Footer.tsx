@@ -22,6 +22,15 @@ const socials = [
     ),
   },
   {
+    label: 'TikTok',
+    href: 'https://www.tiktok.com/@harsh.apex',
+    icon: (
+      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298 0 .59.044.868.128V9.33a6.33 6.33 0 0 0-.868-.06A6.34 6.34 0 0 0 3.1 15.61a6.34 6.34 0 0 0 10.82 4.48 6.3 6.3 0 0 0 1.86-4.48V8.62a8.28 8.28 0 0 0 4.84 1.54V6.71a4.86 4.86 0 0 1-1.03-.02z"/>
+      </svg>
+    ),
+  },
+  {
     label: 'LinkedIn',
     href: 'https://linkedin.com/in/chamilka-harshan',
     icon: (
