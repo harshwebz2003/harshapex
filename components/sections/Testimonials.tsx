@@ -8,11 +8,36 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
+    name: 'Tharindu Lakshan',
+    company: 'Tilnogz Photography',
+    role: 'Founder & Lead Photographer',
+    quote: 'I\'m extremely happy with the website created by Harsh Apex Digital Solutions. They understood exactly what I needed and delivered a modern, professional, and well-organized website with great attention to detail. The entire process was smooth, and their creativity, professionalism, and dedication were impressive. The final result exceeded my expectations and gave my online presence a much more professional look.',
+    rating: 5,
+    highlight: true,
+  },
+  {
+    name: 'NEAT Construction & Hospitality',
+    company: 'NEAT Services W.L.L.',
+    role: 'Corporate Management',
+    quote: 'A fantastic experience working with Harsh Apex! Professional, responsive, and highly skilled throughout the entire project. They understood our requirements perfectly and delivered a modern, user-friendly website that exceeded our expectations. We are very satisfied with the quality of work and highly recommend their services.',
+    rating: 5,
+    highlight: true,
+  },
+  {
+    name: 'Nipun Sathsara',
+    company: 'Sathsara Enterprises',
+    role: 'Business Owner',
+    quote: 'I had an excellent experience working with Harsh Apex. The website was designed exactly as I wanted—modern, professional, and user-friendly. The attention to detail, creativity, and responsiveness throughout the project were outstanding. Communication was smooth, deadlines were met, and the final result exceeded my expectations.',
+    rating: 5,
+    highlight: true,
+  },
+  {
     name: 'Kasun Perera',
     company: 'Hiruzone Tourism',
     role: 'Founder & CEO',
     quote: 'Harsh Apex completely transformed our online presence. The website they built is not just beautiful — it actually brings in clients. Our bookings increased by 40% within the first month.',
     rating: 5,
+    highlight: false,
   },
   {
     name: 'Niluka Fernando',
@@ -20,6 +45,7 @@ const testimonials = [
     role: 'Managing Director',
     quote: 'The e-commerce platform they built for us handles thousands of products with ease. The UX is intuitive and our customers love it. Sales have doubled since launch.',
     rating: 5,
+    highlight: false,
   },
   {
     name: 'Priya Jayawardena',
@@ -27,27 +53,7 @@ const testimonials = [
     role: 'Owner',
     quote: 'Working with Harsh Apex was a pleasure from start to finish. They understood our brand perfectly and delivered a website that truly reflects the luxury of our salon.',
     rating: 5,
-  },
-  {
-    name: 'Amara Silva',
-    company: 'MCake Shop',
-    role: 'Founder',
-    quote: 'Incredible attention to detail. Our website looks stunning on every device and the online ordering system is flawless. We\'ve seen a massive uptick in pre-orders.',
-    rating: 5,
-  },
-  {
-    name: 'Roshan Bandara',
-    company: 'Webcus',
-    role: 'CTO',
-    quote: 'The technical quality of their work is exceptional. Clean code, fast load times, and they genuinely care about performance. Our Core Web Vitals scores are through the roof.',
-    rating: 5,
-  },
-  {
-    name: 'Sameera Wickrama',
-    company: 'Premium Clothing',
-    role: 'Director',
-    quote: 'We\'ve worked with multiple agencies before, but Harsh Apex is on a different level. They delivered on every promise and the final product exceeded all our expectations.',
-    rating: 5,
+    highlight: false,
   },
 ];
 
@@ -89,7 +95,7 @@ export default function Testimonials() {
     <section ref={sectionRef} className="py-32 md:py-40 bg-transparent overflow-hidden font-body">
       <div className="max-w-7xl mx-auto px-6 mb-16">
         <div className="testimonials-header text-center opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Client Stories</p>
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Client Endorsements</p>
           <h2
             className="text-4xl md:text-6xl font-bold text-white mb-6 font-display tracking-tight"
           >
@@ -98,23 +104,26 @@ export default function Testimonials() {
               Clients Say
             </span>
           </h2>
+          <p className="max-w-lg mx-auto text-[#E7D8FF]/60 text-lg font-light leading-relaxed">
+            Authentic feedback from business leaders and founders who partnered with Harsh Apex.
+          </p>
         </div>
       </div>
 
       {/* Slider */}
       <div className="relative group">
         {/* Fade masks */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0D0B1A] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0D0B1A] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-36 bg-gradient-to-r from-[#0D0B1A] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-36 bg-gradient-to-l from-[#0D0B1A] to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1 — left */}
-        <div className="flex gap-5 overflow-hidden mb-5">
-          <div className="flex gap-5 shrink-0 animate-marquee">
+        {/* Row 1 — left (Highlighted top reviews) */}
+        <div className="flex gap-6 overflow-hidden mb-6">
+          <div className="flex gap-6 shrink-0 animate-marquee">
             {testimonials.slice(0, 3).concat(testimonials.slice(0, 3)).map((t, i) => (
               <TestimonialCard key={i} testimonial={t} />
             ))}
           </div>
-          <div className="flex gap-5 shrink-0 animate-marquee" aria-hidden>
+          <div className="flex gap-6 shrink-0 animate-marquee" aria-hidden>
             {testimonials.slice(0, 3).concat(testimonials.slice(0, 3)).map((t, i) => (
               <TestimonialCard key={i} testimonial={t} />
             ))}
@@ -122,13 +131,13 @@ export default function Testimonials() {
         </div>
 
         {/* Row 2 — right */}
-        <div className="flex gap-5 overflow-hidden">
-          <div className="flex gap-5 shrink-0 animate-marquee-reverse">
+        <div className="flex gap-6 overflow-hidden">
+          <div className="flex gap-6 shrink-0 animate-marquee-reverse">
             {testimonials.slice(3).concat(testimonials.slice(3)).map((t, i) => (
               <TestimonialCard key={i} testimonial={t} />
             ))}
           </div>
-          <div className="flex gap-5 shrink-0 animate-marquee-reverse" aria-hidden>
+          <div className="flex gap-6 shrink-0 animate-marquee-reverse" aria-hidden>
             {testimonials.slice(3).concat(testimonials.slice(3)).map((t, i) => (
               <TestimonialCard key={i} testimonial={t} />
             ))}
@@ -141,16 +150,30 @@ export default function Testimonials() {
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <div className="w-80 md:w-96 shrink-0 p-7 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/70 to-[#0D0B1A]/90 backdrop-blur-md hover:border-[#6DD5C4]/40 transition-all duration-300 group/card shadow-lg hover:shadow-[0_10px_35px_rgba(109,213,196,0.08)]">
-      <StarRating count={testimonial.rating} />
-      <p className="text-sm text-[#E7D8FF]/75 leading-relaxed mt-4 mb-6 font-light italic font-editorial text-[16px]">&ldquo;{testimonial.quote}&rdquo;</p>
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#6DD5C4] to-[#B8C0FF] flex items-center justify-center text-[#0D0B1A] font-bold text-sm font-display shadow-md">
+    <div className={`w-[340px] sm:w-[420px] md:w-[460px] shrink-0 p-8 rounded-3xl border transition-all duration-500 group/card shadow-xl flex flex-col justify-between ${
+      testimonial.highlight
+        ? 'border-[#6DD5C4]/35 bg-gradient-to-br from-[#1A1630]/85 to-[#0D0B1A]/95 shadow-[0_10px_40px_rgba(109,213,196,0.08)] hover:border-[#6DD5C4]/60'
+        : 'border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/70 to-[#0D0B1A]/90 hover:border-[#B8C0FF]/30'
+    }`}>
+      <div>
+        <div className="flex items-center justify-between gap-2 mb-4">
+          <StarRating count={testimonial.rating} />
+          {testimonial.highlight && (
+            <span className="text-[10px] uppercase font-mono tracking-widest px-2.5 py-0.5 rounded-full bg-[#6DD5C4]/10 text-[#6DD5C4] border border-[#6DD5C4]/25">
+              Verified Review
+            </span>
+          )}
+        </div>
+        <p className="text-sm md:text-[15px] text-[#E7D8FF]/80 leading-relaxed font-light italic font-editorial">&ldquo;{testimonial.quote}&rdquo;</p>
+      </div>
+
+      <div className="flex items-center gap-3.5 pt-6 mt-4 border-t border-white/5">
+        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#6DD5C4] to-[#B8C0FF] flex items-center justify-center text-[#0D0B1A] font-bold text-sm font-display shadow-md shrink-0">
           {testimonial.name[0]}
         </div>
-        <div>
-          <div className="text-white text-sm font-semibold font-display">{testimonial.name}</div>
-          <div className="text-[#6DD5C4]/70 text-xs font-mono">{testimonial.role}, {testimonial.company}</div>
+        <div className="overflow-hidden">
+          <div className="text-white text-sm font-semibold font-display truncate">{testimonial.name}</div>
+          <div className="text-[#6DD5C4]/80 text-xs font-mono truncate">{testimonial.role}, {testimonial.company}</div>
         </div>
       </div>
     </div>
