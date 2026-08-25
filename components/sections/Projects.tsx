@@ -26,6 +26,14 @@ const db = getDatabase(app);
 
 const initialProjects = [
   {
+    title: 'Tilnogz Photography',
+    category: 'Photography Website',
+    img: '/projects/Tilnogz Photography.png',
+    tags: ['Web', 'Photography', 'Brand'],
+    link: 'https://www.tilnogzphotography.com.lk/',
+    recent: true
+  },
+  {
     title: 'Serendib Tourism Webpage',
     category: 'Tourism Webpage',
     img: '/projects/Serendib.png',
@@ -114,7 +122,7 @@ const initialProjects = [
   },
 ];
 
-const filters = ['All', 'Web', 'E-Commerce', 'Brand', 'App'];
+const filters = ['All', 'Web', 'Photography', 'E-Commerce', 'Brand', 'App'];
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -215,19 +223,19 @@ export default function Projects() {
           };
         });
 
-        // Reorder so that Serendib, Neat Construction, and 3D Scrolling Tourism are always at the top
+        // Reorder so that Tilnogz, Serendib, Neat Construction, and 3D Scrolling Tourism are always at the top
         const sorted = [...formatted].sort((a, b) => {
           const titleA = a.title.toLowerCase();
           const titleB = b.title.toLowerCase();
           
-          const isA_Top = titleA.includes('serendib') || titleA.includes('neat construction') || titleA.includes('3d scrolling') || titleA.includes('luxeceylon');
-          const isB_Top = titleB.includes('serendib') || titleB.includes('neat construction') || titleB.includes('3d scrolling') || titleB.includes('luxeceylon');
+          const isA_Top = titleA.includes('tilnogz') || titleA.includes('serendib') || titleA.includes('neat construction') || titleA.includes('3d scrolling') || titleA.includes('luxeceylon');
+          const isB_Top = titleB.includes('tilnogz') || titleB.includes('serendib') || titleB.includes('neat construction') || titleB.includes('3d scrolling') || titleB.includes('luxeceylon');
           
           if (isA_Top && !isB_Top) return -1;
           if (!isA_Top && isB_Top) return 1;
           
           if (isA_Top && isB_Top) {
-            const order = ['serendib', 'neat construction', '3d scrolling', 'luxeceylon'];
+            const order = ['tilnogz', 'serendib', 'neat construction', '3d scrolling', 'luxeceylon'];
             const idxA = order.findIndex(term => titleA.includes(term));
             const idxB = order.findIndex(term => titleB.includes(term));
             return idxA - idxB;
@@ -238,7 +246,7 @@ export default function Projects() {
 
         const finalProjects = sorted.map((p, idx) => ({
           ...p,
-          recent: idx < 3
+          recent: idx < 4
         }));
 
         setProjectList(finalProjects);
