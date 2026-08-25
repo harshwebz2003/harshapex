@@ -105,27 +105,39 @@ export default function CaseStudies() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.casestudies-header',
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 40, filter: 'blur(8px)' },
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
+          filter: 'blur(0px)',
+          duration: 0.9,
           ease: 'expo.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
 
       const cards = sectionRef.current?.querySelectorAll('.case-card') ?? [];
       gsap.fromTo(
         cards,
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 45, filter: 'blur(6px)' },
         {
           opacity: 1,
           y: 0,
+          filter: 'blur(0px)',
           stagger: 0.12,
           duration: 0.9,
           ease: 'expo.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
     }, sectionRef);

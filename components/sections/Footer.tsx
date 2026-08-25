@@ -1,32 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-
-const navigationLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Methodology', href: '#process' },
-  { label: 'Featured Projects', href: '#projects' },
-  { label: 'Client Endorsements', href: '#testimonials' },
-  { label: 'Pricing & Packages', href: '#pricing' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Connect Scope', href: '#contact' },
-];
-
-const solutions = [
-  { label: 'Custom POS & Billing Systems', href: '#services' },
-  { label: 'Mobile Apps (iOS & Android)', href: '#services' },
-  { label: 'Luxury Web Design & Development', href: '#services' },
-  { label: 'E-Commerce Platforms & Stores', href: '#services' },
-  { label: 'Custom ERP & Business Portals', href: '#services' },
-  { label: 'UI/UX Design Systems & Branding', href: '#services' },
-  { label: 'Technical SEO & Page Optimization', href: '#services' },
-];
 
 const socials = [
   {
     label: 'TikTok',
-    handle: '@harsh.apex',
     href: 'https://www.tiktok.com/@harsh.apex',
     icon: (
       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -36,7 +14,6 @@ const socials = [
   },
   {
     label: 'Facebook',
-    handle: 'harshapex',
     href: 'https://www.facebook.com/harshapex',
     icon: (
       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -45,8 +22,16 @@ const socials = [
     ),
   },
   {
+    label: 'WhatsApp',
+    href: 'https://wa.me/94770663154?text=Hello%20Harsh%20Apex,%20I%20would%20like%20to%20discuss%20a%20new%20project.',
+    icon: (
+      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.771.82 2.789.82 3.184 0 5.772-2.587 5.772-5.766 0-3.182-2.589-5.766-5.77-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.748 0-3.38-.456-4.81-1.249l-5.19 1.359 1.385-5.064c-.87-1.488-1.385-3.218-1.385-5.046 0-5.514 4.486-10 10-10s10 4.486 10 10z"/>
+      </svg>
+    ),
+  },
+  {
     label: 'Instagram',
-    handle: '@c_harshz',
     href: 'https://www.instagram.com/c_harshz/',
     icon: (
       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -56,7 +41,6 @@ const socials = [
   },
   {
     label: 'LinkedIn',
-    handle: 'chamilka-harshan',
     href: 'https://linkedin.com/in/chamilka-harshan',
     icon: (
       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -66,7 +50,6 @@ const socials = [
   },
   {
     label: 'GitHub',
-    handle: 'chamilka-ch',
     href: 'https://github.com/chamilka-ch',
     icon: (
       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -76,297 +59,134 @@ const socials = [
   },
 ];
 
+const mainNav = [
+  { label: 'HOME', href: '#' },
+  { label: 'SERVICES', href: '#services' },
+  { label: 'PROCESS', href: '#process' },
+  { label: 'PROJECTS', href: '#projects' },
+  { label: 'TESTIMONIALS', href: '#testimonials' },
+  { label: 'PRICING', href: '#pricing' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'CONTACT', href: '#contact' },
+];
+
+const serviceTags = [
+  'Web Design & Development',
+  'Custom POS Systems',
+  'Mobile Apps (iOS & Android)',
+  'UI/UX Prototyping',
+  'E-Commerce Solutions',
+  'Brand Identity',
+  'Custom Business Software & ERP',
+];
+
 export default function Footer() {
-  const [copied, setCopied] = useState(false);
-  const [time, setTime] = useState<string>('');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'Asia/Colombo',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
-      };
-      setTime(new Intl.DateTimeFormat('en-US', options).format(new Date()));
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText('chamilka.ch@gmail.com');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <footer className="relative bg-[#060411] border-t border-[#B8C0FF]/15 text-white overflow-hidden font-body pt-0 select-none">
-      {/* Dynamic Ambient Background Illumination */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#6DD5C4]/5 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[700px] h-[700px] bg-[#B8C0FF]/5 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+    <footer className="relative bg-[#070514] border-t border-[#B8C0FF]/15 text-white overflow-hidden font-body pt-20 pb-12 select-none">
+      {/* Ambient background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6DD5C4]/4 rounded-full blur-[160px] pointer-events-none" />
 
-      {/* ————————————————————————————————————————————————————————————
-          1. Grand Pre-Footer Horizon Portal (High-Impact CTA Banner)
-      ———————————————————————————————————————————————————————————— */}
-      <div className="relative border-b border-white/[0.08] bg-gradient-to-b from-[#0D0A22]/90 via-[#0A071B] to-[#060411] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 text-center lg:text-left">
-            {/* Left Statement */}
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#6DD5C4]/10 border border-[#6DD5C4]/30 text-[#6DD5C4] text-xs font-mono font-medium tracking-[0.2em] uppercase mb-6 shadow-[0_0_20px_rgba(109,213,196,0.15)]">
-                <span className="w-2 h-2 rounded-full bg-[#6DD5C4] animate-ping inline-block" />
-                <span>Available for 2026 Q3/Q4 Projects</span>
-              </div>
-
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white font-display leading-[1.08] mb-6">
-                Have a Vision? <br className="hidden sm:inline" />
-                Let&apos;s Build Something{' '}
-                <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent italic font-editorial font-normal">
-                  Extraordinary.
-                </span>
-              </h2>
-
-              <p className="text-base sm:text-lg text-[#E7D8FF]/70 max-w-2xl font-light leading-relaxed">
-                From bespoke corporate websites and high-yield e-commerce platforms to custom POS systems and mobile apps — we engineer digital infrastructure that sets you apart.
-              </p>
-            </div>
-
-            {/* Right Action Hub */}
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-4 shrink-0 w-full sm:w-auto">
-              <button
-                onClick={scrollToContact}
-                className="group relative px-9 py-5 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-xs sm:text-sm uppercase tracking-[0.1em] font-mono shadow-[0_0_40px_rgba(109,213,196,0.35)] hover:shadow-[0_0_60px_rgba(109,213,196,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-500 cursor-pointer flex items-center justify-center gap-3 overflow-hidden"
-              >
-                <span className="relative z-10">Initialize Project Scope</span>
-                <span className="relative z-10 font-bold transition-transform duration-300 group-hover:translate-x-1">→</span>
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              </button>
-
-              <a
-                href="https://wa.me/94770663154?text=Hello%20Harsh%20Apex,%20I%20would%20like%20to%20discuss%20a%20new%20project."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 rounded-full border border-white/15 bg-white/[0.02] text-white/90 font-mono text-xs uppercase tracking-wider hover:border-[#6DD5C4]/60 hover:bg-[#6DD5C4]/10 hover:text-white transition-all duration-300 flex items-center justify-center gap-2.5"
-              >
-                <span>💬</span>
-                <span>WhatsApp Hotline</span>
-              </a>
-            </div>
+      <div className="max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+        {/* 1. Logo & Brand Heading */}
+        <div className="flex flex-col items-center mb-8">
+          <div className="relative w-16 h-16 rounded-full bg-white/[0.03] border border-[#B8C0FF]/25 p-3 flex items-center justify-center mb-4 shadow-[0_0_25px_rgba(109,213,196,0.15)] group hover:border-[#6DD5C4]/60 transition-all duration-500">
+            <Image
+              src="/logo.png"
+              alt="Harsh Apex Logo"
+              width={48}
+              height={48}
+              className="object-contain transform group-hover:scale-110 transition-transform duration-500"
+            />
           </div>
-        </div>
-      </div>
-
-      {/* ————————————————————————————————————————————————————————————
-          2. Architectural Multi-Column Main Navigation Grid
-      ———————————————————————————————————————————————————————————— */}
-      <div className="max-w-7xl mx-auto px-6 pt-20 pb-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
-          {/* Col 1 (5 cols): Brand, Philosophy & Global Time */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
-            <div>
-              {/* Brand Emblem */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#6DD5C4]/20 via-[#B8C0FF]/10 to-transparent p-2.5 border border-[#B8C0FF]/25 shadow-[0_0_30px_rgba(109,213,196,0.15)] flex items-center justify-center group">
-                  <Image
-                    src="/logo.png"
-                    alt="Harsh Apex Logo"
-                    width={48}
-                    height={48}
-                    className="object-contain transform group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white font-display tracking-tight">HARSH APEX</h3>
-                  <p className="text-xs text-[#6DD5C4] font-mono tracking-widest uppercase">Digital Solutions Studio</p>
-                </div>
-              </div>
-
-              <p className="text-sm text-[#E7D8FF]/70 leading-relaxed font-light max-w-md mb-8">
-                Pioneering high-performance web engineering, bespoke Point-of-Sale systems, cross-platform mobile apps, and Haute-Horlogerie digital interfaces for global brands and ambitious enterprises.
-              </p>
-
-              {/* Real-time Colombo Clock & Studio Status */}
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.08] backdrop-blur-md max-w-md">
-                <div className="flex items-center justify-between text-xs font-mono mb-2">
-                  <span className="text-[#E7D8FF]/50 uppercase tracking-wider flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#6DD5C4] animate-pulse" />
-                    Studio Location
-                  </span>
-                  <span className="text-[#6DD5C4] font-medium">Colombo, Sri Lanka</span>
-                </div>
-                <div className="flex items-center justify-between text-xs font-mono pt-2 border-t border-white/5">
-                  <span className="text-[#E7D8FF]/40 uppercase tracking-wider">Local Time (UTC+5:30)</span>
-                  <span className="text-white font-semibold tabular-nums text-sm bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] bg-clip-text text-transparent">
-                    {time || 'Loading...'}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Operations Coverage */}
-            <div className="text-xs font-mono text-[#E7D8FF]/40 flex items-center gap-2">
-              <span>OPERATIONS:</span>
-              <span className="text-[#E7D8FF]/75">Galle &bull; Colombo &bull; Matara &bull; Worldwide</span>
-            </div>
-          </div>
-
-          {/* Col 2 (2 cols): Navigation Map */}
-          <div className="lg:col-span-2 space-y-4">
-            <h4 className="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#6DD5C4] mb-6">
-              Navigation
-            </h4>
-            <ul className="space-y-3 text-sm">
-              {navigationLinks.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className="text-[#E7D8FF]/70 hover:text-white hover:translate-x-1.5 inline-flex items-center gap-2 transition-all duration-300 font-light group"
-                  >
-                    <span className="text-[#6DD5C4]/0 group-hover:text-[#6DD5C4] transition-colors text-xs">›</span>
-                    <span>{item.label}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 3 (3 cols): Solutions & Capabilities */}
-          <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#B8C0FF] mb-6">
-              Capabilities
-            </h4>
-            <ul className="space-y-3 text-sm">
-              {solutions.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className="text-[#E7D8FF]/70 hover:text-[#6DD5C4] hover:translate-x-1.5 inline-flex items-center gap-2 transition-all duration-300 font-light group"
-                  >
-                    <span className="text-[#6DD5C4]/0 group-hover:text-[#6DD5C4] transition-colors text-xs">›</span>
-                    <span>{item.label}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 4 (2 cols): Direct Access & Socials */}
-          <div className="lg:col-span-2 space-y-6">
-            <div>
-              <h4 className="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#E7D8FF] mb-6">
-                Direct Contact
-              </h4>
-              
-              <div className="space-y-3 text-xs font-mono">
-                {/* Copy Email Button */}
-                <button
-                  onClick={handleCopyEmail}
-                  className="w-full text-left p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#6DD5C4]/50 hover:bg-[#6DD5C4]/10 transition-all duration-300 group cursor-pointer"
-                >
-                  <div className="text-[10px] text-[#6DD5C4] uppercase tracking-wider mb-1 flex items-center justify-between">
-                    <span>Email Studio</span>
-                    <span>{copied ? '✓ Copied!' : 'Copy'}</span>
-                  </div>
-                  <div className="text-white text-xs truncate group-hover:text-[#6DD5C4] transition-colors">
-                    chamilka.ch@gmail.com
-                  </div>
-                </button>
-
-                {/* Call Hotline */}
-                <a
-                  href="tel:+94770663154"
-                  className="block p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#6DD5C4]/50 hover:bg-[#6DD5C4]/10 transition-all duration-300 group"
-                >
-                  <div className="text-[10px] text-[#6DD5C4] uppercase tracking-wider mb-1">Direct Phone</div>
-                  <div className="text-white text-xs group-hover:text-[#6DD5C4] transition-colors">
-                    +94 77 066 3154
-                  </div>
-                </a>
-              </div>
-            </div>
-
-            {/* Social Media Grid */}
-            <div>
-              <h5 className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#E7D8FF]/50 mb-3">
-                Follow Ecosystem
-              </h5>
-              <div className="flex flex-wrap gap-2.5">
-                {socials.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#B8C0FF]/80 hover:text-[#0D0B1A] hover:bg-gradient-to-tr hover:from-[#6DD5C4] hover:to-[#B8C0FF] hover:border-[#6DD5C4] hover:scale-110 active:scale-95 transition-all duration-300 shadow-md group"
-                  >
-                    <span className="transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                      {s.icon}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ————————————————————————————————————————————————————————————
-          3. Monumental Background Typographic Watermark
-      ———————————————————————————————————————————————————————————— */}
-      <div className="relative w-full overflow-hidden border-t border-white/[0.04] pt-8 pointer-events-none select-none">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-center">
-          <span className="w-full text-center text-[13vw] font-bold font-display tracking-[-0.04em] leading-none bg-gradient-to-b from-white/[0.07] via-white/[0.02] to-transparent bg-clip-text text-transparent uppercase opacity-80">
+          <h3 className="text-2xl md:text-3xl font-bold tracking-[0.25em] text-white uppercase font-display">
             HARSH APEX
-          </span>
+          </h3>
+          <p className="text-[10px] tracking-[0.4em] uppercase text-[#6DD5C4] font-mono mt-1 font-semibold">
+            DIGITAL SOLUTIONS
+          </p>
         </div>
-      </div>
 
-      {/* ————————————————————————————————————————————————————————————
-          4. Sub-Footer Bar (Legal, Standards, & Back-to-Top)
-      ———————————————————————————————————————————————————————————— */}
-      <div className="relative border-t border-white/[0.08] bg-black/40 backdrop-blur-xl font-mono z-20">
-        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-white/50">
-          {/* Left: Copyright & License */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
-            <p>© {new Date().getFullYear()} Harsh Apex Digital Solutions. All Rights Reserved.</p>
-            <span className="hidden sm:inline text-white/20">&bull;</span>
-            <p className="text-white/40 text-[11px]">Precision Engineering & Design</p>
-          </div>
+        {/* 2. Social Circular Icon Buttons */}
+        <div className="flex items-center justify-center gap-3 mb-10">
+          {socials.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              className="w-11 h-11 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#B8C0FF]/80 hover:text-[#0D0B1A] hover:bg-gradient-to-tr hover:from-[#6DD5C4] hover:to-[#B8C0FF] hover:border-[#6DD5C4] hover:scale-110 active:scale-95 transition-all duration-300 shadow-md group"
+            >
+              <span className="transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                {s.icon}
+              </span>
+            </a>
+          ))}
+        </div>
 
-          {/* Center: System Architecture */}
-          <div className="flex items-center gap-4 text-[11px] text-[#6DD5C4]/70">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#6DD5C4]" />
-              SSL 256-Bit Encrypted
+        {/* 3. Primary Navigation Menu */}
+        <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-8 font-mono text-xs md:text-[13px] tracking-[0.18em] uppercase text-white/80 font-medium">
+          {mainNav.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="hover:text-[#6DD5C4] transition-colors duration-300 hover:scale-105"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* 4. Sub-Services / Categories List */}
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mb-10 text-xs md:text-sm text-[#E7D8FF]/50 font-light max-w-3xl leading-relaxed">
+          {serviceTags.map((tag, idx) => (
+            <span key={tag} className="inline-flex items-center gap-3">
+              <span className="hover:text-[#6DD5C4] transition-colors cursor-default">{tag}</span>
+              {idx < serviceTags.length - 1 && <span className="text-white/20 text-[10px]">&bull;</span>}
             </span>
-            <span className="text-white/20">&bull;</span>
-            <span>Next.js 16 • Turbopack</span>
-          </div>
+          ))}
+        </div>
 
-          {/* Right: Interactive Smooth Back-to-Top Button */}
-          <button
-            onClick={scrollToTop}
-            className="group flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#6DD5C4]/30 bg-white/[0.02] hover:border-[#6DD5C4] hover:bg-[#6DD5C4]/15 text-[#6DD5C4] hover:text-white transition-all duration-300 cursor-pointer text-xs"
-            aria-label="Back to top"
+        {/* 5. "GET IN TOUCH!" Block */}
+        <div className="flex flex-col items-center mb-10">
+          <span className="text-[11px] font-mono font-semibold tracking-[0.3em] uppercase text-[#6DD5C4] mb-2">
+            GET IN TOUCH!
+          </span>
+
+          <a
+            href="tel:+94770663154"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white hover:text-[#6DD5C4] transition-colors font-display mb-3"
           >
-            <span className="text-[10px] tracking-wider uppercase font-semibold">Back to top</span>
-            <span className="w-5 h-5 rounded-full bg-[#6DD5C4]/20 flex items-center justify-center text-[10px] transform group-hover:-translate-y-0.5 transition-transform duration-300">
-              ▲
+            +94 77 066 3154
+          </a>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs md:text-sm text-[#E7D8FF]/70 font-light">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="text-[#6DD5C4]">📍</span> Address: Galle &bull; Colombo &bull; Matara, Sri Lanka
             </span>
-          </button>
+            <span className="hidden sm:inline text-white/20">&bull;</span>
+            <a
+              href="mailto:chamilka.ch@gmail.com"
+              className="inline-flex items-center gap-1.5 hover:text-[#6DD5C4] transition-colors"
+            >
+              <span className="text-[#6DD5C4]">✉</span> chamilka.ch@gmail.com
+            </a>
+          </div>
+        </div>
+
+        {/* 6. Thin Divider */}
+        <div className="w-full max-w-4xl border-t border-white/10 my-6" />
+
+        {/* 7. Bottom Copyright & Admin lock icon */}
+        <div className="flex items-center justify-center gap-2 text-xs text-white/45 font-mono text-center">
+          <p>Copyright © {new Date().getFullYear()} Harsh Apex Digital Solutions. All Rights Reserved.</p>
+          <a
+            href="/admin.html"
+            title="Admin Login"
+            className="opacity-40 hover:opacity-100 hover:text-[#6DD5C4] transition-opacity ml-1"
+          >
+            🔒
+          </a>
         </div>
       </div>
     </footer>
