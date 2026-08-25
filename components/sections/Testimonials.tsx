@@ -1,5 +1,11 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const testimonials = [
   {
     name: 'Kasun Perera',
@@ -49,24 +55,46 @@ function StarRating({ count }: { count: number }) {
   return (
     <div className="flex gap-1">
       {Array.from({ length: count }).map((_, i) => (
-        <span key={i} className="text-[#B8C0FF] text-sm">★</span>
+        <span key={i} className="text-[#6DD5C4] text-xs">★</span>
       ))}
     </div>
   );
 }
 
 export default function Testimonials() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.testimonials-header',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-32 md:py-40 bg-transparent overflow-hidden">
+    <section ref={sectionRef} className="py-32 md:py-40 bg-transparent overflow-hidden font-body">
       <div className="max-w-7xl mx-auto px-6 mb-16">
-        <div className="text-center">
-          <p className="text-xs tracking-[0.4em] uppercase text-[#B8C0FF] mb-4">Client Stories</p>
+        <div className="testimonials-header text-center opacity-0">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Client Stories</p>
           <h2
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-            style={{ fontFamily: 'Clash Display, sans-serif' }}
+            className="text-4xl md:text-6xl font-bold text-white mb-6 font-display tracking-tight"
           >
             What Our{' '}
-            <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
               Clients Say
             </span>
           </h2>
@@ -74,7 +102,7 @@ export default function Testimonials() {
       </div>
 
       {/* Slider */}
-      <div className="relative">
+      <div className="relative group">
         {/* Fade masks */}
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0D0B1A] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0D0B1A] to-transparent z-10 pointer-events-none" />
@@ -113,16 +141,16 @@ export default function Testimonials() {
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <div className="w-80 md:w-96 shrink-0 p-7 rounded-3xl border border-[#B8C0FF]/10 bg-gradient-to-br from-[#1A1630]/60 to-[#0D0B1A]/90 backdrop-blur-sm hover:border-[#B8C0FF]/30 transition-all duration-300 group">
+    <div className="w-80 md:w-96 shrink-0 p-7 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/70 to-[#0D0B1A]/90 backdrop-blur-md hover:border-[#6DD5C4]/40 transition-all duration-300 group/card shadow-lg hover:shadow-[0_10px_35px_rgba(109,213,196,0.08)]">
       <StarRating count={testimonial.rating} />
-      <p className="text-sm text-[#E7D8FF]/60 leading-relaxed mt-4 mb-6">&ldquo;{testimonial.quote}&rdquo;</p>
+      <p className="text-sm text-[#E7D8FF]/75 leading-relaxed mt-4 mb-6 font-light italic font-editorial text-[16px]">&ldquo;{testimonial.quote}&rdquo;</p>
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#B8C0FF] to-[#E7D8FF] flex items-center justify-center text-[#0D0B1A] font-bold text-sm">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#6DD5C4] to-[#B8C0FF] flex items-center justify-center text-[#0D0B1A] font-bold text-sm font-display shadow-md">
           {testimonial.name[0]}
         </div>
         <div>
-          <div className="text-white text-sm font-semibold">{testimonial.name}</div>
-          <div className="text-[#B8C0FF]/50 text-xs">{testimonial.role}, {testimonial.company}</div>
+          <div className="text-white text-sm font-semibold font-display">{testimonial.name}</div>
+          <div className="text-[#6DD5C4]/70 text-xs font-mono">{testimonial.role}, {testimonial.company}</div>
         </div>
       </div>
     </div>

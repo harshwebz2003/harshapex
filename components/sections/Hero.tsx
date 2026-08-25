@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
-export default function Hero() {
+export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
@@ -34,7 +34,7 @@ export default function Hero() {
     };
   }, []);
 
-  // Mouse glow
+  // Soft Ambient Glow Follower
   useEffect(() => {
     const glow = glowRef.current;
     if (!glow) return;
@@ -42,15 +42,15 @@ export default function Hero() {
       gsap.to(glow, {
         x: e.clientX - 200,
         y: e.clientY - 200,
-        duration: 0.8,
-        ease: 'power2.out',
+        duration: 1.2,
+        ease: 'power3.out',
       });
     };
     window.addEventListener('mousemove', onMove);
     return () => window.removeEventListener('mousemove', onMove);
   }, []);
 
-  // Animated canvas blobs
+  // Fluid Ambient Canvas Blobs
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -61,10 +61,10 @@ export default function Hero() {
     canvas.height = window.innerHeight;
 
     const blobs = [
-      { x: canvas.width * 0.2, y: canvas.height * 0.3, r: 280, color: 'rgba(184,192,255,0.12)', vx: 0.3, vy: 0.2 },
-      { x: canvas.width * 0.7, y: canvas.height * 0.6, r: 240, color: 'rgba(231,216,255,0.10)', vx: -0.2, vy: 0.3 },
-      { x: canvas.width * 0.45, y: canvas.height * 0.75, r: 200, color: 'rgba(109,213,196,0.10)', vx: 0.2, vy: -0.2 },
-      { x: canvas.width * 0.8, y: canvas.height * 0.25, r: 180, color: 'rgba(223,246,240,0.08)', vx: -0.15, vy: 0.25 },
+      { x: canvas.width * 0.2, y: canvas.height * 0.3, r: 280, color: 'rgba(184,192,255,0.10)', vx: 0.2, vy: 0.15 },
+      { x: canvas.width * 0.75, y: canvas.height * 0.65, r: 240, color: 'rgba(231,216,255,0.08)', vx: -0.15, vy: 0.2 },
+      { x: canvas.width * 0.45, y: canvas.height * 0.75, r: 210, color: 'rgba(109,213,196,0.08)', vx: 0.15, vy: -0.15 },
+      { x: canvas.width * 0.8, y: canvas.height * 0.25, r: 180, color: 'rgba(223,246,240,0.06)', vx: -0.1, vy: 0.18 },
     ];
 
     let animId: number;
@@ -100,32 +100,74 @@ export default function Hero() {
     };
   }, []);
 
-  // Entrance animations
+  // Luxury Entrance Animation
   useEffect(() => {
-    if (!headlineRef.current || !subRef.current || !ctaRef.current) return;
+    if (!isLoaded || !headlineRef.current || !subRef.current || !ctaRef.current) return;
 
-    const words = headlineRef.current.querySelectorAll('.word');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      gsap.set(
+        [
+          containerRef.current?.querySelector('.hero-badge'),
+          headlineRef.current.querySelectorAll('.word-inner'),
+          subRef.current,
+          ctaRef.current,
+          containerRef.current?.querySelectorAll('.hero-stat'),
+        ],
+        { opacity: 1, y: 0, filter: 'none' }
+      );
+      return;
+    }
 
-    const tl = gsap.timeline({ delay: 2.8 }); // after loading screen
+    const badge = containerRef.current?.querySelector('.hero-badge');
+    const wordInners = headlineRef.current.querySelectorAll('.word-inner');
+    const stats = containerRef.current?.querySelectorAll('.hero-stat');
+
+    const tl = gsap.timeline({ delay: 0.1 });
+
+    if (badge) {
+      tl.fromTo(
+        badge,
+        { opacity: 0, y: -12, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'expo.out' }
+      );
+    }
 
     tl.fromTo(
-      words,
-      { yPercent: 110, opacity: 0 },
-      { yPercent: 0, opacity: 1, duration: 1, ease: 'power4.out', stagger: 0.1 }
+      wordInners,
+      { yPercent: 105, opacity: 0, filter: 'blur(8px)' },
+      {
+        yPercent: 0,
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 1.0,
+        ease: 'expo.out',
+        stagger: 0.05,
+      },
+      '-=0.45'
     )
       .fromTo(
         subRef.current,
-        { opacity: 0, y: 20, filter: 'blur(8px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power3.out' },
-        '-=0.4'
+        { opacity: 0, y: 22, filter: 'blur(6px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.85, ease: 'expo.out' },
+        '-=0.6'
       )
       .fromTo(
         ctaRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
-        '-=0.3'
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.75, ease: 'expo.out' },
+        '-=0.55'
       );
-  }, []);
+
+    if (stats && stats.length > 0) {
+      tl.fromTo(
+        stats,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', stagger: 0.08 },
+        '-=0.5'
+      );
+    }
+  }, [isLoaded]);
 
   const headline = 'We Craft Digital Experiences That Convert';
   const words = headline.split(' ');
@@ -149,63 +191,52 @@ export default function Hero() {
         loop
         muted
         playsInline
+        preload="auto"
         className="hero-video-bg"
       >
-        <source src={`/${videoSrc}`} type="video/mp4" />
+        <source src={videoSrc} type="video/mp4" />
       </video>
 
-      {/* Noise texture */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat',
-          backgroundSize: '200px',
-        }}
-      />
+      {/* Radial overlay for seamless video blending */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0D0B1A]/80 via-[#0D0B1A]/30 to-[#0D0B1A] pointer-events-none" />
 
-      {/* Mouse glow */}
+      {/* Interactive mouse follow glow */}
       <div
         ref={glowRef}
-        className="absolute w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(184,192,255,0.15) 0%, transparent 70%)',
-          filter: 'blur(40px)',
-        }}
+        className="pointer-events-none fixed top-0 left-0 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#6DD5C4]/6 via-[#B8C0FF]/8 to-transparent blur-[90px] -z-10 transition-opacity duration-700"
       />
 
       {/* Gradient mesh top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B8C0FF]/30 to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-24 md:pt-0">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#6DD5C4]/30 bg-[#6DD5C4]/5 mb-8">
+        <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#6DD5C4]/30 bg-[#6DD5C4]/5 mb-8 opacity-0">
           <span className="w-1.5 h-1.5 rounded-full bg-[#6DD5C4] animate-pulse" />
-          <span className="text-xs tracking-widest bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] bg-clip-text text-transparent font-medium uppercase">Premium Digital Agency</span>
+          <span className="text-xs tracking-[0.3em] bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] bg-clip-text text-transparent font-medium uppercase font-mono">
+            Premium Digital Agency
+          </span>
         </div>
 
         {/* Headline */}
         <h1
           ref={headlineRef}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight text-white mb-8"
-          style={{ fontFamily: 'Clash Display, sans-serif' }}
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-[-0.035em] text-white mb-8 font-display"
         >
           {words.map((word, i) => (
             <span
               key={i}
-              className="word inline-block mr-[0.25em] last:mr-0"
-              style={{ overflow: 'hidden', verticalAlign: 'top' }}
+              className="word inline-block mr-[0.25em] last:mr-0 overflow-hidden align-top"
             >
               <span
-                style={{ display: 'inline-block' }}
-                className={
+                className={`word-inner inline-block opacity-0 ${
                   word === 'Convert'
                     ? 'bg-gradient-to-r from-[#6DD5C4] to-[#DFF6F0] bg-clip-text text-transparent'
                     : word === 'Digital'
                     ? 'bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent'
                     : ''
-                }
+                }`}
               >
                 {word}
               </span>
@@ -213,58 +244,60 @@ export default function Hero() {
           ))}
         </h1>
 
-        {/* Sub */}
+        {/* Subtitle */}
         <p
           ref={subRef}
-          className="max-w-2xl mx-auto text-lg md:text-xl text-[#E7D8FF]/70 leading-relaxed mb-12 opacity-0"
+          className="max-w-2xl mx-auto text-lg md:text-xl text-[#E7D8FF]/70 leading-relaxed mb-12 opacity-0 font-body font-light"
         >
           Harsh Apex Digital Solutions crafts high-performance websites, immersive UI/UX, and
           growth-driven digital strategies for forward-thinking brands.
         </p>
 
         {/* CTAs */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0">
+        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0 font-body">
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group px-8 py-4 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-base hover:shadow-[0_0_50px_rgba(109,213,196,0.4)] transition-all duration-300 hover:scale-105 cursor-pointer"
+            className="group px-8 py-4 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-base hover:shadow-[0_0_40px_rgba(109,213,196,0.35)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
           >
             Start Your Project →
           </button>
           <button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 rounded-full border border-[#B8C0FF]/30 text-[#E7D8FF] text-base hover:border-[#6DD5C4] hover:text-white hover:bg-[#6DD5C4]/10 transition-all duration-300 cursor-pointer"
+            className="px-8 py-4 rounded-full border border-[#B8C0FF]/30 text-[#E7D8FF] text-base hover:border-[#6DD5C4] hover:text-white hover:bg-[#6DD5C4]/10 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
             View Our Work
           </button>
         </div>
 
         {/* Stats row */}
-        <div className="mt-20 flex flex-wrap justify-center gap-12 md:gap-20">
+        <div className="mt-16 md:mt-20 flex flex-wrap justify-center gap-12 md:gap-20">
           {[
             { num: '50+', label: 'Projects Delivered' },
             { num: '98%', label: 'Client Satisfaction' },
             { num: '5+', label: 'Years Experience' },
           ].map((stat) => (
-            <div key={stat.label} className="text-center">
+            <div key={stat.label} className="hero-stat text-center opacity-0">
               <div
-                className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent"
-                style={{ fontFamily: 'Satoshi, sans-serif' }}
+                className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] bg-clip-text text-transparent font-display tracking-tight"
               >
                 {stat.num}
               </div>
-              <div className="text-sm text-[#E7D8FF]/40 mt-1">{stat.label}</div>
+              <div className="text-xs uppercase tracking-wider text-[#E7D8FF]/50 mt-1.5 font-medium">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Luxury Scroll Indicator */}
       <button
         onClick={scrollDown}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#E7D8FF]/40 hover:text-[#E7D8FF]/70 transition-colors group"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 text-[#E7D8FF]/40 hover:text-[#6DD5C4] transition-colors duration-300 group cursor-pointer"
+        aria-label="Scroll to content"
       >
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-[#B8C0FF]/50 to-transparent animate-bounce" />
+        <span className="text-[10px] tracking-[0.3em] uppercase font-mono">Scroll</span>
+        <div className="relative w-[1px] h-9 bg-white/10 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-[#6DD5C4] to-transparent animate-drift" />
+        </div>
       </button>
     </section>
   );

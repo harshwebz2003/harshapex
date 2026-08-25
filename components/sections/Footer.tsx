@@ -60,22 +60,21 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#080616]/95 backdrop-blur-xl border-t border-[#B8C0FF]/10 text-white overflow-hidden">
+    <footer className="relative bg-[#080616]/95 backdrop-blur-xl border-t border-[#B8C0FF]/10 text-white overflow-hidden font-body">
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#B8C0FF]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6DD5C4]/4 rounded-full blur-[140px] pointer-events-none" />
 
       {/* 1. Pre-Footer Call to Action Banner */}
-      <div className="border-b border-[#B8C0FF]/10 bg-white/[0.02]">
+      <div className="border-b border-white/8 bg-white/[0.015]">
         <div className="max-w-4xl mx-auto px-6 py-16 md:py-20 text-center">
           <h3
-            className="text-lg md:text-2xl lg:text-3xl font-light tracking-[0.2em] uppercase text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed"
-            style={{ fontFamily: 'Clash Display, sans-serif' }}
+            className="text-lg md:text-2xl lg:text-3xl font-light tracking-[0.2em] uppercase text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed font-display"
           >
             LET&apos;S CREATE SOMETHING BEAUTIFUL TOGETHER!
           </h3>
           <button
             onClick={scrollToContact}
-            className="px-8 py-3.5 rounded-full bg-white text-[#0D0B1A] text-sm md:text-base font-medium tracking-wide shadow-[0_4px_20px_rgba(255,255,255,0.15)] hover:bg-[#B8C0FF] hover:shadow-[0_0_25px_rgba(184,192,255,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+            className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-xs md:text-sm font-semibold uppercase tracking-[0.08em] shadow-[0_0_30px_rgba(109,213,196,0.3)] hover:shadow-[0_0_40px_rgba(109,213,196,0.5)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer font-mono"
           >
             Contact Me
           </button>
@@ -87,7 +86,7 @@ export default function Footer() {
         {/* Back to Top */}
         <button
           onClick={scrollToTop}
-          className="group flex flex-col items-center gap-1.5 text-xs font-semibold tracking-[0.25em] uppercase text-[#B8C0FF]/60 hover:text-white transition-colors duration-300 mb-12 cursor-pointer"
+          className="group flex flex-col items-center gap-1.5 text-xs font-semibold tracking-[0.25em] uppercase text-[#6DD5C4]/80 hover:text-white transition-colors duration-300 mb-12 cursor-pointer font-mono"
         >
           <span className="text-[10px] transform group-hover:-translate-y-1 transition-transform duration-300">▲</span>
           <span>BACK TO TOP</span>
@@ -96,16 +95,15 @@ export default function Footer() {
         {/* Contact block */}
         <div className="mb-12">
           <h4
-            className="text-2xl md:text-3xl font-normal text-white/90 mb-4"
-            style={{ fontFamily: 'Georgia, Cambria, serif' }}
+            className="text-2xl md:text-3xl font-normal text-white/90 mb-4 font-editorial italic tracking-tight"
           >
             Contact
           </h4>
-          <div className="space-y-2 text-sm md:text-base text-[#E7D8FF]/70">
+          <div className="space-y-2 text-sm md:text-base text-[#E7D8FF]/70 font-light">
             <p>
               <a
                 href="mailto:chamilka.ch@gmail.com"
-                className="hover:text-white hover:underline transition-colors"
+                className="hover:text-[#6DD5C4] hover:underline transition-colors"
               >
                 chamilka.ch@gmail.com
               </a>
@@ -113,7 +111,7 @@ export default function Footer() {
             <p>
               <a
                 href="tel:+94770663154"
-                className="hover:text-white hover:underline transition-colors"
+                className="hover:text-[#6DD5C4] hover:underline transition-colors"
               >
                 +94 77 066 3154
               </a>
@@ -123,7 +121,7 @@ export default function Footer() {
 
         {/* Center Circular Logo */}
         <div className="mb-12">
-          <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full p-2.5 bg-[#B8C0FF]/5 border border-[#B8C0FF]/20 shadow-[0_0_30px_rgba(184,192,255,0.08)] flex items-center justify-center group hover:border-[#B8C0FF]/50 transition-all duration-500">
+          <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full p-2.5 bg-[#B8C0FF]/5 border border-[#B8C0FF]/20 shadow-[0_0_30px_rgba(109,213,196,0.08)] flex items-center justify-center group hover:border-[#6DD5C4]/50 transition-all duration-500">
             <Image
               src="/logo.png"
               alt="Harsh Apex"
@@ -137,12 +135,11 @@ export default function Footer() {
         {/* Follow block */}
         <div className="mb-4">
           <h4
-            className="text-2xl md:text-3xl font-normal text-white/90 mb-6"
-            style={{ fontFamily: 'Georgia, Cambria, serif' }}
+            className="text-2xl md:text-3xl font-normal text-white/90 mb-6 font-editorial italic tracking-tight"
           >
             Follow
           </h4>
-          <div className="flex items-center justify-center gap-5">
+          <div className="flex items-center justify-center gap-4">
             {socials.map((s) => (
               <a
                 key={s.label}
@@ -150,7 +147,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#B8C0FF]/20 hover:border-[#B8C0FF]/50 hover:scale-110 active:scale-95 transition-all duration-300 shadow-sm"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#6DD5C4]/20 hover:border-[#6DD5C4]/50 hover:scale-110 active:scale-95 transition-all duration-300 shadow-sm"
               >
                 {s.icon}
               </a>
@@ -160,10 +157,10 @@ export default function Footer() {
       </div>
 
       {/* 3. Sub-footer Copyright & Credits */}
-      <div className="border-t border-white/10 bg-black/20">
+      <div className="border-t border-white/8 bg-black/20 font-mono">
         <div className="max-w-4xl mx-auto px-6 py-6 text-center text-xs text-white/50 space-y-1.5">
           <p>Copyright © {new Date().getFullYear()} Harsh Apex Digital Solutions. All rights reserved.</p>
-          <p className="text-white/40">Design + Code by Harsh Apex</p>
+          <p className="text-white/40 text-[10px] tracking-wider uppercase">Design + Code by Harsh Apex</p>
         </div>
       </div>
     </footer>

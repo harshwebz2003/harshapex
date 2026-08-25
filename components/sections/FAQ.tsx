@@ -1,6 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
@@ -39,52 +43,87 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const toggle = (i: number) => {
     setOpenIndex(openIndex === i ? null : i);
   };
 
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.faq-header',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+        }
+      );
+
+      const items = sectionRef.current?.querySelectorAll('.faq-item') ?? [];
+      gsap.fromTo(
+        items,
+        { opacity: 0, y: 25 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.06,
+          duration: 0.8,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-32 md:py-40 bg-transparent">
+    <section ref={sectionRef} className="py-32 md:py-40 bg-transparent font-body">
       <div className="max-w-3xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.4em] uppercase text-[#B8C0FF] mb-4">Questions</p>
+        <div className="faq-header text-center mb-16 opacity-0">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Questions</p>
           <h2
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-            style={{ fontFamily: 'Clash Display, sans-serif' }}
+            className="text-4xl md:text-6xl font-bold text-white mb-6 font-display tracking-tight"
           >
             Frequently Asked{' '}
-            <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
         </div>
 
         {/* Accordion */}
-        <div className="space-y-3">
+        <div className="space-y-3.5">
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+              className={`faq-item rounded-2xl border transition-all duration-500 overflow-hidden opacity-0 ${
                 openIndex === i
-                  ? 'border-[#B8C0FF]/30 bg-gradient-to-br from-[#1A1630]/60 to-[#0D0B1A]/80'
-                  : 'border-[#B8C0FF]/10 bg-[#1A1630]/20 hover:border-[#B8C0FF]/20'
+                  ? 'border-[#6DD5C4]/40 bg-gradient-to-br from-[#1A1630]/80 to-[#0D0B1A]/95 shadow-[0_4px_30px_rgba(109,213,196,0.08)]'
+                  : 'border-[#B8C0FF]/15 bg-[#1A1630]/25 hover:border-[#B8C0FF]/30'
               }`}
             >
               <button
                 onClick={() => toggle(i)}
-                className="w-full flex items-center justify-between p-6 text-left"
+                className="w-full flex items-center justify-between p-6 text-left cursor-pointer"
+                aria-expanded={openIndex === i}
               >
                 <span
-                  className="text-white font-medium pr-4"
-                  style={{ fontFamily: 'Clash Display, sans-serif' }}
+                  className="text-white font-medium pr-4 font-display text-base md:text-lg"
                 >
                   {faq.q}
                 </span>
                 <span
-                  className={`shrink-0 w-7 h-7 rounded-full border border-[#B8C0FF]/30 flex items-center justify-center text-[#B8C0FF] transition-all duration-300 ${
-                    openIndex === i ? 'bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] border-transparent rotate-45' : ''
+                  className={`shrink-0 w-7 h-7 rounded-full border border-[#B8C0FF]/30 flex items-center justify-center text-[#6DD5C4] transition-all duration-400 ease-out ${
+                    openIndex === i ? 'bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] text-[#0D0B1A] border-transparent rotate-45' : ''
                   }`}
                 >
                   +
@@ -92,11 +131,11 @@ export default function FAQ() {
               </button>
 
               <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   openIndex === i ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <p className="px-6 pb-6 text-[#E7D8FF]/50 text-sm leading-relaxed">{faq.a}</p>
+                <p className="px-6 pb-6 text-[#E7D8FF]/70 text-sm leading-relaxed font-light">{faq.a}</p>
               </div>
             </div>
           ))}

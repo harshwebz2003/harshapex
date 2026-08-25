@@ -57,16 +57,21 @@ export default function Process() {
     const ctx = gsap.context(() => {
       // Animate cards on scroll
       const cards = sectionRef.current?.querySelectorAll('.process-card-wrapper') ?? [];
-      cards.forEach((card, idx) => {
+      cards.forEach((card, i) => {
+        const isEven = i % 2 === 0;
         gsap.fromTo(
           card,
-          { opacity: 0, x: idx % 2 === 0 ? -50 : 50, y: 30 },
+          {
+            opacity: 0,
+            x: window.innerWidth >= 768 ? (isEven ? -30 : 30) : 0,
+            y: 30,
+          },
           {
             opacity: 1,
             x: 0,
             y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
+            duration: 0.85,
+            ease: 'expo.out',
             scrollTrigger: {
               trigger: card,
               start: 'top 80%',
@@ -76,20 +81,20 @@ export default function Process() {
         );
       });
 
-      // Animate center nodes
+      // Animate center nodes with smooth scale stabilization
       const nodes = sectionRef.current?.querySelectorAll('.process-node') ?? [];
       nodes.forEach((node) => {
         gsap.fromTo(
           node,
-          { scale: 0, opacity: 0 },
+          { scale: 0.8, opacity: 0 },
           {
             scale: 1,
             opacity: 1,
-            duration: 0.6,
-            ease: 'back.out(1.7)',
+            duration: 0.7,
+            ease: 'expo.out',
             scrollTrigger: {
               trigger: node,
-              start: 'top 75%',
+              start: 'top 80%',
               once: true,
             },
           }
@@ -101,27 +106,26 @@ export default function Process() {
   }, []);
 
   return (
-    <section id="process" ref={sectionRef} className="py-32 md:py-40 bg-transparent relative overflow-hidden">
-      {/* Background Glow Meshes matching the Figma vibe */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full bg-[#B8C0FF]/4 blur-[120px] pointer-events-none" />
-      <div className="absolute top-2/4 right-0 w-[450px] h-[450px] rounded-full bg-[#e7d8ff]/3 blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-10 left-1/3 w-[500px] h-[300px] rounded-full bg-[#B8C0FF]/3 blur-[120px] pointer-events-none" />
+    <section id="process" ref={sectionRef} className="py-32 md:py-40 bg-transparent relative overflow-hidden font-body">
+      {/* Background Glow Meshes */}
+      <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full bg-[#6DD5C4]/4 blur-[130px] pointer-events-none" />
+      <div className="absolute top-2/4 right-0 w-[450px] h-[450px] rounded-full bg-[#B8C0FF]/4 blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-10 left-1/3 w-[500px] h-[300px] rounded-full bg-[#E7D8FF]/3 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-24">
-          <p className="text-xs tracking-[0.4em] uppercase text-[#B8C0FF] mb-4">Workflow</p>
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Workflow</p>
           <h2
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-            style={{ fontFamily: 'Clash Display, sans-serif' }}
+            className="text-4xl md:text-6xl font-bold text-white mb-6 font-display tracking-tight"
           >
             Our{' '}
-            <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
               Process
             </span>
           </h2>
-          <p className="max-w-xl mx-auto text-[#E7D8FF]/50 text-lg">
-            A proven, structured approach that consistently delivers exceptional results.
+          <p className="max-w-xl mx-auto text-[#E7D8FF]/60 text-lg leading-relaxed font-light">
+            A proven, structured methodology calibrated to consistently engineer exceptional outcomes.
           </p>
         </div>
 

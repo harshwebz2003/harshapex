@@ -15,7 +15,7 @@ const cases = [
     desc: 'A complete digital transformation — new brand identity, performance-optimised website, and targeted SEO strategy drove a 40% increase in bookings within the first month of launch.',
     img: '/projects/Serendib.png',
     results: ['+40% Bookings', '98 Lighthouse Score', '3× Organic Traffic'],
-    color: '#B8C0FF',
+    color: '#6DD5C4',
   },
   {
     client: 'Neat Construction',
@@ -24,7 +24,7 @@ const cases = [
     desc: 'We built a high-performance digital headquarters displaying architectural works and custom estimation tools — resulting in doubled revenue and customer leads within 60 days.',
     img: '/projects/Neat Construction.png',
     results: ['2× Lead Volume', 'Modern UI/UX', '60% Faster Load'],
-    color: '#E7D8FF',
+    color: '#B8C0FF',
   },
   {
     client: '3D Scrolling Tourism Webpage',
@@ -33,7 +33,7 @@ const cases = [
     desc: 'A bespoke luxury travel experience designed around a rich, interactive 3D scrolling story of Ceylon. Engaged visitors with high-performance animations and high-conversion pathways.',
     img: '/projects/LuxeCeylon.jpg',
     results: ['3× Inquiries', '3D Scrolling Story', 'Premium Brand'],
-    color: '#B8C0FF',
+    color: '#E7D8FF',
   },
 ];
 
@@ -50,7 +50,7 @@ export default function CaseStudies() {
     const startAutoScroll = () => {
       intervalId = setInterval(() => {
         const maxScroll = container.scrollWidth - container.clientWidth;
-        if (maxScroll <= 0) return; // Only scroll if content overflows (e.g. mobile list)
+        if (maxScroll <= 0) return;
 
         const cards = Array.from(container.children) as HTMLElement[];
         if (cards.length === 0) return;
@@ -99,39 +99,57 @@ export default function CaseStudies() {
   }, []);
 
   useEffect(() => {
-    const cards = sectionRef.current?.querySelectorAll('.case-card') ?? [];
-    gsap.fromTo(
-      cards,
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.2,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 65%', once: true },
-      }
-    );
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.casestudies-header',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+        }
+      );
+
+      const cards = sectionRef.current?.querySelectorAll('.case-card') ?? [];
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.12,
+          duration: 0.9,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section id="case-studies" ref={sectionRef} className="py-32 md:py-40 bg-transparent">
+    <section id="case-studies" ref={sectionRef} className="py-32 md:py-40 bg-transparent font-body">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="mb-20">
-          <p className="text-xs tracking-[0.4em] uppercase text-[#B8C0FF] mb-4">Deep Dives</p>
+        <div className="casestudies-header mb-20 opacity-0">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Deep Dives</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2
-              className="text-4xl md:text-6xl font-bold text-white max-w-lg leading-tight"
-              style={{ fontFamily: 'Clash Display, sans-serif' }}
+              className="text-4xl md:text-6xl font-bold text-white max-w-lg leading-tight font-display tracking-tight"
             >
               Case{' '}
-              <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
                 Studies
               </span>
             </h2>
-            <p className="max-w-sm text-[#E7D8FF]/50 text-base">
-              Real projects. Real results. Here&apos;s how we&apos;ve helped brands grow.
+            <p className="max-w-sm text-[#E7D8FF]/60 text-base font-light">
+              Real projects. Real results. Here&apos;s how we&apos;ve helped ambitious brands accelerate growth.
             </p>
           </div>
         </div>
@@ -141,7 +159,7 @@ export default function CaseStudies() {
           {cases.map((c, i) => (
             <div
               key={c.client}
-              className="case-card group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-[#B8C0FF]/10 hover:border-[#B8C0FF]/30 transition-all duration-500 w-[85vw] md:w-full shrink-0 snap-center"
+              className="case-card group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-[#B8C0FF]/15 hover:border-[#6DD5C4]/40 transition-all duration-500 w-[85vw] md:w-full shrink-0 snap-center opacity-0 shadow-lg hover:shadow-[0_15px_50px_rgba(109,213,196,0.1)]"
             >
               {/* Image side */}
               <div className={`relative aspect-[16/9] md:aspect-auto overflow-hidden ${i % 2 === 1 ? 'md:order-2' : ''}`}>
@@ -149,32 +167,31 @@ export default function CaseStudies() {
                   src={c.img}
                   alt={c.client}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0D0B1A]/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0D0B1A]/70 via-[#0D0B1A]/20 to-transparent" />
               </div>
 
               {/* Content side */}
-              <div className={`p-8 md:p-12 bg-gradient-to-br from-[#1A1630]/60 to-[#0D0B1A]/90 flex flex-col justify-center ${i % 2 === 1 ? 'md:order-1' : ''}`}>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xs tracking-widest uppercase text-[#B8C0FF]/60">{c.category}</span>
-                  <span className="w-1 h-1 rounded-full bg-[#B8C0FF]/30" />
-                  <span className="text-xs tracking-widest uppercase text-[#B8C0FF]/60">{c.client}</span>
+              <div className={`p-8 md:p-12 bg-gradient-to-br from-[#1A1630]/70 to-[#0D0B1A]/90 flex flex-col justify-center ${i % 2 === 1 ? 'md:order-1' : ''}`}>
+                <div className="flex items-center gap-3 mb-6 font-mono text-[10px] tracking-[0.2em] uppercase">
+                  <span className="text-[#6DD5C4] font-medium">{c.category}</span>
+                  <span className="w-1 h-1 rounded-full bg-white/20" />
+                  <span className="text-[#E7D8FF]/60">{c.client}</span>
                 </div>
                 <h3
-                  className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight"
-                  style={{ fontFamily: 'Clash Display, sans-serif' }}
+                  className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight font-display tracking-tight"
                 >
                   {c.headline}
                 </h3>
-                <p className="text-[#E7D8FF]/50 text-sm leading-relaxed mb-8">{c.desc}</p>
+                <p className="text-[#E7D8FF]/60 text-sm leading-relaxed mb-8 font-light">{c.desc}</p>
 
                 {/* Results pills */}
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2.5">
                   {c.results.map((r) => (
                     <span
                       key={r}
-                      className="px-4 py-2 rounded-full bg-[#B8C0FF]/10 border border-[#B8C0FF]/20 text-sm text-[#B8C0FF] font-medium"
+                      className="px-3.5 py-1.5 rounded-full bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 text-xs text-[#6DD5C4] font-mono tracking-wide font-medium"
                     >
                       {r}
                     </span>

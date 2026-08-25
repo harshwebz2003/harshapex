@@ -1,6 +1,10 @@
-
+'use client';
 
 import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const plans = [
   {
@@ -65,7 +69,43 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.pricing-header',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+        }
+      );
+
+      const cards = sectionRef.current?.querySelectorAll('.pricing-card') ?? [];
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
+          duration: 0.9,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -76,7 +116,7 @@ export default function Pricing() {
     const startAutoScroll = () => {
       intervalId = setInterval(() => {
         const maxScroll = container.scrollWidth - container.clientWidth;
-        if (maxScroll <= 0) return; // Only scroll if content overflows (e.g. mobile list)
+        if (maxScroll <= 0) return;
 
         const cards = Array.from(container.children) as HTMLElement[];
         if (cards.length === 0) return;
@@ -125,83 +165,82 @@ export default function Pricing() {
   }, []);
 
   return (
-    <section id="pricing" className="py-32 md:py-40 bg-transparent">
+    <section id="pricing" ref={sectionRef} className="py-32 md:py-40 bg-transparent font-body">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.4em] uppercase text-[#B8C0FF] mb-4">Investment</p>
+        <div className="pricing-header text-center mb-16 opacity-0">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Investment</p>
           <h2
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-            style={{ fontFamily: 'Clash Display, sans-serif' }}
+            className="text-4xl md:text-6xl font-bold text-white mb-6 font-display tracking-tight"
           >
             Transparent{' '}
-            <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
               Pricing
             </span>
           </h2>
-          <p className="max-w-xl mx-auto text-[#E7D8FF]/50 text-lg">
-            Choose the plan that fits your ambitions. Every project comes with our premium quality guarantee.
+          <p className="max-w-xl mx-auto text-[#E7D8FF]/60 text-lg font-light leading-relaxed">
+            Clear, honest pricing with no hidden costs. Select the engagement model suited to your scale.
           </p>
         </div>
 
-        {/* Cards */}
-        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-6 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
+        {/* Pricing cards */}
+        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-8 items-stretch snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative p-8 rounded-3xl flex flex-col transition-all duration-300 w-[85vw] md:w-full shrink-0 snap-center ${
+              className={`pricing-card relative rounded-3xl p-8 md:p-10 flex flex-col justify-between transition-all duration-500 w-[85vw] md:w-full shrink-0 snap-center opacity-0 ${
                 plan.popular
-                  ? 'border-2 border-[#B8C0FF]/60 bg-gradient-to-br from-[#1A1630]/80 to-[#0D0B1A] shadow-[0_0_60px_rgba(184,192,255,0.15)]'
-                  : 'border border-[#B8C0FF]/10 bg-gradient-to-br from-[#1A1630]/30 to-[#0D0B1A]/80 hover:border-[#B8C0FF]/30'
+                  ? 'border-2 border-[#6DD5C4]/50 bg-gradient-to-b from-[#1A1630]/90 to-[#0D0B1A]/95 shadow-[0_0_50px_rgba(109,213,196,0.15)] md:-translate-y-2'
+                  : 'border border-[#B8C0FF]/15 bg-gradient-to-b from-[#1A1630]/50 to-[#0D0B1A]/80 hover:border-[#6DD5C4]/40 shadow-lg'
               }`}
             >
+              {/* Popular badge */}
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 rounded-full bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-xs font-bold tracking-wide">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] text-[#0D0B1A] text-[10px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md font-mono">
                   Most Popular
                 </div>
               )}
 
-              <div className="mb-8">
-                <h3
-                  className="text-xl font-bold text-white mb-2"
-                  style={{ fontFamily: 'Clash Display, sans-serif' }}
-                >
-                  {plan.name}
-                </h3>
-                <p className="text-sm text-[#E7D8FF]/50 leading-relaxed">{plan.desc}</p>
-              </div>
-
-              <div className="mb-8">
-                <div
-                  className="text-4xl font-bold text-white mb-1"
-                  style={{ fontFamily: 'Satoshi, sans-serif' }}
-                >
-                  {plan.price}
+              <div>
+                <div className="mb-6">
+                  <span className="text-xs uppercase tracking-widest text-[#6DD5C4] font-mono font-semibold">{plan.name}</span>
+                  <div className="mt-3 flex items-baseline gap-2">
+                    <span
+                      className="text-4xl md:text-5xl font-bold text-white font-display tracking-tight"
+                    >
+                      {plan.price}
+                    </span>
+                    <span className="text-xs text-[#E7D8FF]/40 font-mono">/{plan.period}</span>
+                  </div>
+                  <p className="text-xs text-[#E7D8FF]/60 mt-3 leading-relaxed font-light">{plan.desc}</p>
                 </div>
-                <div className="text-xs text-[#E7D8FF]/40">{plan.period}</div>
+
+                <div className="border-t border-white/10 my-6" />
+
+                {/* Features */}
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-center gap-3 text-sm text-[#E7D8FF]/80">
+                      <span className="text-[#6DD5C4] text-xs">✓</span>
+                      <span className="font-light">{f}</span>
+                    </li>
+                  ))}
+                  {plan.notIncluded.map((f) => (
+                    <li key={f} className="flex items-center gap-3 text-sm text-[#E7D8FF]/30">
+                      <span className="text-white/20 text-xs">✕</span>
+                      <span className="line-through font-light">{f}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-sm text-[#E7D8FF]/70">
-                    <span className="text-[#B8C0FF] shrink-0">✓</span>
-                    {f}
-                  </li>
-                ))}
-                {plan.notIncluded.map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-sm text-[#E7D8FF]/25 line-through">
-                    <span className="text-[#E7D8FF]/20 shrink-0">×</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
+              {/* CTA */}
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className={`w-full py-4 rounded-2xl font-semibold text-sm transition-all duration-300 ${
+                className={`w-full py-3.5 rounded-full text-xs uppercase tracking-[0.08em] font-semibold transition-all duration-300 cursor-pointer font-mono ${
                   plan.popular
-                    ? 'bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] hover:shadow-[0_0_30px_rgba(184,192,255,0.4)] hover:scale-105'
-                    : 'border border-[#B8C0FF]/30 text-[#E7D8FF] hover:bg-[#B8C0FF]/10 hover:border-[#B8C0FF]'
+                    ? 'bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] shadow-[0_0_30px_rgba(109,213,196,0.35)] hover:shadow-[0_0_40px_rgba(109,213,196,0.55)] hover:scale-[1.02] active:scale-[0.98]'
+                    : 'border border-[#B8C0FF]/30 text-white hover:border-[#6DD5C4] hover:bg-[#6DD5C4]/10 hover:scale-[1.02] active:scale-[0.98]'
                 }`}
               >
                 {plan.cta}
@@ -209,10 +248,6 @@ export default function Pricing() {
             </div>
           ))}
         </div>
-
-        <p className="text-center text-[#E7D8FF]/30 text-sm mt-8">
-          All prices in Sri Lankan Rupees. Custom quotes available. Book a discovery call to discuss your project.
-        </p>
       </div>
     </section>
   );

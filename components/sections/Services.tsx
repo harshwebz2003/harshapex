@@ -237,16 +237,32 @@ export default function Services() {
   }, []);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.service-card-wrap',
-        { opacity: 0, y: 70, scale: 0.94 },
+        '.services-header',
+        { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, scale: 1,
-          stagger: { amount: 0.6, from: 'start' },
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 65%', once: true },
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+        }
+      );
+
+      gsap.fromTo(
+        '.service-card-wrap',
+        { opacity: 0, y: 45 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.08,
+          duration: 0.9,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
         }
       );
     }, sectionRef);
@@ -254,29 +270,28 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-32 md:py-44 bg-transparent relative overflow-hidden">
+    <section id="services" ref={sectionRef} className="py-32 md:py-44 bg-transparent relative overflow-hidden font-body">
       {/* Ambient blobs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#B8C0FF]/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#E7D8FF]/4 blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#6DD5C4]/4 blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#B8C0FF]/4 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-24">
-          <p className="text-xs tracking-[0.45em] uppercase text-[#B8C0FF] mb-5">What We Do</p>
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-7 leading-tight"
-            style={{ fontFamily: 'Clash Display, sans-serif' }}>
+        <div className="services-header text-center mb-24 opacity-0">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">What We Do</p>
+          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-display tracking-tight">
             Services Built for{' '}
-            <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">Growth</span>
+            <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">Growth</span>
           </h2>
-          <p className="max-w-lg mx-auto text-[#E7D8FF]/50 text-lg leading-relaxed">
-            Every service is designed to deliver measurable impact on your brand and revenue.
+          <p className="max-w-lg mx-auto text-[#E7D8FF]/60 text-lg leading-relaxed font-light">
+            Every service is engineered to deliver measurable impact on your brand authority and market conversion.
           </p>
         </div>
 
         {/* Grid */}
         <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-5 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
           {services.map((service, i) => (
-            <div key={service.title} className="service-card-wrap w-[85vw] md:w-full shrink-0 snap-center">
+            <div key={service.title} className="service-card-wrap w-[85vw] md:w-full shrink-0 snap-center opacity-0">
               <ServiceCard service={service} index={i} />
             </div>
           ))}

@@ -277,44 +277,81 @@ export default function Projects() {
     );
   }, [projectList]); // Re-run intro animations when dynamic list loads
 
+  // Initial scroll trigger animation
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.projects-header',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+        }
+      );
+
+      gsap.fromTo(
+        '.project-card',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.08,
+          duration: 0.9,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [projectList]);
+
   // Re-animate on filter change
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const cards = sectionRef.current?.querySelectorAll('.project-card') ?? [];
     gsap.fromTo(
       cards,
-      { opacity: 0, y: 30, scale: 0.96 },
-      { opacity: 1, y: 0, scale: 1, stagger: 0.06, duration: 0.5, ease: 'power3.out' }
+      { opacity: 0, y: 25 },
+      { opacity: 1, y: 0, stagger: 0.05, duration: 0.6, ease: 'expo.out' }
     );
   }, [activeFilter]);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-32 md:py-40 bg-transparent">
+    <section id="projects" ref={sectionRef} className="py-32 md:py-40 bg-transparent font-body">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div className="projects-header flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 opacity-0">
           <div>
-            <p className="text-xs tracking-[0.4em] uppercase text-[#B8C0FF] mb-4">Our Work</p>
+            <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Our Work</p>
             <h2
-              className="text-4xl md:text-6xl font-bold text-white"
-              style={{ fontFamily: 'Clash Display, sans-serif' }}
+              className="text-4xl md:text-6xl font-bold text-white font-display tracking-tight"
             >
               Featured{' '}
-              <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
                 Projects
               </span>
             </h2>
           </div>
 
           {/* Filter tabs */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 font-mono">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-5 py-2 rounded-full text-sm transition-all duration-300 ${
+                className={`px-5 py-2 rounded-full text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   activeFilter === f
-                    ? 'bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold'
-                    : 'border border-[#B8C0FF]/20 text-[#E7D8FF]/50 hover:border-[#B8C0FF]/50 hover:text-[#E7D8FF]'
+                    ? 'bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] text-[#0D0B1A] font-semibold shadow-[0_0_20px_rgba(109,213,196,0.3)]'
+                    : 'border border-[#B8C0FF]/20 text-[#E7D8FF]/60 hover:border-[#6DD5C4]/40 hover:text-white'
                 }`}
               >
                 {f}
@@ -333,40 +370,39 @@ export default function Projects() {
                   window.open(project.link, '_blank');
                 }
               }}
-              className="project-card group flex flex-col gap-4 cursor-pointer w-[85vw] md:w-full shrink-0 snap-center"
+              className="project-card group flex flex-col gap-4 cursor-pointer w-[85vw] md:w-full shrink-0 snap-center opacity-0"
             >
               {/* Image Frame */}
-              <div className="relative w-full aspect-square overflow-hidden rounded-[24px] border border-[#B8C0FF]/10 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#B8C0FF]/30 transition-all duration-500 shadow-md">
+              <div className="relative w-full aspect-square overflow-hidden rounded-[24px] border border-[#B8C0FF]/15 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#6DD5C4]/40 transition-all duration-500 shadow-md group-hover:shadow-[0_12px_40px_rgba(109,213,196,0.12)]">
                 <Image
                   src={project.img}
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
                 />
                 
                 {/* Recent Badge */}
                 {project.recent && (
-                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-[9px] font-extrabold px-3.5 py-1.5 rounded-full shadow-lg border border-[#B8C0FF]/30 tracking-wider">
+                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] text-[#0D0B1A] text-[9px] font-extrabold px-3.5 py-1.5 rounded-full shadow-lg border border-[#6DD5C4]/30 tracking-wider font-mono">
                     RECENT
                   </div>
                 )}
 
                 {/* Dark Hover overlay for arrow icon */}
                 <div className="absolute inset-0 bg-[#0D0B1A]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    <span className="text-white text-lg">→</span>
+                  <div className="w-11 h-11 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    <span className="text-white text-base">→</span>
                   </div>
                 </div>
               </div>
 
               {/* Title & Category Details below the card */}
-              <div className="flex flex-col gap-1.5 px-2">
-                <span className="text-[10px] tracking-[0.15em] uppercase text-[#B8C0FF]/50 font-mono font-bold">
+              <div className="flex flex-col gap-1 px-1">
+                <span className="text-[10px] tracking-[0.2em] uppercase text-[#6DD5C4]/80 font-mono font-medium">
                   {project.category}
                 </span>
                 <h3 
-                  className="text-lg font-bold text-white group-hover:text-[#B8C0FF] transition-colors duration-300"
-                  style={{ fontFamily: 'Clash Display, sans-serif' }}
+                  className="text-lg font-bold text-white group-hover:text-[#B8C0FF] transition-colors duration-300 font-display"
                 >
                   {project.title}
                 </h3>

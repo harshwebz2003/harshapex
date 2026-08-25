@@ -30,7 +30,7 @@ export default function HomePage() {
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
       <main className={`transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
         <Navigation />
-        <Hero />
+        <Hero isLoaded={loaded} />
         <TrustedBy />
         <AgencyIntro />
         <Services />
