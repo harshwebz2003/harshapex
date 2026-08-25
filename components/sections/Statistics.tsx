@@ -8,10 +8,10 @@ import Image from 'next/image';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: 50, suffix: '+', label: 'Projects Delivered', sub: 'Across 5+ industries' },
+  { value: 25, suffix: '+', label: 'Projects Delivered', sub: 'Across diverse industries' },
+  { value: 3, suffix: '+', label: 'Years Experience', sub: 'Industry craft & leadership' },
+  { value: 3, suffix: '+', label: 'Countries Reached', sub: 'Global client partnerships' },
   { value: 98, suffix: '%', label: 'Client Satisfaction', sub: 'Verified 5-star ratings' },
-  { value: 5, suffix: '+', label: 'Years Experience', sub: 'Industry craft leadership' },
-  { value: 3, suffix: '×', label: 'Avg. Traffic Growth', sub: 'Within 90 days of launch' },
 ];
 
 export default function Statistics() {

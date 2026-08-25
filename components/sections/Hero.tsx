@@ -272,9 +272,9 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
         {/* Stats row */}
         <div className="mt-16 md:mt-20 flex flex-wrap justify-center gap-12 md:gap-20">
           {[
-            { num: '50+', label: 'Projects Delivered' },
-            { num: '98%', label: 'Client Satisfaction' },
-            { num: '5+', label: 'Years Experience' },
+            { num: '25+', label: 'Projects Delivered' },
+            { num: '3+', label: 'Years Experience' },
+            { num: '3+', label: 'Global Countries' },
           ].map((stat) => (
             <div key={stat.label} className="hero-stat text-center opacity-0">
               <div
