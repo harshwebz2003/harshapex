@@ -1,10 +1,42 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+
+const navigationLinks = [
+  { label: 'Services', href: '#services' },
+  { label: 'Methodology', href: '#process' },
+  { label: 'Featured Projects', href: '#projects' },
+  { label: 'Client Endorsements', href: '#testimonials' },
+  { label: 'Pricing & Packages', href: '#pricing' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Connect Scope', href: '#contact' },
+];
+
+const solutions = [
+  { label: 'Custom POS & Billing Systems', href: '#services' },
+  { label: 'Mobile Apps (iOS & Android)', href: '#services' },
+  { label: 'Luxury Web Design & Development', href: '#services' },
+  { label: 'E-Commerce Platforms & Stores', href: '#services' },
+  { label: 'Custom ERP & Business Portals', href: '#services' },
+  { label: 'UI/UX Design Systems & Branding', href: '#services' },
+  { label: 'Technical SEO & Page Optimization', href: '#services' },
+];
 
 const socials = [
   {
+    label: 'TikTok',
+    handle: '@harsh.apex',
+    href: 'https://www.tiktok.com/@harsh.apex',
+    icon: (
+      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298 0 .59.044.868.128V9.33a6.33 6.33 0 0 0-.868-.06A6.34 6.34 0 0 0 3.1 15.61a6.34 6.34 0 0 0 10.82 4.48 6.3 6.3 0 0 0 1.86-4.48V8.62a8.28 8.28 0 0 0 4.84 1.54V6.71a4.86 4.86 0 0 1-1.03-.02z"/>
+      </svg>
+    ),
+  },
+  {
     label: 'Facebook',
+    handle: 'harshapex',
     href: 'https://www.facebook.com/harshapex',
     icon: (
       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -14,6 +46,7 @@ const socials = [
   },
   {
     label: 'Instagram',
+    handle: '@c_harshz',
     href: 'https://www.instagram.com/c_harshz/',
     icon: (
       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -22,16 +55,8 @@ const socials = [
     ),
   },
   {
-    label: 'TikTok',
-    href: 'https://www.tiktok.com/@harsh.apex',
-    icon: (
-      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298 0 .59.044.868.128V9.33a6.33 6.33 0 0 0-.868-.06A6.34 6.34 0 0 0 3.1 15.61a6.34 6.34 0 0 0 10.82 4.48 6.3 6.3 0 0 0 1.86-4.48V8.62a8.28 8.28 0 0 0 4.84 1.54V6.71a4.86 4.86 0 0 1-1.03-.02z"/>
-      </svg>
-    ),
-  },
-  {
     label: 'LinkedIn',
+    handle: 'chamilka-harshan',
     href: 'https://linkedin.com/in/chamilka-harshan',
     icon: (
       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -41,6 +66,7 @@ const socials = [
   },
   {
     label: 'GitHub',
+    handle: 'chamilka-ch',
     href: 'https://github.com/chamilka-ch',
     icon: (
       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -51,6 +77,31 @@ const socials = [
 ];
 
 export default function Footer() {
+  const [copied, setCopied] = useState(false);
+  const [time, setTime] = useState<string>('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: 'Asia/Colombo',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      };
+      setTime(new Intl.DateTimeFormat('en-US', options).format(new Date()));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('chamilka.ch@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -60,111 +111,262 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#080616]/95 backdrop-blur-xl border-t border-[#B8C0FF]/10 text-white overflow-hidden font-body">
-      {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6DD5C4]/4 rounded-full blur-[140px] pointer-events-none" />
+    <footer className="relative bg-[#060411] border-t border-[#B8C0FF]/15 text-white overflow-hidden font-body pt-0 select-none">
+      {/* Dynamic Ambient Background Illumination */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#6DD5C4]/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[700px] h-[700px] bg-[#B8C0FF]/5 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      {/* 1. Pre-Footer Call to Action Banner */}
-      <div className="border-b border-white/8 bg-white/[0.015]">
-        <div className="max-w-4xl mx-auto px-6 py-16 md:py-20 text-center">
-          <h3
-            className="text-lg md:text-2xl lg:text-3xl font-light tracking-[0.2em] uppercase text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed font-display"
-          >
-            LET&apos;S CREATE SOMETHING BEAUTIFUL TOGETHER!
-          </h3>
-          <button
-            onClick={scrollToContact}
-            className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-xs md:text-sm font-semibold uppercase tracking-[0.08em] shadow-[0_0_30px_rgba(109,213,196,0.3)] hover:shadow-[0_0_40px_rgba(109,213,196,0.5)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer font-mono"
-          >
-            Contact Me
-          </button>
-        </div>
-      </div>
+      {/* ————————————————————————————————————————————————————————————
+          1. Grand Pre-Footer Horizon Portal (High-Impact CTA Banner)
+      ———————————————————————————————————————————————————————————— */}
+      <div className="relative border-b border-white/[0.08] bg-gradient-to-b from-[#0D0A22]/90 via-[#0A071B] to-[#060411] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 text-center lg:text-left">
+            {/* Left Statement */}
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#6DD5C4]/10 border border-[#6DD5C4]/30 text-[#6DD5C4] text-xs font-mono font-medium tracking-[0.2em] uppercase mb-6 shadow-[0_0_20px_rgba(109,213,196,0.15)]">
+                <span className="w-2 h-2 rounded-full bg-[#6DD5C4] animate-ping inline-block" />
+                <span>Available for 2026 Q3/Q4 Projects</span>
+              </div>
 
-      {/* 2. Main Centered Footer Section */}
-      <div className="max-w-4xl mx-auto px-6 pt-14 pb-16 text-center relative z-10 flex flex-col items-center">
-        {/* Back to Top */}
-        <button
-          onClick={scrollToTop}
-          className="group flex flex-col items-center gap-2 text-xs font-semibold tracking-[0.25em] uppercase text-[#6DD5C4]/80 hover:text-white transition-colors duration-300 mb-12 cursor-pointer font-mono"
-        >
-          <div className="w-8 h-8 rounded-full border border-[#6DD5C4]/30 flex items-center justify-center text-[10px] group-hover:border-[#6DD5C4] group-hover:bg-[#6DD5C4]/15 group-hover:shadow-[0_0_15px_rgba(109,213,196,0.4)] transition-all duration-300">
-            <span className="transform group-hover:-translate-y-0.5 transition-transform duration-300">▲</span>
-          </div>
-          <span>BACK TO TOP</span>
-        </button>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white font-display leading-[1.08] mb-6">
+                Have a Vision? <br className="hidden sm:inline" />
+                Let&apos;s Build Something{' '}
+                <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent italic font-editorial font-normal">
+                  Extraordinary.
+                </span>
+              </h2>
 
-        {/* Contact block */}
-        <div className="mb-12">
-          <h4
-            className="text-2xl md:text-3xl font-normal text-white/90 mb-4 font-editorial italic tracking-tight"
-          >
-            Contact
-          </h4>
-          <div className="space-y-2 text-sm md:text-base text-[#E7D8FF]/70 font-light">
-            <p>
-              <a
-                href="mailto:chamilka.ch@gmail.com"
-                className="hover:text-[#6DD5C4] hover:underline transition-colors"
+              <p className="text-base sm:text-lg text-[#E7D8FF]/70 max-w-2xl font-light leading-relaxed">
+                From bespoke corporate websites and high-yield e-commerce platforms to custom POS systems and mobile apps — we engineer digital infrastructure that sets you apart.
+              </p>
+            </div>
+
+            {/* Right Action Hub */}
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-4 shrink-0 w-full sm:w-auto">
+              <button
+                onClick={scrollToContact}
+                className="group relative px-9 py-5 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-xs sm:text-sm uppercase tracking-[0.1em] font-mono shadow-[0_0_40px_rgba(109,213,196,0.35)] hover:shadow-[0_0_60px_rgba(109,213,196,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-500 cursor-pointer flex items-center justify-center gap-3 overflow-hidden"
               >
-                chamilka.ch@gmail.com
-              </a>
-            </p>
-            <p>
-              <a
-                href="tel:+94770663154"
-                className="hover:text-[#6DD5C4] hover:underline transition-colors"
-              >
-                +94 77 066 3154
-              </a>
-            </p>
-          </div>
-        </div>
+                <span className="relative z-10">Initialize Project Scope</span>
+                <span className="relative z-10 font-bold transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              </button>
 
-        {/* Center Circular Logo */}
-        <div className="mb-12">
-          <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full p-2.5 bg-[#B8C0FF]/5 border border-[#B8C0FF]/20 shadow-[0_0_30px_rgba(109,213,196,0.08)] flex items-center justify-center group hover:border-[#6DD5C4]/50 transition-all duration-500">
-            <Image
-              src="/logo.png"
-              alt="Harsh Apex"
-              width={100}
-              height={100}
-              className="object-contain transform group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-        </div>
-
-        {/* Follow block */}
-        <div className="mb-4">
-          <h4
-            className="text-2xl md:text-3xl font-normal text-white/90 mb-6 font-editorial italic tracking-tight"
-          >
-            Follow
-          </h4>
-          <div className="flex items-center justify-center gap-4">
-            {socials.map((s) => (
               <a
-                key={s.label}
-                href={s.href}
+                href="https://wa.me/94770663154?text=Hello%20Harsh%20Apex,%20I%20would%20like%20to%20discuss%20a%20new%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={s.label}
-                className="group relative w-11 h-11 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#B8C0FF]/75 hover:text-[#0D0B1A] hover:bg-gradient-to-tr hover:from-[#6DD5C4] hover:to-[#B8C0FF] hover:border-[#6DD5C4] hover:scale-115 hover:-translate-y-1 active:scale-95 transition-all duration-300 shadow-md hover:shadow-[0_0_25px_rgba(109,213,196,0.5)]"
+                className="px-8 py-4 rounded-full border border-white/15 bg-white/[0.02] text-white/90 font-mono text-xs uppercase tracking-wider hover:border-[#6DD5C4]/60 hover:bg-[#6DD5C4]/10 hover:text-white transition-all duration-300 flex items-center justify-center gap-2.5"
               >
-                <span className="transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                  {s.icon}
-                </span>
+                <span>💬</span>
+                <span>WhatsApp Hotline</span>
               </a>
-            ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* 3. Sub-footer Copyright & Credits */}
-      <div className="border-t border-white/8 bg-black/20 font-mono">
-        <div className="max-w-4xl mx-auto px-6 py-6 text-center text-xs text-white/50 space-y-1.5">
-          <p>Copyright © {new Date().getFullYear()} Harsh Apex Digital Solutions. All rights reserved.</p>
-          <p className="text-white/40 text-[10px] tracking-wider uppercase">Design + Code by Harsh Apex</p>
+      {/* ————————————————————————————————————————————————————————————
+          2. Architectural Multi-Column Main Navigation Grid
+      ———————————————————————————————————————————————————————————— */}
+      <div className="max-w-7xl mx-auto px-6 pt-20 pb-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+          {/* Col 1 (5 cols): Brand, Philosophy & Global Time */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
+            <div>
+              {/* Brand Emblem */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#6DD5C4]/20 via-[#B8C0FF]/10 to-transparent p-2.5 border border-[#B8C0FF]/25 shadow-[0_0_30px_rgba(109,213,196,0.15)] flex items-center justify-center group">
+                  <Image
+                    src="/logo.png"
+                    alt="Harsh Apex Logo"
+                    width={48}
+                    height={48}
+                    className="object-contain transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white font-display tracking-tight">HARSH APEX</h3>
+                  <p className="text-xs text-[#6DD5C4] font-mono tracking-widest uppercase">Digital Solutions Studio</p>
+                </div>
+              </div>
+
+              <p className="text-sm text-[#E7D8FF]/70 leading-relaxed font-light max-w-md mb-8">
+                Pioneering high-performance web engineering, bespoke Point-of-Sale systems, cross-platform mobile apps, and Haute-Horlogerie digital interfaces for global brands and ambitious enterprises.
+              </p>
+
+              {/* Real-time Colombo Clock & Studio Status */}
+              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.08] backdrop-blur-md max-w-md">
+                <div className="flex items-center justify-between text-xs font-mono mb-2">
+                  <span className="text-[#E7D8FF]/50 uppercase tracking-wider flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#6DD5C4] animate-pulse" />
+                    Studio Location
+                  </span>
+                  <span className="text-[#6DD5C4] font-medium">Colombo, Sri Lanka</span>
+                </div>
+                <div className="flex items-center justify-between text-xs font-mono pt-2 border-t border-white/5">
+                  <span className="text-[#E7D8FF]/40 uppercase tracking-wider">Local Time (UTC+5:30)</span>
+                  <span className="text-white font-semibold tabular-nums text-sm bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] bg-clip-text text-transparent">
+                    {time || 'Loading...'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Operations Coverage */}
+            <div className="text-xs font-mono text-[#E7D8FF]/40 flex items-center gap-2">
+              <span>OPERATIONS:</span>
+              <span className="text-[#E7D8FF]/75">Galle &bull; Colombo &bull; Matara &bull; Worldwide</span>
+            </div>
+          </div>
+
+          {/* Col 2 (2 cols): Navigation Map */}
+          <div className="lg:col-span-2 space-y-4">
+            <h4 className="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#6DD5C4] mb-6">
+              Navigation
+            </h4>
+            <ul className="space-y-3 text-sm">
+              {navigationLinks.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="text-[#E7D8FF]/70 hover:text-white hover:translate-x-1.5 inline-flex items-center gap-2 transition-all duration-300 font-light group"
+                  >
+                    <span className="text-[#6DD5C4]/0 group-hover:text-[#6DD5C4] transition-colors text-xs">›</span>
+                    <span>{item.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3 (3 cols): Solutions & Capabilities */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#B8C0FF] mb-6">
+              Capabilities
+            </h4>
+            <ul className="space-y-3 text-sm">
+              {solutions.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="text-[#E7D8FF]/70 hover:text-[#6DD5C4] hover:translate-x-1.5 inline-flex items-center gap-2 transition-all duration-300 font-light group"
+                  >
+                    <span className="text-[#6DD5C4]/0 group-hover:text-[#6DD5C4] transition-colors text-xs">›</span>
+                    <span>{item.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4 (2 cols): Direct Access & Socials */}
+          <div className="lg:col-span-2 space-y-6">
+            <div>
+              <h4 className="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#E7D8FF] mb-6">
+                Direct Contact
+              </h4>
+              
+              <div className="space-y-3 text-xs font-mono">
+                {/* Copy Email Button */}
+                <button
+                  onClick={handleCopyEmail}
+                  className="w-full text-left p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#6DD5C4]/50 hover:bg-[#6DD5C4]/10 transition-all duration-300 group cursor-pointer"
+                >
+                  <div className="text-[10px] text-[#6DD5C4] uppercase tracking-wider mb-1 flex items-center justify-between">
+                    <span>Email Studio</span>
+                    <span>{copied ? '✓ Copied!' : 'Copy'}</span>
+                  </div>
+                  <div className="text-white text-xs truncate group-hover:text-[#6DD5C4] transition-colors">
+                    chamilka.ch@gmail.com
+                  </div>
+                </button>
+
+                {/* Call Hotline */}
+                <a
+                  href="tel:+94770663154"
+                  className="block p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#6DD5C4]/50 hover:bg-[#6DD5C4]/10 transition-all duration-300 group"
+                >
+                  <div className="text-[10px] text-[#6DD5C4] uppercase tracking-wider mb-1">Direct Phone</div>
+                  <div className="text-white text-xs group-hover:text-[#6DD5C4] transition-colors">
+                    +94 77 066 3154
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Social Media Grid */}
+            <div>
+              <h5 className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#E7D8FF]/50 mb-3">
+                Follow Ecosystem
+              </h5>
+              <div className="flex flex-wrap gap-2.5">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#B8C0FF]/80 hover:text-[#0D0B1A] hover:bg-gradient-to-tr hover:from-[#6DD5C4] hover:to-[#B8C0FF] hover:border-[#6DD5C4] hover:scale-110 active:scale-95 transition-all duration-300 shadow-md group"
+                  >
+                    <span className="transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                      {s.icon}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ————————————————————————————————————————————————————————————
+          3. Monumental Background Typographic Watermark
+      ———————————————————————————————————————————————————————————— */}
+      <div className="relative w-full overflow-hidden border-t border-white/[0.04] pt-8 pointer-events-none select-none">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-center">
+          <span className="w-full text-center text-[13vw] font-bold font-display tracking-[-0.04em] leading-none bg-gradient-to-b from-white/[0.07] via-white/[0.02] to-transparent bg-clip-text text-transparent uppercase opacity-80">
+            HARSH APEX
+          </span>
+        </div>
+      </div>
+
+      {/* ————————————————————————————————————————————————————————————
+          4. Sub-Footer Bar (Legal, Standards, & Back-to-Top)
+      ———————————————————————————————————————————————————————————— */}
+      <div className="relative border-t border-white/[0.08] bg-black/40 backdrop-blur-xl font-mono z-20">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-white/50">
+          {/* Left: Copyright & License */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+            <p>© {new Date().getFullYear()} Harsh Apex Digital Solutions. All Rights Reserved.</p>
+            <span className="hidden sm:inline text-white/20">&bull;</span>
+            <p className="text-white/40 text-[11px]">Precision Engineering & Design</p>
+          </div>
+
+          {/* Center: System Architecture */}
+          <div className="flex items-center gap-4 text-[11px] text-[#6DD5C4]/70">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6DD5C4]" />
+              SSL 256-Bit Encrypted
+            </span>
+            <span className="text-white/20">&bull;</span>
+            <span>Next.js 16 • Turbopack</span>
+          </div>
+
+          {/* Right: Interactive Smooth Back-to-Top Button */}
+          <button
+            onClick={scrollToTop}
+            className="group flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#6DD5C4]/30 bg-white/[0.02] hover:border-[#6DD5C4] hover:bg-[#6DD5C4]/15 text-[#6DD5C4] hover:text-white transition-all duration-300 cursor-pointer text-xs"
+            aria-label="Back to top"
+          >
+            <span className="text-[10px] tracking-wider uppercase font-semibold">Back to top</span>
+            <span className="w-5 h-5 rounded-full bg-[#6DD5C4]/20 flex items-center justify-center text-[10px] transform group-hover:-translate-y-0.5 transition-transform duration-300">
+              ▲
+            </span>
+          </button>
         </div>
       </div>
     </footer>
