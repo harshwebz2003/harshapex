@@ -26,12 +26,15 @@ export default function GlobalBackground() {
     const isLight = theme === 'light';
 
     // Particle star/shimmer colors depending on theme
+    // Light mode uses Silver Palette: #F0F0F0, #DEDFE1, #B1B2B4, #7A7B7F, #C3C5C4
     const starColors = isLight
       ? [
-          '167, 196, 160', // #A7C4A0 (Eucalyptus Glow)
-          '255, 182, 138', // #FFB68A (Peach Champagne)
-          '148, 161, 255', // #94A1FF (Dreamy Periwinkle)
-          '110, 120, 160', // Soft slate
+          '177, 178, 180', // #B1B2B4 (Titanium Silver)
+          '122, 123, 127', // #7A7B7F (Deep Silver)
+          '195, 197, 196', // #C3C5C4 (Brushed Silver)
+          '240, 240, 240', // #F0F0F0 (Bright Silver Highlight)
+          '167, 196, 160', // Eucalyptus subtle shimmer
+          '184, 192, 255', // Periwinkle subtle shimmer
         ]
       : [
           '184, 192, 255', // #B8C0FF (Dreamy Periwinkle)
@@ -53,10 +56,10 @@ export default function GlobalBackground() {
       constructor(width: number, height: number) {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = isLight ? Math.random() * 1.6 + 0.5 : Math.random() * 1.3 + 0.3;
+        this.size = isLight ? Math.random() * 1.5 + 0.4 : Math.random() * 1.3 + 0.3;
         this.speedX = Math.random() * 0.05 - 0.025;
         this.speedY = Math.random() * 0.05 - 0.025;
-        this.alpha = isLight ? Math.random() * 0.35 + 0.1 : Math.random() * 0.45 + 0.15;
+        this.alpha = isLight ? Math.random() * 0.3 + 0.1 : Math.random() * 0.45 + 0.15;
         this.color = starColors[Math.floor(Math.random() * starColors.length)];
       }
 
@@ -87,13 +90,13 @@ export default function GlobalBackground() {
     }
 
     // Drifting background nebulas / glow blobs
-    // In Light mode: Eucalyptus Glow + Peach Champagne + Dreamy Periwinkle + Shine White
+    // In Light mode: Silver Palette (#F0F0F0, #DEDFE1, #CDCED0, #B1B2B4) with soft luminance
     const nebulas = isLight
       ? [
-          { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: 420, color: 'rgba(167, 196, 160, 0.18)' }, // Eucalyptus
-          { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: 460, color: 'rgba(255, 211, 182, 0.22)' }, // Peach Champagne
-          { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 400, color: 'rgba(184, 192, 255, 0.18)' }, // Periwinkle
-          { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 360, color: 'rgba(223, 247, 255, 0.25)' }, // Glacier Sheen
+          { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: 420, color: 'rgba(240, 240, 240, 0.45)' }, // #F0F0F0 Bright Silver
+          { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: 460, color: 'rgba(222, 223, 225, 0.4)' },  // #DEDFE1 Platinum
+          { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 400, color: 'rgba(205, 206, 208, 0.35)' }, // #CDCED0 Light Chrome
+          { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 360, color: 'rgba(177, 178, 180, 0.25)' }, // #B1B2B4 Titanium Silver
         ]
       : [
           { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: 380, color: 'rgba(184, 192, 255, 0.035)' }, // Periwinkle
@@ -144,7 +147,7 @@ export default function GlobalBackground() {
     <canvas
       ref={canvasRef}
       className={`fixed inset-0 w-full h-full pointer-events-none z-[-1] transition-colors duration-700 ${
-        theme === 'light' ? 'bg-[#F8F9FC]' : 'bg-[#0D0B1A]'
+        theme === 'light' ? 'bg-[#EDEDED]' : 'bg-[#0D0B1A]'
       }`}
     />
   );

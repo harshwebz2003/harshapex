@@ -26,6 +26,18 @@
   --color-peach-1: #FFD3B6;
   --color-peach-2: #DFF7FF;
 
+  /* Silver Metallic Palette */
+  --color-silver-50: #F0F0F0;
+  --color-silver-100: #EDEDED;
+  --color-silver-200: #DEDFE1;
+  --color-silver-300: #CDCED0;
+  --color-silver-400: #C3C5C4;
+  --color-silver-500: #B1B2B4;
+  --color-silver-600: #A7A8AC;
+  --color-silver-700: #7A7B7F;
+  --color-silver-800: #707173;
+  --color-silver-900: #5D5E60;
+
   --color-apex-primary: #B8C0FF;
   --color-apex-accent: #E7D8FF;
   --color-apex-mint: #6DD5C4;
@@ -250,23 +262,29 @@
   }
 }
 
-/* ——— Light Theme Mode (Shine White, Polished Gray & Palette Harmony) ——— */
+/* ——— Light Theme Mode (Metallic Silver Palette & Shine White Luxury) ——— */
 html.light,
 html.light body {
-  background-color: #F8F9FC !important;
-  color: #0F172A !important;
+  background-color: #EDEDED !important;
+  background-image: 
+    radial-gradient(at 15% 15%, #F0F0F0 0px, transparent 55%),
+    radial-gradient(at 85% 15%, #DEDFE1 0px, transparent 50%),
+    radial-gradient(at 50% 60%, #EDEDED 0px, transparent 60%),
+    radial-gradient(at 20% 90%, #CDCED0 0px, transparent 50%),
+    radial-gradient(at 80% 90%, #C3C5C4 0px, transparent 50%) !important;
+  color: #1E2229 !important;
 }
 
 /* Nav in Light Mode */
 html.light nav {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(226, 232, 240, 0.95) !important;
-  box-shadow: 0 4px 25px rgba(148, 163, 184, 0.12) !important;
+  background: rgba(237, 237, 237, 0.88) !important;
+  border-color: rgba(177, 178, 180, 0.45) !important;
+  box-shadow: 0 4px 25px rgba(93, 94, 96, 0.08) !important;
 }
 
 html.light nav a,
 html.light nav button {
-  color: #1E293B !important;
+  color: #1E2229 !important;
 }
 
 html.light nav a:hover,
@@ -276,7 +294,7 @@ html.light nav button:hover {
 
 /* Hero Section in Light Mode */
 html.light .hero-radial-overlay {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(248, 249, 252, 0.2) 50%, #F8F9FC 100%) !important;
+  background: linear-gradient(to bottom, rgba(240, 240, 240, 0.6) 0%, rgba(237, 237, 237, 0.2) 50%, #EDEDED 100%) !important;
 }
 
 html.light .hero-video-bg {
@@ -284,8 +302,8 @@ html.light .hero-video-bg {
 }
 
 html.light .hero-badge {
-  background: rgba(167, 196, 160, 0.15) !important;
-  border-color: rgba(167, 196, 160, 0.45) !important;
+  background: rgba(167, 196, 160, 0.18) !important;
+  border-color: rgba(167, 196, 160, 0.5) !important;
 }
 
 /* Headings and Text in Light Mode */
@@ -295,16 +313,16 @@ html.light h3,
 html.light h4,
 html.light h5,
 html.light h6 {
-  color: #0F172A !important;
+  color: #1E2229 !important;
 }
 
 html.light .text-white {
-  color: #0F172A !important;
+  color: #1E2229 !important;
 }
 
 html.light .text-white\/90,
 html.light .text-white\/80 {
-  color: #1E293B !important;
+  color: #2D313A !important;
 }
 
 html.light .text-white\/70,
@@ -315,7 +333,7 @@ html.light .text-white\/40,
 html.light .text-white\/30,
 html.light .text-white\/20,
 html.light .text-white\/10 {
-  color: #475569 !important;
+  color: #5D5E60 !important;
 }
 
 html.light .text-\[\#E7D8FF\]\/80,
@@ -325,7 +343,7 @@ html.light .text-\[\#E7D8FF\]\/60,
 html.light .text-\[\#E7D8FF\]\/50,
 html.light .text-\[\#E7D8FF\]\/40,
 html.light .text-\[\#E7D8FF\] {
-  color: #475569 !important;
+  color: #5D5E60 !important;
 }
 
 html.light .text-\[\#B8C0FF\]\/80,
@@ -335,7 +353,7 @@ html.light .text-\[\#B8C0FF\]\/50,
 html.light .text-\[\#B8C0FF\]\/40,
 html.light .text-\[\#B8C0FF\]\/25,
 html.light .text-\[\#B8C0FF\] {
-  color: #334155 !important;
+  color: #5D5E60 !important;
 }
 
 html.light .text-\[\#6DD5C4\] {
@@ -346,7 +364,7 @@ html.light .text-\[\#6DD5C4\]\/60 {
   color: #2E7D63 !important;
 }
 
-/* ALL CARDS & CONTAINERS in Light Mode (Shine White, Smooth Silver Borders & Soft Ambient Shadows) */
+/* ALL CARDS & CONTAINERS in Light Mode (Shine White with Metallic Silver Borders & Inset Depth) */
 html.light .service-card,
 html.light .case-card,
 html.light .stat-card,
@@ -362,10 +380,10 @@ html.light [class*="from-[#120F26]"],
 html.light [class*="bg-[#120F26]"],
 html.light [class*="bg-[#16132A]"],
 html.light [class*="bg-[#1A1630]"] {
-  background: linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%) !important;
-  border-color: rgba(226, 232, 240, 0.95) !important;
-  color: #0F172A !important;
-  box-shadow: 0 10px 30px -5px rgba(148, 163, 184, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.9) inset !important;
+  background: linear-gradient(145deg, #FFFFFF 0%, #F0F0F0 50%, #EDEDED 100%) !important;
+  border: 1px solid rgba(177, 178, 180, 0.5) !important;
+  color: #1E2229 !important;
+  box-shadow: 0 10px 30px -5px rgba(93, 94, 96, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.8) inset !important;
 }
 
 /* Hover States for Cards in Light Mode */
@@ -374,8 +392,8 @@ html.light .case-card:hover,
 html.light .pricing-card:hover,
 html.light .why-item:hover,
 html.light .process-card:hover {
-  border-color: #A7C4A0 !important;
-  box-shadow: 0 16px 45px -8px rgba(167, 196, 160, 0.28), 0 0 0 1px #A7C4A0 inset !important;
+  border-color: #A7A8AC !important;
+  box-shadow: 0 16px 45px -8px rgba(93, 94, 96, 0.18), 0 0 0 1px #A7A8AC inset !important;
 }
 
 /* Tag Pills & Badges in Light Mode */
@@ -384,39 +402,39 @@ html.light [class*="bg-[#B8C0FF]/5"],
 html.light [class*="bg-[#6DD5C4]/10"],
 html.light [class*="bg-[#6DD5C4]/5"],
 html.light .service-card span[class*="bg-[#B8C0FF]"] {
-  background: #EEF2F6 !important;
-  border-color: rgba(203, 213, 225, 0.8) !important;
-  color: #334155 !important;
+  background: #DEDFE1 !important;
+  border-color: #CDCED0 !important;
+  color: #5D5E60 !important;
 }
 
 /* Process Timeline Specifics */
 html.light .process-node {
-  background: #FFFFFF !important;
-  border-color: #A7C4A0 !important;
-  box-shadow: 0 0 25px rgba(167, 196, 160, 0.45) !important;
+  background: #F0F0F0 !important;
+  border-color: #B1B2B4 !important;
+  box-shadow: 0 0 25px rgba(177, 178, 180, 0.5) !important;
 }
 
 html.light .process-node div {
-  background: #246B52 !important;
+  background: #5D5E60 !important;
 }
 
 html.light svg path[stroke*="rgba(184, 192, 255"] {
-  stroke: rgba(167, 196, 160, 0.45) !important;
+  stroke: rgba(177, 178, 180, 0.5) !important;
 }
 
 /* Form Inputs in Light Mode */
 html.light .cta-form-container input,
 html.light .cta-form-container textarea,
 html.light .cta-form-container select {
-  background: #F8FAFC !important;
-  border-color: #CBD5E1 !important;
-  color: #0F172A !important;
+  background: #F0F0F0 !important;
+  border-color: #CDCED0 !important;
+  color: #1E2229 !important;
 }
 
 html.light .cta-form-container input:focus,
 html.light .cta-form-container textarea:focus,
 html.light .cta-form-container select:focus {
-  border-color: #246B52 !important;
+  border-color: #7A7B7F !important;
   background: #FFFFFF !important;
 }
 
@@ -450,40 +468,40 @@ html.light .text-gradient-dual {
 
 /* Light Mode Budget Banner */
 html.light .services-budget-banner {
-  background: linear-gradient(135deg, #FFFFFF 0%, #F4EFE6 50%, #F8F9FC 100%) !important;
-  border: 1px solid rgba(167, 196, 160, 0.6) !important;
-  box-shadow: 0 15px 45px rgba(167, 196, 160, 0.2) !important;
+  background: linear-gradient(135deg, #FFFFFF 0%, #EDEDED 50%, #DEDFE1 100%) !important;
+  border: 1px solid rgba(177, 178, 180, 0.65) !important;
+  box-shadow: 0 15px 45px rgba(93, 94, 96, 0.12) !important;
 }
 
 /* Light Mode Footer */
 html.light footer {
-  background-color: #F1F5F9 !important;
-  border-top-color: rgba(203, 213, 225, 0.85) !important;
+  background: linear-gradient(180deg, #E2E4E8 0%, #DEDFE1 100%) !important;
+  border-top-color: #CDCED0 !important;
 }
 
 html.light footer .text-white {
-  color: #0F172A !important;
+  color: #1E2229 !important;
 }
 
 html.light footer a {
-  color: #334155 !important;
+  color: #5D5E60 !important;
 }
 
 html.light footer a:hover {
-  color: #1C5A44 !important;
+  color: #1E2229 !important;
 }
 
 /* Light Mode Marquee items */
 html.light #trusted {
-  border-color: rgba(226, 232, 240, 0.9) !important;
+  border-color: rgba(177, 178, 180, 0.4) !important;
 }
 
 html.light #trusted div[class*="border-[#B8C0FF]"] {
-  background-color: #FFFFFF !important;
-  border-color: rgba(226, 232, 240, 0.95) !important;
+  background-color: #F0F0F0 !important;
+  border-color: rgba(177, 178, 180, 0.5) !important;
 }
 
 html.light #trusted span {
-  color: #334155 !important;
+  color: #5D5E60 !important;
 }
 
