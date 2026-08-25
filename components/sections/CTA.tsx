@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function CTA() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', budget: '' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', serviceType: '', budget: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -46,71 +46,83 @@ export default function CTA() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate submission
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
-    if (successRef.current) {
-      gsap.fromTo(
-        successRef.current,
-        { opacity: 0, scale: 0.95, y: 15 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'expo.out' }
-      );
-    }
+
+    const subject = encodeURIComponent(`Project Inquiry: ${form.serviceType || 'Custom Solution'} - ${form.name}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company || 'N/A'}\nService/System Needed: ${form.serviceType || 'Not specified'}\nBudget Range: ${form.budget || 'Flexible'}\n\nProject Scope & Message:\n${form.message}`
+    );
+
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+      window.location.href = `mailto:chamilka.ch@gmail.com?subject=${subject}&body=${body}`;
+
+      setTimeout(() => {
+        if (successRef.current) {
+          gsap.fromTo(
+            successRef.current,
+            { opacity: 0, scale: 0.96 },
+            { opacity: 1, scale: 1, duration: 0.6, ease: 'expo.out' }
+          );
+        }
+      }, 50);
+    }, 700);
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-32 md:py-40 bg-transparent relative overflow-hidden font-body">
-      {/* Background radial */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[#6DD5C4]/6 blur-[140px]" />
-      </div>
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#6DD5C4]/30 to-transparent" />
+    <section id="contact" ref={sectionRef} className="py-32 md:py-44 bg-transparent relative overflow-hidden font-body">
+      {/* Background glow meshes */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#6DD5C4]/4 blur-[160px] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[#B8C0FF]/4 blur-[130px] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="cta-header text-center mb-16 opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Let&apos;s Talk</p>
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Let&apos;s Connect</p>
           <h2
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-display tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight font-display tracking-tight"
           >
-            Ready to Build Something{' '}
+            Start Your Next{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
-              Extraordinary?
+              Project
             </span>
           </h2>
-          <p className="max-w-xl mx-auto text-[#E7D8FF]/60 text-lg font-light leading-relaxed">
-            Tell us about your project vision. We respond within 24 hours to arrange your bespoke discovery consultation.
+          <p className="text-[#E7D8FF]/70 text-lg max-w-xl mx-auto font-light leading-relaxed">
+            Need a high-converting website, custom POS system, mobile application, or business portal on your budget? Let&apos;s build it together.
           </p>
         </div>
 
-        {/* Form / Success */}
-        <div className="cta-form-container opacity-0">
+        {/* Form Container */}
+        <div className="cta-form-container p-8 md:p-12 rounded-[32px] border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/80 via-[#120F26]/90 to-[#0D0B1A]/95 backdrop-blur-xl shadow-2xl opacity-0">
           {submitted ? (
-            <div
-              ref={successRef}
-              className="text-center py-20 px-8 rounded-3xl border border-[#6DD5C4]/30 bg-gradient-to-br from-[#1A1630]/80 to-[#0D0B1A]/95 shadow-[0_0_50px_rgba(109,213,196,0.15)]"
-            >
-              <div className="text-5xl text-[#6DD5C4] mb-5 font-serif">✦</div>
-              <h3 className="text-2xl font-bold text-white mb-3 font-display">
-                Message Sent Successfully
+            <div ref={successRef} className="text-center py-16">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#6DD5C4] to-[#B8C0FF] flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(109,213,196,0.4)]">
+                <span className="text-2xl text-[#0D0B1A] font-bold">✓</span>
+              </div>
+              <h3
+                className="text-2xl md:text-3xl font-bold text-white mb-3 font-display"
+              >
+                Inquiry Initialized!
               </h3>
-              <p className="text-[#E7D8FF]/60 font-light">
-                Thank you, {form.name}! Our team will connect with you within 24 hours.
+              <p className="text-[#E7D8FF]/70 max-w-md mx-auto text-sm leading-relaxed mb-8 font-light">
+                Thank you for reaching out. We will review your project requirements and get back to you within 24 hours.
               </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="px-8 py-3 rounded-full border border-[#6DD5C4]/40 text-[#6DD5C4] text-xs font-semibold uppercase tracking-wider font-mono hover:bg-[#6DD5C4]/10 transition-colors"
+              >
+                Send Another Message
+              </button>
             </div>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="grid md:grid-cols-2 gap-5 p-8 md:p-12 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/50 to-[#0D0B1A]/85 backdrop-blur-md shadow-2xl"
-            >
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name */}
               <div className="relative group">
                 <label className="absolute left-4 top-4 text-xs text-[#B8C0FF]/50 transition-all duration-200 pointer-events-none group-focus-within:-top-2.5 group-focus-within:text-[10px] group-focus-within:text-[#6DD5C4] font-mono uppercase tracking-wider">
-                  Full Name *
+                  Your Name *
                 </label>
                 <input
                   type="text"
@@ -138,7 +150,7 @@ export default function CTA() {
               {/* Company */}
               <div className="relative group">
                 <label className="absolute left-4 top-4 text-xs text-[#B8C0FF]/50 transition-all duration-200 pointer-events-none group-focus-within:-top-2.5 group-focus-within:text-[10px] group-focus-within:text-[#6DD5C4] font-mono uppercase tracking-wider">
-                  Company Name
+                  Company / Brand Name
                 </label>
                 <input
                   type="text"
@@ -148,34 +160,57 @@ export default function CTA() {
                 />
               </div>
 
-              {/* Budget */}
+              {/* System / Service Type */}
               <div className="relative group">
-                <label className="absolute left-4 top-4 text-xs text-[#B8C0FF]/50 transition-all duration-200 pointer-events-none font-mono uppercase tracking-wider">
-                  Budget Range
+                <label className="absolute left-4 top-2 text-[10px] text-[#6DD5C4] transition-all duration-200 pointer-events-none font-mono uppercase tracking-wider">
+                  System / Service Needed *
+                </label>
+                <select
+                  required
+                  value={form.serviceType}
+                  onChange={(e) => setForm({ ...form, serviceType: e.target.value })}
+                  className="w-full pt-6 pb-3 px-4 bg-[#B8C0FF]/5 border border-[#B8C0FF]/15 rounded-2xl text-white text-sm outline-none focus:border-[#6DD5C4]/60 transition-colors appearance-none font-light"
+                >
+                  <option value="" className="bg-[#1A1630] text-gray-400">Select system type...</option>
+                  <option value="POS System & Billing Software" className="bg-[#1A1630]">Custom POS System & Billing</option>
+                  <option value="Mobile App (iOS & Android)" className="bg-[#1A1630]">Mobile App (iOS / Android)</option>
+                  <option value="Custom Business Software / ERP" className="bg-[#1A1630]">Custom Business Software / ERP</option>
+                  <option value="Website & Web Design" className="bg-[#1A1630]">Website / Web Design</option>
+                  <option value="Full E-Commerce Platform" className="bg-[#1A1630]">Full E-Commerce Platform</option>
+                  <option value="UI/UX & Brand Identity" className="bg-[#1A1630]">UI/UX & Brand Identity</option>
+                </select>
+              </div>
+
+              {/* Budget */}
+              <div className="md:col-span-2 relative group">
+                <label className="absolute left-4 top-2 text-[10px] text-[#6DD5C4] transition-all duration-200 pointer-events-none font-mono uppercase tracking-wider">
+                  Budget Expectation (Any Budget Welcome)
                 </label>
                 <select
                   value={form.budget}
                   onChange={(e) => setForm({ ...form, budget: e.target.value })}
                   className="w-full pt-6 pb-3 px-4 bg-[#B8C0FF]/5 border border-[#B8C0FF]/15 rounded-2xl text-white text-sm outline-none focus:border-[#6DD5C4]/60 transition-colors appearance-none font-light"
                 >
-                  <option value="" className="bg-[#1A1630]"></option>
-                  <option value="starter" className="bg-[#1A1630]">LKR 15,000 – 45,000</option>
-                  <option value="growth" className="bg-[#1A1630]">LKR 50,000 – 150,000</option>
-                  <option value="enterprise" className="bg-[#1A1630]">LKR 200,000+</option>
+                  <option value="" className="bg-[#1A1630]">Flexible / Let&apos;s discuss budget</option>
+                  <option value="budget-starter" className="bg-[#1A1630]">Budget Friendly (Under LKR 25,000)</option>
+                  <option value="starter" className="bg-[#1A1630]">Standard (LKR 25,000 – 60,000)</option>
+                  <option value="growth" className="bg-[#1A1630]">Professional (LKR 60,000 – 150,000)</option>
+                  <option value="enterprise" className="bg-[#1A1630]">Enterprise / Complete Suite (LKR 150,000+)</option>
                 </select>
               </div>
 
               {/* Message */}
               <div className="md:col-span-2 relative group">
                 <label className="absolute left-4 top-4 text-xs text-[#B8C0FF]/50 transition-all duration-200 pointer-events-none group-focus-within:-top-2.5 group-focus-within:text-[10px] group-focus-within:text-[#6DD5C4] font-mono uppercase tracking-wider">
-                  Tell us about your project *
+                  Tell us about your system or project requirements *
                 </label>
                 <textarea
                   required
                   rows={4}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full pt-6 pb-3 px-4 bg-[#B8C0FF]/5 border border-[#B8C0FF]/15 rounded-2xl text-white text-sm outline-none focus:border-[#6DD5C4]/60 transition-colors resize-none placeholder:text-transparent font-light"
+                  placeholder="e.g. Need a POS billing system for my retail shop with barcode scanning, or a mobile delivery app..."
+                  className="w-full pt-6 pb-3 px-4 bg-[#B8C0FF]/5 border border-[#B8C0FF]/15 rounded-2xl text-white text-sm outline-none focus:border-[#6DD5C4]/60 transition-colors resize-none placeholder:text-white/20 font-light"
                 />
               </div>
 
@@ -192,7 +227,7 @@ export default function CTA() {
                       Dispatching...
                     </span>
                   ) : (
-                    'Send Message →'
+                    'Inquire System / Project →'
                   )}
                 </button>
               </div>
@@ -204,7 +239,7 @@ export default function CTA() {
         <div className="mt-14 flex flex-wrap justify-center gap-8 md:gap-12 text-center">
           {[
             { icon: '✉', label: 'Email', value: 'chamilka.ch@gmail.com', href: 'mailto:chamilka.ch@gmail.com' },
-            { icon: '📞', label: 'Phone', value: '+94 77 066 3154', href: 'tel:+94770663154' },
+            { icon: '📞', label: 'Phone / WhatsApp', value: '+94 77 066 3154', href: 'tel:+94770663154' },
             { icon: '📍', label: 'Location', value: 'Sri Lanka', href: '#contact' },
           ].map((item) => (
             <a

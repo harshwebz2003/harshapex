@@ -8,36 +8,32 @@ gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
-    q: 'How long does a typical website project take?',
-    a: 'Most projects are delivered within 2–6 weeks, depending on complexity. A standard 5-page business website typically takes 2–3 weeks, while complex e-commerce or custom web applications may take 4–8 weeks. We always provide a clear timeline upfront.',
+    q: 'Do you build POS systems, Mobile Apps, and custom software?',
+    a: 'Yes! We specialize in custom Point of Sale (POS) systems, mobile applications (iOS & Android with React Native / Flutter), inventory platforms, and automated business portals. Whether you run a retail shop, restaurant, wholesale business, or service agency, we can engineer any custom system to match your exact workflow.',
+  },
+  {
+    q: 'Can I get a custom business system on a tight or flexible budget?',
+    a: 'Absolutely. We believe powerful technology should be accessible to businesses of all sizes. We work closely with you to design modular solutions where you only pay for the essential features you need first, offering budget-friendly milestone pricing with no hidden fees.',
+  },
+  {
+    q: 'How long does a typical website or system project take?',
+    a: 'Standard business websites take 1–3 weeks. Custom POS systems and mobile applications typically range from 2–6 weeks depending on requirements such as multi-branch synchronization, barcode scanners, and cloud databases. We provide a guaranteed delivery timeline upfront.',
   },
   {
     q: 'What information do you need to get started?',
-    a: 'We start with a discovery call to understand your business, goals, target audience, and any existing brand assets. You\'ll need to provide your logo (if you have one), any copy/content for the site, and examples of websites you admire. We\'ll guide you through everything.',
+    a: 'We start with a quick discovery consultation to understand your business goals, operational requirements, and target audience. For websites, we gather your branding and content; for POS/systems, we map your inventory and checkout flows. We guide you every step of the way.',
   },
   {
-    q: 'Do you provide ongoing maintenance and support?',
-    a: 'Yes! All plans include post-launch support. Our Growth and Enterprise plans include extended maintenance periods. We also offer monthly maintenance retainers for businesses that need ongoing updates, security monitoring, and performance optimisation.',
+    q: 'Do you provide ongoing maintenance, training and support?',
+    a: 'Yes! All projects include full staff onboarding, training walkthroughs, and post-launch technical support. We also provide ongoing maintenance retainers covering security updates, server backups, and feature upgrades.',
   },
   {
-    q: 'Will my website work on mobile devices?',
-    a: 'Absolutely. Every website we build is fully responsive and tested across all major devices — smartphones, tablets, laptops, and desktops. We use a mobile-first design approach to ensure the best experience on every screen size.',
+    q: 'Will my website or web app work seamlessly on mobile devices?',
+    a: 'Every digital product we engineer is 100% responsive, optimized for touch gestures, and rigorously tested across smartphones, tablets, laptops, and desktop screens with ultra-fast loading speeds.',
   },
   {
-    q: 'Do you help with content and copywriting?',
-    a: 'We can advise on content structure and provide guidance on what makes great web copy. For full copywriting services, we partner with professional writers. We\'re happy to incorporate your existing content or help you create new, SEO-optimised copy.',
-  },
-  {
-    q: 'Can I update the website myself after launch?',
-    a: 'Yes — for CMS-based projects (like WordPress or headless CMS setups), we provide a full handover walkthrough so you can manage your content independently. We also provide documentation and a 30-day support window for any questions.',
-  },
-  {
-    q: 'What happens if I\'m not happy with the design?',
-    a: 'Client satisfaction is our top priority. Our process includes design approval stages where you review and provide feedback before we proceed. We include up to two rounds of revisions per design stage. We won\'t move forward until you love what you see.',
-  },
-  {
-    q: 'Do you offer payment plans?',
-    a: 'Yes. For larger projects, we typically work with a 50% deposit upfront and the remaining 50% on delivery. For Enterprise projects, we can arrange milestone-based payment structures. Get in touch to discuss what works for you.',
+    q: 'Do you offer flexible milestone payment plans?',
+    a: 'Yes. We typically structure payments with a standard deposit upfront and milestone payments upon feature approvals. For custom systems and enterprise projects, we can tailor a flexible installment plan that fits your cash flow.',
   },
 ];
 

@@ -249,8 +249,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
           ref={subRef}
           className="max-w-2xl mx-auto text-lg md:text-xl text-[#E7D8FF]/70 leading-relaxed mb-12 opacity-0 font-body font-light"
         >
-          Harsh Apex Digital Solutions crafts high-performance websites, immersive UI/UX, and
-          growth-driven digital strategies for forward-thinking brands.
+          Harsh Apex Digital Solutions crafts high-performance websites, custom POS systems, mobile apps, and tailor-made business software at budget-friendly rates.
         </p>
 
         {/* CTAs */}

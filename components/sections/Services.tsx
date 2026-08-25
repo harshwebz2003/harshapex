@@ -10,14 +10,38 @@ const services = [
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="2" y="4" width="24" height="16" rx="3" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M9 20v4M19 20v4M6 24h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M7 11l4 3 4-5 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect x="3" y="4" width="22" height="16" rx="3" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M7 10h5M7 14h3M18 10h3M18 14h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M2 22h24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M10 22l-1 3M18 22l1 3M8 25h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
-    title: 'Web Design',
-    desc: 'Visually stunning, conversion-focused websites that make your brand unforgettable across every device.',
-    tags: ['UI Design', 'Wireframes', 'Prototyping'],
+    title: 'POS Systems & Software',
+    desc: 'Custom Point-of-Sale, billing software, inventory control, and multi-branch management for shops, restaurants & retail at budget-friendly rates.',
+    tags: ['POS Systems', 'Inventory', 'Multi-Branch', 'Budget Friendly'],
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="6" y="2" width="16" height="24" rx="4" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="14" cy="21" r="1" fill="currentColor"/>
+        <path d="M11 5h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+    title: 'Mobile & Custom Apps',
+    desc: 'Bespoke iOS, Android, and cross-platform mobile apps built with React Native & Flutter to automate workflows and delight users.',
+    tags: ['iOS & Android', 'Flutter', 'React Native', 'Custom Systems'],
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M8 10l-4 4 4 4M20 10l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M16 6l-4 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+    title: 'Web Development',
+    desc: 'Blazing-fast, scalable web applications and platforms built with modern tech stacks — React, Next.js, TypeScript & Tailwind.',
+    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
   },
   {
     icon: (
@@ -28,19 +52,20 @@ const services = [
       </svg>
     ),
     title: 'UI/UX Design',
-    desc: 'Intuitive interfaces and delightful user experiences engineered to maximise engagement and retention.',
+    desc: 'Intuitive interfaces, luxury design systems, and delightful user journeys engineered to maximize user engagement and conversion.',
     tags: ['User Research', 'Figma', 'Design Systems'],
   },
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M8 10l-4 4 4 4M20 10l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M16 6l-4 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <rect x="2" y="4" width="24" height="16" rx="3" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M9 20v4M19 20v4M6 24h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M7 11l4 3 4-5 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: 'Web Development',
-    desc: 'Blazing-fast, scalable web applications built with modern tech stacks — React, Next.js, TypeScript.',
-    tags: ['Next.js', 'React', 'TypeScript'],
+    title: 'Web Design',
+    desc: 'Visually stunning, conversion-focused websites that make your brand unforgettable across every screen and device.',
+    tags: ['UI Design', 'Wireframes', 'Prototyping'],
   },
   {
     icon: (
@@ -49,8 +74,8 @@ const services = [
         <path d="M14 3v17M5 8l9 5 9-5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
       </svg>
     ),
-    title: 'Branding',
-    desc: 'Strategic brand identities that communicate authority, trust, and personality to your ideal audience.',
+    title: 'Branding & Identity',
+    desc: 'Strategic brand identities, typography systems, and corporate logos that communicate authority, trust, and prestige.',
     tags: ['Logo Design', 'Brand Strategy', 'Style Guides'],
   },
   {
@@ -61,9 +86,19 @@ const services = [
         <path d="M9 12h6M12 9v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
-    title: 'SEO',
-    desc: 'Data-driven SEO strategies that dominate search rankings and drive qualified organic traffic at scale.',
+    title: 'SEO & Search Growth',
+    desc: 'Data-driven SEO strategies that dominate Google rankings and drive qualified organic traffic at scale with schema markup.',
     tags: ['On-page SEO', 'Technical SEO', 'Analytics'],
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M13 3l-9 9h6l-2 13 11-13h-7l1-9z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+      </svg>
+    ),
+    title: 'Speed & Optimization',
+    desc: 'Core Web Vitals tuning, asset compression, database query caching, and code splitting for lightning-fast speeds.',
+    tags: ['Core Web Vitals', 'Lighthouse 100', 'CDN'],
   },
   {
     icon: (
@@ -72,19 +107,9 @@ const services = [
         <path d="M20 8h4v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: 'Digital Strategy',
-    desc: 'Full-funnel digital strategies crafted to accelerate growth and outpace your competition.',
-    tags: ['Growth Hacking', 'Funnels', 'Analytics'],
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M13 3l-9 9h6l-2 13 11-13h-7l1-9z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-      </svg>
-    ),
-    title: 'Performance Optimization',
-    desc: 'Core Web Vitals tuning, image optimization, and code splitting for lightning-fast load times.',
-    tags: ['Core Web Vitals', 'Lighthouse', 'CDN'],
+    title: 'Custom Business Portals',
+    desc: 'Tailor-made CRM, ERP, booking engines, and customer management portals developed precisely for your business operations.',
+    tags: ['CRM Portals', 'ERP Systems', 'Cloud Database'],
   },
 ];
 
@@ -99,10 +124,8 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    // Spotlight glow follows cursor
     glow.style.left = `${x}px`;
     glow.style.top = `${y}px`;
-    // 3D tilt
     const tx = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
     const ty = ((e.clientY - rect.top) / rect.height - 0.5) * -16;
     gsap.to(card, { rotateY: tx, rotateX: ty, duration: 0.4, ease: 'power2.out', transformPerspective: 900 });
@@ -123,7 +146,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group relative p-8 rounded-3xl border border-[#B8C0FF]/10 bg-gradient-to-br from-[#16132A]/80 to-[#0D0B1A] overflow-hidden hover:border-[#B8C0FF]/40 transition-border duration-300 cursor-default"
+      className="group relative p-8 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#16132A]/85 to-[#0D0B1A] overflow-hidden hover:border-[#6DD5C4]/40 transition-border duration-300 cursor-default h-full flex flex-col justify-between"
       style={{ transformStyle: 'preserve-3d' }}
     >
       {/* Cursor spotlight */}
@@ -132,43 +155,47 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full transition-opacity duration-300"
         style={{
           opacity: 0,
-          background: 'radial-gradient(circle, rgba(184,192,255,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(109,213,196,0.15) 0%, transparent 70%)',
         }}
       />
       {/* Corner accent */}
-      <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-[#B8C0FF]/5 blur-2xl -translate-y-8 translate-x-8 group-hover:bg-[#B8C0FF]/15 transition-colors duration-500" />
+      <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-[#6DD5C4]/5 blur-2xl -translate-y-8 translate-x-8 group-hover:bg-[#6DD5C4]/15 transition-colors duration-500" />
 
-      {/* Number */}
-      <div className="absolute top-6 right-7 text-[11px] font-mono text-[#B8C0FF]/20 group-hover:text-[#B8C0FF]/50 transition-colors duration-300">
-        0{index + 1}
-      </div>
-
-      {/* Animated Icon Badge */}
-      <div className="relative mb-6 w-14 h-14 rounded-2xl bg-[#6DD5C4]/5 border border-[#B8C0FF]/15 flex items-center justify-center text-[#B8C0FF] group-hover:text-[#6DD5C4] group-hover:border-[#6DD5C4]/50 group-hover:bg-[#6DD5C4]/15 group-hover:shadow-[0_0_25px_rgba(109,213,196,0.35)] group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 ease-out">
-        <div className="transform transition-transform duration-500 group-hover:scale-105">
-          {service.icon}
+      <div>
+        {/* Number */}
+        <div className="absolute top-6 right-7 text-[11px] font-mono text-[#B8C0FF]/25 group-hover:text-[#6DD5C4]/60 transition-colors duration-300">
+          0{index + 1}
         </div>
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#6DD5C4]/0 to-[#B8C0FF]/0 group-hover:from-[#6DD5C4]/20 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
+
+        {/* Animated Icon Badge */}
+        <div className="relative mb-6 w-14 h-14 rounded-2xl bg-[#6DD5C4]/5 border border-[#B8C0FF]/15 flex items-center justify-center text-[#B8C0FF] group-hover:text-[#6DD5C4] group-hover:border-[#6DD5C4]/50 group-hover:bg-[#6DD5C4]/15 group-hover:shadow-[0_0_25px_rgba(109,213,196,0.35)] group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 ease-out">
+          <div className="transform transition-transform duration-500 group-hover:scale-105">
+            {service.icon}
+          </div>
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#6DD5C4]/0 to-[#B8C0FF]/0 group-hover:from-[#6DD5C4]/20 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
+        </div>
+
+        <h3 className="text-lg font-bold text-white mb-3 group-hover:text-white transition-colors duration-300 font-display">
+          {service.title}
+        </h3>
+        <p className="text-[#E7D8FF]/60 text-sm leading-relaxed mb-6 font-light">{service.desc}</p>
       </div>
 
-      <h3 className="text-lg font-bold text-white mb-3 group-hover:text-white transition-colors duration-300 font-display">
-        {service.title}
-      </h3>
-      <p className="text-[#E7D8FF]/60 text-sm leading-relaxed mb-6 font-light">{service.desc}</p>
+      <div>
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {service.tags.map((tag) => (
+            <span key={tag} className="text-[10px] px-3 py-1 rounded-full bg-[#B8C0FF]/8 text-[#B8C0FF]/80 border border-[#B8C0FF]/15 group-hover:border-[#6DD5C4]/30 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
+              {tag}
+            </span>
+          ))}
+        </div>
 
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {service.tags.map((tag) => (
-          <span key={tag} className="text-[10px] px-3 py-1 rounded-full bg-[#B8C0FF]/8 text-[#B8C0FF]/80 border border-[#B8C0FF]/15 group-hover:border-[#6DD5C4]/30 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Animated arrow */}
-      <div className="flex items-center gap-2 text-[#6DD5C4]/0 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
-        <span className="text-xs tracking-wider uppercase">Explore service</span>
-        <span className="translate-x-0 group-hover:translate-x-1.5 transition-transform duration-300 inline-block font-bold">→</span>
+        {/* Animated arrow */}
+        <div className="flex items-center gap-2 text-[#6DD5C4]/0 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
+          <span className="text-xs tracking-wider uppercase">Inquire Solution</span>
+          <span className="translate-x-0 group-hover:translate-x-1.5 transition-transform duration-300 inline-block font-bold">→</span>
+        </div>
       </div>
 
       {/* Bottom border glow */}
@@ -180,63 +207,6 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    let intervalId: NodeJS.Timeout;
-
-    const startAutoScroll = () => {
-      intervalId = setInterval(() => {
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        if (maxScroll <= 0) return; // Only scroll if content overflows (e.g. mobile list)
-
-        const cards = Array.from(container.children) as HTMLElement[];
-        if (cards.length === 0) return;
-
-        let currentIndex = 0;
-        let minDiff = Infinity;
-        const containerLeft = container.getBoundingClientRect().left;
-
-        cards.forEach((card, idx) => {
-          const rect = card.getBoundingClientRect();
-          const diff = Math.abs(rect.left - containerLeft);
-          if (diff < minDiff) {
-            minDiff = diff;
-            currentIndex = idx;
-          }
-        });
-
-        const nextIndex = (currentIndex + 1) % cards.length;
-        const nextCard = cards[nextIndex];
-        if (nextCard) {
-          const targetLeft = container.scrollLeft + nextCard.getBoundingClientRect().left - container.getBoundingClientRect().left;
-          container.scrollTo({
-            left: targetLeft,
-            behavior: 'smooth'
-          });
-        }
-      }, 3500);
-    };
-
-    startAutoScroll();
-
-    const pause = () => clearInterval(intervalId);
-    const resume = () => {
-      clearInterval(intervalId);
-      startAutoScroll();
-    };
-
-    container.addEventListener('touchstart', pause);
-    container.addEventListener('touchend', resume);
-
-    return () => {
-      clearInterval(intervalId);
-      container.removeEventListener('touchstart', pause);
-      container.removeEventListener('touchend', resume);
-    };
-  }, []);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -261,7 +231,7 @@ export default function Services() {
         {
           opacity: 1,
           y: 0,
-          stagger: 0.08,
+          stagger: 0.06,
           duration: 0.9,
           ease: 'expo.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
@@ -279,24 +249,48 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="services-header text-center mb-24 opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">What We Do</p>
+        <div className="services-header text-center mb-20 opacity-0">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">What We Build</p>
           <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-display tracking-tight">
-            Services Built for{' '}
-            <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">Growth</span>
+            Websites, POS &{' '}
+            <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">Custom Apps</span>
           </h2>
-          <p className="max-w-lg mx-auto text-[#E7D8FF]/60 text-lg leading-relaxed font-light">
-            Every service is engineered to deliver measurable impact on your brand authority and market conversion.
+          <p className="max-w-xl mx-auto text-[#E7D8FF]/70 text-lg leading-relaxed font-light">
+            We engineer high-performance websites, custom POS systems, mobile applications, and bespoke business software at flexible, budget-friendly rates.
           </p>
         </div>
 
         {/* Grid */}
-        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-5 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
+        <div ref={scrollRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-16">
           {services.map((service, i) => (
-            <div key={service.title} className="service-card-wrap w-[85vw] md:w-full shrink-0 snap-center opacity-0">
+            <div key={service.title} className="service-card-wrap opacity-0">
               <ServiceCard service={service} index={i} />
             </div>
           ))}
+        </div>
+
+        {/* Budget-Friendly Custom Systems Highlight Banner */}
+        <div className="p-8 md:p-12 rounded-[32px] border border-[#6DD5C4]/35 bg-gradient-to-r from-[#1A1630]/90 via-[#120F26]/95 to-[#0D0B1A] relative overflow-hidden backdrop-blur-xl shadow-[0_10px_45px_rgba(109,213,196,0.09)]">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#6DD5C4]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#6DD5C4]/10 border border-[#6DD5C4]/30 text-[#6DD5C4] text-xs font-mono font-semibold tracking-wider uppercase mb-4">
+                <span>⚡</span> Flexible & Budget-Friendly Pricing
+              </div>
+              <h3 className="text-2xl md:text-4xl font-bold text-white mb-3 font-display">
+                Need a Custom POS System, ERP, or Mobile App at a <span className="text-gradient-mint">Budget Price</span>?
+              </h3>
+              <p className="text-sm md:text-base text-[#E7D8FF]/75 font-light leading-relaxed">
+                Whether you need a specialized retail POS, restaurant billing software, delivery tracking system, or custom business portal — we design and develop any system tailored exactly to your budget and operational needs.
+              </p>
+            </div>
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="shrink-0 px-9 py-4 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-xs md:text-sm uppercase tracking-wider font-mono shadow-[0_0_35px_rgba(109,213,196,0.35)] hover:shadow-[0_0_50px_rgba(109,213,196,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+            >
+              Get Any System on Your Budget →
+            </button>
+          </div>
         </div>
       </div>
     </section>

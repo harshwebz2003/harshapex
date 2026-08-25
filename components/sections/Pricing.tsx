@@ -248,6 +248,23 @@ export default function Pricing() {
             </div>
           ))}
         </div>
+
+        {/* Custom POS & System Pricing Banner */}
+        <div className="mt-14 p-8 rounded-3xl border border-[#6DD5C4]/30 bg-gradient-to-r from-[#1A1630]/80 via-[#120F26]/90 to-[#0D0B1A] flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-lg">
+          <div>
+            <div className="text-xs uppercase font-mono tracking-widest text-[#6DD5C4] font-semibold mb-2">Custom Software & POS Development</div>
+            <h4 className="text-xl md:text-2xl font-bold text-white font-display">Need a Specialized POS System, Mobile App, or ERP?</h4>
+            <p className="text-xs md:text-sm text-[#E7D8FF]/70 mt-1.5 font-light max-w-xl">
+              We design and build any custom business management system at flexible, budget-friendly rates tailored to your exact operational requirements.
+            </p>
+          </div>
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="shrink-0 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-xs font-semibold uppercase tracking-wider font-mono shadow-[0_0_25px_rgba(109,213,196,0.3)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+          >
+            Inquire Custom System →
+          </button>
+        </div>
       </div>
     </section>
   );
