@@ -92,13 +92,12 @@ export default function AgencyIntro() {
           >
             ABOUT
           </span>
-          <p className="relative text-xs tracking-[0.4em] uppercase text-[#B8C0FF] mb-4">Who We Are</p>
+          <p className="relative text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-body">Who We Are</p>
           <h2
-            className="relative text-4xl md:text-6xl font-bold text-white max-w-2xl leading-tight"
-            style={{ fontFamily: 'Clash Display, sans-serif' }}
+            className="relative text-4xl md:text-6xl font-bold text-white max-w-2xl leading-[1.08] tracking-[-0.03em] font-display"
           >
             A Studio That Turns{' '}
-            <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
               Vision
             </span>{' '}
             Into Reality
@@ -107,39 +106,38 @@ export default function AgencyIntro() {
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Image */}
-          <div ref={imageRef} className="relative rounded-3xl overflow-hidden aspect-[4/3]">
+          <div ref={imageRef} className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-[#B8C0FF]/15 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
             <Image
               src="/images/owner.jpg"
               alt="Harsh Apex Team"
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#B8C0FF]/20 to-transparent mix-blend-overlay" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#6DD5C4]/15 via-transparent to-[#B8C0FF]/10 mix-blend-overlay" />
           </div>
 
           {/* Text */}
-          <div ref={textRef} className="space-y-8">
-            <p className="reveal text-lg text-[#E7D8FF]/70 leading-relaxed">
-              We are <span className="text-[#E7D8FF] font-medium">Harsh Apex Digital Solutions</span> — a premium
+          <div ref={textRef} className="space-y-8 font-body">
+            <p className="reveal text-lg md:text-xl text-[#E7D8FF]/80 leading-relaxed font-light">
+              We are <span className="text-white font-medium">Harsh Apex Digital Solutions</span> — a bespoke
               digital agency specialising in crafting high-performance websites and immersive digital
-              experiences that don&apos;t just look beautiful, they drive results.
+              experiences that don&apos;t just look beautiful, they command attention and drive conversion.
             </p>
-            <p className="reveal text-base text-[#E7D8FF]/50 leading-relaxed">
-              From startups to established enterprises, we partner with brands who demand the best.
-              Every pixel, every interaction, and every line of code is crafted with precision and purpose.
+            <p className="reveal text-base text-[#E7D8FF]/60 leading-relaxed font-light">
+              From startups to established enterprises, we partner with brands who demand the pinnacle of craft.
+              Every pixel, every micro-interaction, and every line of code is calibrated with uncompromising precision.
             </p>
 
             {/* Stats */}
             <div className="reveal grid grid-cols-2 gap-6 pt-4">
               {stats.map((s) => (
-                <div key={s.label} className="p-5 rounded-2xl border border-[#B8C0FF]/10 bg-[#B8C0FF]/5">
+                <div key={s.label} className="p-5 rounded-2xl border border-[#B8C0FF]/15 bg-[#B8C0FF]/5 hover:border-[#6DD5C4]/40 transition-colors duration-300">
                   <div
-                    className="text-3xl font-bold bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent"
-                    style={{ fontFamily: 'Satoshi, sans-serif' }}
+                    className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] bg-clip-text text-transparent font-display tracking-tight"
                   >
                     {s.num}
                   </div>
-                  <div className="text-sm text-[#E7D8FF]/50 mt-1">{s.label}</div>
+                  <div className="text-xs tracking-wider uppercase text-[#E7D8FF]/50 mt-1.5 font-medium">{s.label}</div>
                 </div>
               ))}
             </div>
