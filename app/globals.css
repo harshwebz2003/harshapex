@@ -26,17 +26,12 @@
   --color-peach-1: #FFD3B6;
   --color-peach-2: #DFF7FF;
 
-  /* Silver Metallic Palette */
-  --color-silver-50: #F0F0F0;
-  --color-silver-100: #EDEDED;
-  --color-silver-200: #DEDFE1;
-  --color-silver-300: #CDCED0;
-  --color-silver-400: #C3C5C4;
-  --color-silver-500: #B1B2B4;
-  --color-silver-600: #A7A8AC;
-  --color-silver-700: #7A7B7F;
-  --color-silver-800: #707173;
-  --color-silver-900: #5D5E60;
+  /* Palette 05: Midnight Gold (#1A1A1A ➔ #5E4B43) */
+  --color-midnight-base: #1A1A1A;
+  --color-midnight-gold: #5E4B43;
+  --color-gold-accent: #BFA382;
+  --color-gold-champagne: #D4AF37;
+  --color-gold-bright: #E0C29B;
 
   --color-apex-primary: #B8C0FF;
   --color-apex-accent: #E7D8FF;
@@ -262,53 +257,56 @@
   }
 }
 
-/* ——— Light Theme Mode (Metallic Silver Palette & Shine White Luxury) ——— */
+/* ——— Light Theme Mode (Midnight Gold Gradient Palette — #1A1A1A ➔ #5E4B43) ——— */
 html.light,
 html.light body {
-  background-color: #EDEDED !important;
+  background-color: #1A1A1A !important;
   background-image: 
-    radial-gradient(at 15% 15%, #F0F0F0 0px, transparent 55%),
-    radial-gradient(at 85% 15%, #DEDFE1 0px, transparent 50%),
-    radial-gradient(at 50% 60%, #EDEDED 0px, transparent 60%),
-    radial-gradient(at 20% 90%, #CDCED0 0px, transparent 50%),
-    radial-gradient(at 80% 90%, #C3C5C4 0px, transparent 50%) !important;
-  color: #1E2229 !important;
+    radial-gradient(at 0% 0%, #5E4B43 0px, transparent 55%),
+    radial-gradient(at 100% 0%, #382C27 0px, transparent 50%),
+    radial-gradient(at 50% 50%, #1A1A1A 0px, transparent 65%),
+    radial-gradient(at 100% 100%, #5E4B43 0px, transparent 55%),
+    radial-gradient(at 0% 100%, #302621 0px, transparent 50%),
+    linear-gradient(135deg, #1A1A1A 0%, #382C27 35%, #5E4B43 70%, #1A1A1A 100%) !important;
+  background-attachment: fixed !important;
+  color: #F5EBE1 !important;
 }
 
 /* Nav in Light Mode */
 html.light nav {
-  background: rgba(237, 237, 237, 0.88) !important;
-  border-color: rgba(177, 178, 180, 0.45) !important;
-  box-shadow: 0 4px 25px rgba(93, 94, 96, 0.08) !important;
+  background: rgba(26, 26, 26, 0.85) !important;
+  border-color: rgba(94, 75, 67, 0.45) !important;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
 }
 
 html.light nav a,
 html.light nav button {
-  color: #1E2229 !important;
+  color: #F5EBE1 !important;
 }
 
 html.light nav a:hover,
 html.light nav button:hover {
-  color: #246B52 !important;
+  color: #D4AF37 !important;
 }
 
 /* Hero Section in Light Mode */
 html.light .hero-radial-overlay {
-  background: radial-gradient(circle at 50% 45%, transparent 15%, rgba(237, 237, 237, 0.45) 60%, #EDEDED 95%) !important;
+  background: radial-gradient(circle at 50% 45%, transparent 20%, rgba(26, 26, 26, 0.5) 65%, #1A1A1A 95%) !important;
 }
 
 html.light .hero-video-bg {
   display: block !important;
-  opacity: 0.38 !important;
-  mix-blend-mode: multiply !important;
-  filter: contrast(1.25) brightness(0.88) saturate(1.15) !important;
+  opacity: 0.35 !important;
+  mix-blend-mode: screen !important;
+  filter: contrast(1.2) brightness(1.05) !important;
   -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 85%) !important;
   mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 85%) !important;
 }
 
 html.light .hero-badge {
-  background: rgba(167, 196, 160, 0.18) !important;
-  border-color: rgba(167, 196, 160, 0.5) !important;
+  background: rgba(94, 75, 67, 0.3) !important;
+  border-color: rgba(191, 163, 130, 0.5) !important;
 }
 
 /* Headings and Text in Light Mode */
@@ -318,16 +316,16 @@ html.light h3,
 html.light h4,
 html.light h5,
 html.light h6 {
-  color: #1E2229 !important;
+  color: #FFFFFF !important;
 }
 
 html.light .text-white {
-  color: #1E2229 !important;
+  color: #FFFFFF !important;
 }
 
 html.light .text-white\/90,
 html.light .text-white\/80 {
-  color: #2D313A !important;
+  color: #F5EBE1 !important;
 }
 
 html.light .text-white\/70,
@@ -338,7 +336,7 @@ html.light .text-white\/40,
 html.light .text-white\/30,
 html.light .text-white\/20,
 html.light .text-white\/10 {
-  color: #5D5E60 !important;
+  color: #D1C2B4 !important;
 }
 
 html.light .text-\[\#E7D8FF\]\/80,
@@ -348,7 +346,7 @@ html.light .text-\[\#E7D8FF\]\/60,
 html.light .text-\[\#E7D8FF\]\/50,
 html.light .text-\[\#E7D8FF\]\/40,
 html.light .text-\[\#E7D8FF\] {
-  color: #5D5E60 !important;
+  color: #D1C2B4 !important;
 }
 
 html.light .text-\[\#B8C0FF\]\/80,
@@ -358,18 +356,18 @@ html.light .text-\[\#B8C0FF\]\/50,
 html.light .text-\[\#B8C0FF\]\/40,
 html.light .text-\[\#B8C0FF\]\/25,
 html.light .text-\[\#B8C0FF\] {
-  color: #5D5E60 !important;
+  color: #BFA382 !important;
 }
 
 html.light .text-\[\#6DD5C4\] {
-  color: #246B52 !important;
+  color: #D4AF37 !important;
 }
 
 html.light .text-\[\#6DD5C4\]\/60 {
-  color: #2E7D63 !important;
+  color: rgba(212, 175, 55, 0.7) !important;
 }
 
-/* ALL CARDS & CONTAINERS in Light Mode (Shine White with Metallic Silver Borders & Inset Depth) */
+/* ALL CARDS & CONTAINERS in Light Mode (Midnight Gold Gradient Plates) */
 html.light .service-card,
 html.light .case-card,
 html.light .stat-card,
@@ -385,10 +383,12 @@ html.light [class*="from-[#120F26]"],
 html.light [class*="bg-[#120F26]"],
 html.light [class*="bg-[#16132A]"],
 html.light [class*="bg-[#1A1630]"] {
-  background: linear-gradient(145deg, #FFFFFF 0%, #F0F0F0 50%, #EDEDED 100%) !important;
-  border: 1px solid rgba(177, 178, 180, 0.5) !important;
-  color: #1E2229 !important;
-  box-shadow: 0 10px 30px -5px rgba(93, 94, 96, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.8) inset !important;
+  background: linear-gradient(145deg, rgba(94, 75, 67, 0.45) 0%, rgba(26, 26, 26, 0.85) 100%) !important;
+  border: 1px solid rgba(94, 75, 67, 0.5) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  color: #F5EBE1 !important;
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(191, 163, 130, 0.25) !important;
 }
 
 /* Hover States for Cards in Light Mode */
@@ -397,8 +397,8 @@ html.light .case-card:hover,
 html.light .pricing-card:hover,
 html.light .why-item:hover,
 html.light .process-card:hover {
-  border-color: #A7A8AC !important;
-  box-shadow: 0 16px 45px -8px rgba(93, 94, 96, 0.18), 0 0 0 1px #A7A8AC inset !important;
+  border-color: #BFA382 !important;
+  box-shadow: 0 20px 50px -10px rgba(94, 75, 67, 0.5), inset 0 1px 0 rgba(224, 194, 155, 0.45) !important;
 }
 
 /* Tag Pills & Badges in Light Mode */
@@ -407,81 +407,102 @@ html.light [class*="bg-[#B8C0FF]/5"],
 html.light [class*="bg-[#6DD5C4]/10"],
 html.light [class*="bg-[#6DD5C4]/5"],
 html.light .service-card span[class*="bg-[#B8C0FF]"] {
-  background: #DEDFE1 !important;
-  border-color: #CDCED0 !important;
-  color: #5D5E60 !important;
+  background: rgba(94, 75, 67, 0.35) !important;
+  border-color: rgba(191, 163, 130, 0.35) !important;
+  color: #E0C29B !important;
 }
 
 /* Process Timeline Specifics */
 html.light .process-node {
-  background: #F0F0F0 !important;
-  border-color: #B1B2B4 !important;
-  box-shadow: 0 0 25px rgba(177, 178, 180, 0.5) !important;
+  background: #1A1A1A !important;
+  border-color: #5E4B43 !important;
+  box-shadow: 0 0 25px rgba(94, 75, 67, 0.6) !important;
 }
 
 html.light .process-node div {
-  background: #5D5E60 !important;
+  background: linear-gradient(135deg, #D4AF37, #5E4B43) !important;
 }
 
 html.light svg path[stroke*="rgba(184, 192, 255"] {
-  stroke: rgba(177, 178, 180, 0.5) !important;
+  stroke: rgba(94, 75, 67, 0.45) !important;
 }
 
 /* Form Inputs in Light Mode */
 html.light .cta-form-container input,
 html.light .cta-form-container textarea,
 html.light .cta-form-container select {
-  background: #F0F0F0 !important;
-  border-color: #CDCED0 !important;
-  color: #1E2229 !important;
+  background: rgba(26, 26, 26, 0.7) !important;
+  border-color: rgba(94, 75, 67, 0.5) !important;
+  color: #FFFFFF !important;
 }
 
 html.light .cta-form-container input:focus,
 html.light .cta-form-container textarea:focus,
 html.light .cta-form-container select:focus {
-  border-color: #7A7B7F !important;
-  background: #FFFFFF !important;
+  border-color: #D4AF37 !important;
+  background: rgba(26, 26, 26, 0.95) !important;
 }
 
 /* Light Mode Text Gradients */
 html.light .text-gradient,
 html.light .text-gradient-periwinkle {
-  background: linear-gradient(135deg, #3747AC 0%, #6372CC 50%, #8795E8 100%) !important;
+  background: linear-gradient(135deg, #F5EBE1 0%, #BFA382 50%, #5E4B43 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 html.light .text-gradient-mint,
 html.light .text-gradient-eucalyptus {
-  background: linear-gradient(135deg, #1C5A44 0%, #368C6D 50%, #5EAD90 100%) !important;
+  background: linear-gradient(135deg, #F5EBE1 0%, #D4AF37 50%, #5E4B43 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
-html.light .text-gradient-peach {
-  background: linear-gradient(135deg, #B54718 0%, #E3713B 50%, #F59869 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
+html.light .text-gradient-peach,
 html.light .text-gradient-tri,
 html.light .text-gradient-dual {
-  background: linear-gradient(135deg, #1C5A44 0%, #3B4AB5 50%, #B54718 100%) !important;
+  background: linear-gradient(135deg, #E0C29B 0%, #D4AF37 50%, #5E4B43 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 /* Light Mode Budget Banner */
 html.light .services-budget-banner {
-  background: linear-gradient(135deg, #FFFFFF 0%, #EDEDED 50%, #DEDFE1 100%) !important;
-  border: 1px solid rgba(177, 178, 180, 0.65) !important;
-  box-shadow: 0 15px 45px rgba(93, 94, 96, 0.12) !important;
+  background: linear-gradient(135deg, rgba(94, 75, 67, 0.5) 0%, rgba(26, 26, 26, 0.9) 100%) !important;
+  border: 1px solid rgba(191, 163, 130, 0.5) !important;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Light Mode Footer */
 html.light footer {
-  background: linear-gradient(180deg, #E2E4E8 0%, #DEDFE1 100%) !important;
-  border-top-color: #CDCED0 !important;
+  background: linear-gradient(180deg, #1A1A1A 0%, #121010 100%) !important;
+  border-top-color: rgba(94, 75, 67, 0.4) !important;
+}
+
+html.light footer .text-white {
+  color: #FFFFFF !important;
+}
+
+html.light footer a {
+  color: #D1C2B4 !important;
+}
+
+html.light footer a:hover {
+  color: #D4AF37 !important;
+}
+
+/* Light Mode Marquee items */
+html.light #trusted {
+  border-color: rgba(94, 75, 67, 0.35) !important;
+}
+
+html.light #trusted div[class*="border-[#B8C0FF]"] {
+  background-color: rgba(26, 26, 26, 0.8) !important;
+  border-color: rgba(94, 75, 67, 0.4) !important;
+}
+
+html.light #trusted span {
+  color: #D1C2B4 !important;
 }
 
 html.light footer .text-white {
