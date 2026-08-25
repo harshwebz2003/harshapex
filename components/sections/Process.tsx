@@ -163,27 +163,28 @@ export default function Process() {
                   <div className="w-full md:w-[44%] pl-14 md:pl-0">
                     <div className="process-card-wrapper w-full">
                       <div
-                        className="w-full p-8 md:p-10 rounded-[32px] border border-[#B8C0FF]/10 bg-[#120F26]/60 backdrop-blur-md transition-all duration-500 hover:border-[#B8C0FF]/30 group hover:-translate-y-1"
+                        className="w-full p-8 md:p-10 rounded-[32px] border border-[#B8C0FF]/15 bg-[#120F26]/70 backdrop-blur-md transition-all duration-500 hover:border-[#6DD5C4]/40 group hover:-translate-y-1.5 shadow-xl hover:shadow-[0_15px_40px_rgba(109,213,196,0.08)]"
                         style={{ boxShadow: `0 0 50px -12px ${step.glow}` }}
                       >
                         <div className="flex items-center justify-between mb-6">
-                          <div className="w-12 h-12 rounded-2xl bg-[#B8C0FF]/5 border border-[#B8C0FF]/15 flex items-center justify-center">
-                            <Icon className="w-5 h-5 text-[#B8C0FF]" />
+                          <div className="w-12 h-12 rounded-2xl bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 flex items-center justify-center text-[#6DD5C4] group-hover:scale-110 group-hover:rotate-6 group-hover:border-[#6DD5C4]/60 group-hover:bg-[#6DD5C4]/20 group-hover:shadow-[0_0_20px_rgba(109,213,196,0.35)] transition-all duration-500 ease-out">
+                            <Icon className="w-5 h-5 text-[#6DD5C4] group-hover:text-white transition-colors duration-300" />
                           </div>
-                          <span className="text-xs font-mono text-[#B8C0FF]/40 tracking-widest">{step.num} / STEP</span>
+                          <span className="text-xs font-mono text-[#6DD5C4]/60 tracking-widest">{step.num} / STEP</span>
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white mb-4" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                        <h3 className="text-xl md:text-2xl font-bold text-white mb-4 font-display">
                           {step.title}
                         </h3>
-                        <p className="text-sm text-[#E7D8FF]/60 leading-relaxed">{step.desc}</p>
+                        <p className="text-sm text-[#E7D8FF]/70 leading-relaxed font-light">{step.desc}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Central Timeline Node (Desktop / Mobile Connector) */}
                   <div className="absolute left-0 md:left-1/2 top-4 md:top-auto md:-translate-x-1/2 z-10">
-                    <div className="process-node w-10 h-10 rounded-full border border-[#B8C0FF]/30 bg-[#0D0B1A] flex items-center justify-center shadow-lg shadow-[#B8C0FF]/5 relative">
-                      <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] animate-pulse" />
+                    <div className="process-node w-10 h-10 rounded-full border border-[#6DD5C4]/40 bg-[#0D0B1A] flex items-center justify-center shadow-[0_0_20px_rgba(109,213,196,0.2)] relative">
+                      <div className="absolute inset-0 rounded-full bg-[#6DD5C4]/20 animate-ping opacity-60 pointer-events-none" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] relative z-10 shadow-sm" />
                     </div>
                   </div>
 

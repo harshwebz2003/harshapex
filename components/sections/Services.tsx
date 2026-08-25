@@ -143,34 +143,36 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         0{index + 1}
       </div>
 
-      {/* Icon */}
-      <div className="text-[#B8C0FF] mb-6 group-hover:text-[#E7D8FF] transition-colors duration-300 group-hover:scale-110 transform w-fit">
-        {service.icon}
+      {/* Animated Icon Badge */}
+      <div className="relative mb-6 w-14 h-14 rounded-2xl bg-[#6DD5C4]/5 border border-[#B8C0FF]/15 flex items-center justify-center text-[#B8C0FF] group-hover:text-[#6DD5C4] group-hover:border-[#6DD5C4]/50 group-hover:bg-[#6DD5C4]/15 group-hover:shadow-[0_0_25px_rgba(109,213,196,0.35)] group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 ease-out">
+        <div className="transform transition-transform duration-500 group-hover:scale-105">
+          {service.icon}
+        </div>
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#6DD5C4]/0 to-[#B8C0FF]/0 group-hover:from-[#6DD5C4]/20 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
       </div>
 
-      <h3 className="text-lg font-bold text-white mb-3 group-hover:text-[#E7D8FF] transition-colors duration-300"
-        style={{ fontFamily: 'Clash Display, sans-serif' }}>
+      <h3 className="text-lg font-bold text-white mb-3 group-hover:text-white transition-colors duration-300 font-display">
         {service.title}
       </h3>
-      <p className="text-[#E7D8FF]/45 text-sm leading-relaxed mb-6">{service.desc}</p>
+      <p className="text-[#E7D8FF]/60 text-sm leading-relaxed mb-6 font-light">{service.desc}</p>
 
       {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-6">
         {service.tags.map((tag) => (
-          <span key={tag} className="text-[10px] px-3 py-1 rounded-full bg-[#B8C0FF]/8 text-[#B8C0FF]/70 border border-[#B8C0FF]/15 group-hover:border-[#B8C0FF]/30 transition-colors duration-300">
+          <span key={tag} className="text-[10px] px-3 py-1 rounded-full bg-[#B8C0FF]/8 text-[#B8C0FF]/80 border border-[#B8C0FF]/15 group-hover:border-[#6DD5C4]/30 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
             {tag}
           </span>
         ))}
       </div>
 
       {/* Animated arrow */}
-      <div className="flex items-center gap-2 text-[#B8C0FF]/0 group-hover:text-[#B8C0FF] transition-all duration-300">
-        <span className="text-xs tracking-wide">Explore service</span>
-        <span className="translate-x-0 group-hover:translate-x-1 transition-transform duration-300 inline-block">→</span>
+      <div className="flex items-center gap-2 text-[#6DD5C4]/0 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
+        <span className="text-xs tracking-wider uppercase">Explore service</span>
+        <span className="translate-x-0 group-hover:translate-x-1.5 transition-transform duration-300 inline-block font-bold">→</span>
       </div>
 
       {/* Bottom border glow */}
-      <div className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-[#B8C0FF]/0 to-transparent group-hover:via-[#B8C0FF]/40 transition-all duration-500" />
+      <div className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-[#6DD5C4]/0 to-transparent group-hover:via-[#6DD5C4]/50 transition-all duration-500" />
     </div>
   );
 }

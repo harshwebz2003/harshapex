@@ -201,19 +201,25 @@ export default function CTA() {
         </div>
 
         {/* Contact info */}
-        <div className="mt-12 flex flex-wrap justify-center gap-8 text-center">
+        <div className="mt-14 flex flex-wrap justify-center gap-8 md:gap-12 text-center">
           {[
-            { icon: '✉', label: 'Email', value: 'chamilka.ch@gmail.com' },
-            { icon: '📞', label: 'Phone', value: '+94 77 066 3154' },
-            { icon: '📍', label: 'Location', value: 'Sri Lanka' },
+            { icon: '✉', label: 'Email', value: 'chamilka.ch@gmail.com', href: 'mailto:chamilka.ch@gmail.com' },
+            { icon: '📞', label: 'Phone', value: '+94 77 066 3154', href: 'tel:+94770663154' },
+            { icon: '📍', label: 'Location', value: 'Sri Lanka', href: '#contact' },
           ].map((item) => (
-            <div key={item.label} className="flex items-center gap-3">
-              <span className="text-[#6DD5C4]">{item.icon}</span>
-              <div className="text-left">
-                <div className="text-[10px] uppercase tracking-wider text-[#E7D8FF]/40 font-mono">{item.label}</div>
-                <div className="text-sm text-[#E7D8FF]/80 font-light">{item.value}</div>
+            <a
+              key={item.label}
+              href={item.href}
+              className="flex items-center gap-3.5 group p-2 rounded-2xl transition-all duration-300 hover:bg-white/[0.03]"
+            >
+              <div className="w-10 h-10 rounded-xl bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 flex items-center justify-center text-sm text-[#6DD5C4] group-hover:scale-110 group-hover:rotate-6 group-hover:bg-[#6DD5C4]/20 group-hover:border-[#6DD5C4]/60 group-hover:shadow-[0_0_20px_rgba(109,213,196,0.4)] transition-all duration-300 ease-out">
+                <span className="transform transition-transform duration-300 group-hover:scale-110">{item.icon}</span>
               </div>
-            </div>
+              <div className="text-left">
+                <div className="text-[10px] uppercase tracking-wider text-[#6DD5C4]/70 font-mono">{item.label}</div>
+                <div className="text-sm text-[#E7D8FF]/80 font-light group-hover:text-white transition-colors">{item.value}</div>
+              </div>
+            </a>
           ))}
         </div>
       </div>

@@ -140,12 +140,12 @@ export default function WhyChooseUs() {
             {reasons.map((r) => (
               <div
                 key={r.num}
-                className="why-item p-6 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/60 to-[#0D0B1A]/80 hover:border-[#6DD5C4]/40 transition-all duration-300 group opacity-0 hover:scale-[1.02]"
+                className="why-item p-6 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/60 to-[#0D0B1A]/80 hover:border-[#6DD5C4]/40 transition-all duration-500 group opacity-0 hover:scale-[1.02] shadow-lg hover:shadow-[0_10px_35px_rgba(109,213,196,0.08)]"
               >
-                <div className="text-xl text-[#6DD5C4] mb-4 transition-transform duration-300 group-hover:scale-110">
-                  {r.icon}
+                <div className="relative mb-4 w-12 h-12 rounded-2xl bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 flex items-center justify-center text-xl text-[#6DD5C4] group-hover:scale-110 group-hover:rotate-12 group-hover:bg-[#6DD5C4]/20 group-hover:border-[#6DD5C4]/60 group-hover:shadow-[0_0_20px_rgba(109,213,196,0.4)] transition-all duration-500 ease-out">
+                  <span className="transform transition-transform duration-500 group-hover:scale-110 inline-block">{r.icon}</span>
                 </div>
-                <div className="text-xs text-[#B8C0FF]/50 mb-2 font-mono tracking-widest">{r.num}</div>
+                <div className="text-xs text-[#6DD5C4]/60 mb-2 font-mono tracking-widest">{r.num}</div>
                 <h3 className="text-base font-bold text-white mb-2 font-display">
                   {r.title}
                 </h3>

@@ -86,9 +86,11 @@ export default function Footer() {
         {/* Back to Top */}
         <button
           onClick={scrollToTop}
-          className="group flex flex-col items-center gap-1.5 text-xs font-semibold tracking-[0.25em] uppercase text-[#6DD5C4]/80 hover:text-white transition-colors duration-300 mb-12 cursor-pointer font-mono"
+          className="group flex flex-col items-center gap-2 text-xs font-semibold tracking-[0.25em] uppercase text-[#6DD5C4]/80 hover:text-white transition-colors duration-300 mb-12 cursor-pointer font-mono"
         >
-          <span className="text-[10px] transform group-hover:-translate-y-1 transition-transform duration-300">▲</span>
+          <div className="w-8 h-8 rounded-full border border-[#6DD5C4]/30 flex items-center justify-center text-[10px] group-hover:border-[#6DD5C4] group-hover:bg-[#6DD5C4]/15 group-hover:shadow-[0_0_15px_rgba(109,213,196,0.4)] transition-all duration-300">
+            <span className="transform group-hover:-translate-y-0.5 transition-transform duration-300">▲</span>
+          </div>
           <span>BACK TO TOP</span>
         </button>
 
@@ -147,9 +149,11 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#6DD5C4]/20 hover:border-[#6DD5C4]/50 hover:scale-110 active:scale-95 transition-all duration-300 shadow-sm"
+                className="group relative w-11 h-11 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#B8C0FF]/75 hover:text-[#0D0B1A] hover:bg-gradient-to-tr hover:from-[#6DD5C4] hover:to-[#B8C0FF] hover:border-[#6DD5C4] hover:scale-115 hover:-translate-y-1 active:scale-95 transition-all duration-300 shadow-md hover:shadow-[0_0_25px_rgba(109,213,196,0.5)]"
               >
-                {s.icon}
+                <span className="transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                  {s.icon}
+                </span>
               </a>
             ))}
           </div>
