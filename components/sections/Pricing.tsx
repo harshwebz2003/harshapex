@@ -13,7 +13,7 @@ const plans = [
     period: 'one-time',
     desc: 'Perfect for small businesses and solo entrepreneurs looking to establish a professional digital presence.',
     features: [
-      'One Landing Page',
+      'One-Page Website',
       'Mobile Responsive Design',
       'Basic SEO Setup',
       'Contact Form Integration',
