@@ -347,7 +347,6 @@ export default function Projects() {
   }, [activeFilter]);
 
   return (
-  return (
     <section id="projects" ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent font-body w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
