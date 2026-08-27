@@ -13,8 +13,19 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (prefersReducedMotion) {
-      onComplete();
+    const isMobile = window.innerWidth < 768;
+    if (prefersReducedMotion || isMobile) {
+      const quickTl = gsap.timeline({
+        onComplete: () => {
+          gsap.to(containerRef.current, {
+            opacity: 0,
+            duration: 0.25,
+            ease: 'power2.inOut',
+            onComplete,
+          });
+        },
+      });
+      quickTl.to(progressBarRef.current, { width: '100%', duration: 0.2, ease: 'power1.inOut' });
       return;
     }
 
@@ -22,7 +33,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
       onComplete: () => {
         gsap.to(containerRef.current, {
           yPercent: -100,
-          duration: 0.5,
+          duration: 0.35,
           ease: 'expo.inOut',
           onComplete,
         });
@@ -32,17 +43,17 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
     // Rapid logo sharpness reveal
     tl.fromTo(
       logoRef.current,
-      { opacity: 0, scale: 0.96 },
-      { opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' }
+      { opacity: 0, scale: 0.98 },
+      { opacity: 1, scale: 1, duration: 0.2, ease: 'power2.out' }
     );
 
-    // Fast, crisp progress counter (0.45s)
+    // Fast progress counter (0.25s)
     const progressObj = { val: 0 };
     tl.to(
       progressObj,
       {
         val: 100,
-        duration: 0.45,
+        duration: 0.25,
         ease: 'power2.out',
         onUpdate: () => {
           const v = Math.round(progressObj.val);
@@ -50,7 +61,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
           if (progressBarRef.current) progressBarRef.current.style.width = `${v}%`;
         },
       },
-      '-=0.15'
+      '-=0.1'
     );
   }, [onComplete]);
 

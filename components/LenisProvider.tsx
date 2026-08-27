@@ -11,19 +11,20 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Check for user reduced-motion preference
+    // Disable smooth scroll hijacking on mobile / touch devices for native 120Hz smoothness
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+    if (prefersReducedMotion || isTouchDevice) return;
 
-    // Calibrated luxury inertial scroll
+    // Calibrated luxury inertial scroll for desktop
     const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // Exponential deceleration
+      duration: 1.1,
+      easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 0.95,
-      touchMultiplier: 1.5,
+      touchMultiplier: 1.0,
     });
 
     lenisRef.current = lenis;

@@ -81,55 +81,67 @@ export default function GlobalBackground() {
       }
     }
 
+    const isMobile = window.innerWidth < 768;
     const stars: Star[] = [];
-    const starCount = Math.min(85, Math.floor((canvas.width * canvas.height) / 18000));
+    const starCount = isMobile
+      ? Math.min(22, Math.floor((canvas.width * canvas.height) / 35000))
+      : Math.min(70, Math.floor((canvas.width * canvas.height) / 18000));
 
     for (let i = 0; i < starCount; i++) {
       stars.push(new Star(canvas.width, canvas.height));
     }
 
     // Drifting background nebulas / glow blobs
-    // In Light mode: Midnight Gold Palette (#1A1A1A ➔ #5E4B43 & Champagne Gold Sheens)
-    const nebulas = isLight
+    const allNebulas = isLight
       ? [
-          { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: 440, color: 'rgba(94, 75, 67, 0.45)' },  // #5E4B43 Midnight Gold
-          { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: 480, color: 'rgba(191, 163, 130, 0.3)' }, // #BFA382 Champagne Gold
-          { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 420, color: 'rgba(94, 75, 67, 0.4)' },  // #5E4B43 Bronzed Umber
-          { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 380, color: 'rgba(224, 194, 155, 0.25)' }, // #E0C29B Gold Glow
+          { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: isMobile ? 260 : 440, color: 'rgba(94, 75, 67, 0.45)' },
+          { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: isMobile ? 280 : 480, color: 'rgba(191, 163, 130, 0.3)' },
+          { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 420, color: 'rgba(94, 75, 67, 0.4)' },
+          { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 380, color: 'rgba(224, 194, 155, 0.25)' },
         ]
       : [
-          { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: 380, color: 'rgba(184, 192, 255, 0.035)' }, // Periwinkle
-          { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: 420, color: 'rgba(231, 216, 255, 0.025)' }, // Periwinkle light
-          { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 350, color: 'rgba(109, 213, 196, 0.03)' }, // Mint Lagoon
-          { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 320, color: 'rgba(223, 246, 240, 0.02)' }, // Mint Light
+          { x: canvas.width * 0.15, y: canvas.height * 0.25, vx: 0.03, vy: 0.02, r: isMobile ? 240 : 380, color: 'rgba(184, 192, 255, 0.035)' },
+          { x: canvas.width * 0.85, y: canvas.height * 0.7, vx: -0.02, vy: 0.03, r: isMobile ? 260 : 420, color: 'rgba(231, 216, 255, 0.025)' },
+          { x: canvas.width * 0.35, y: canvas.height * 0.85, vx: 0.025, vy: -0.02, r: 350, color: 'rgba(109, 213, 196, 0.03)' },
+          { x: canvas.width * 0.65, y: canvas.height * 0.2, vx: -0.02, vy: 0.025, r: 320, color: 'rgba(223, 246, 240, 0.02)' },
         ];
 
+    const nebulas = isMobile ? allNebulas.slice(0, 2) : allNebulas;
+
+    let isPageVisible = true;
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (isPageVisible) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw Nebulas
-      nebulas.forEach((nebula) => {
-        nebula.x += nebula.vx;
-        nebula.y += nebula.vy;
+        // Draw Nebulas
+        nebulas.forEach((nebula) => {
+          nebula.x += nebula.vx;
+          nebula.y += nebula.vy;
 
-        if (nebula.x < -nebula.r || nebula.x > canvas.width + nebula.r) nebula.vx *= -1;
-        if (nebula.y < -nebula.r || nebula.y > canvas.height + nebula.r) nebula.vy *= -1;
+          if (nebula.x < -nebula.r || nebula.x > canvas.width + nebula.r) nebula.vx *= -1;
+          if (nebula.y < -nebula.r || nebula.y > canvas.height + nebula.r) nebula.vy *= -1;
 
-        const grad = ctx.createRadialGradient(nebula.x, nebula.y, 0, nebula.x, nebula.y, nebula.r);
-        grad.addColorStop(0, nebula.color);
-        grad.addColorStop(1, 'transparent');
+          const grad = ctx.createRadialGradient(nebula.x, nebula.y, 0, nebula.x, nebula.y, nebula.r);
+          grad.addColorStop(0, nebula.color);
+          grad.addColorStop(1, 'transparent');
 
-        ctx.beginPath();
-        ctx.arc(nebula.x, nebula.y, nebula.r, 0, Math.PI * 2);
-        ctx.fillStyle = grad;
-        ctx.fill();
-      });
+          ctx.beginPath();
+          ctx.arc(nebula.x, nebula.y, nebula.r, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        });
 
-      // Draw Stars/Shimmers
-      stars.forEach((star) => {
-        star.update(canvas.width, canvas.height);
-        star.draw();
-      });
+        // Draw Stars/Shimmers
+        stars.forEach((star) => {
+          star.update(canvas.width, canvas.height);
+          star.draw();
+        });
+      }
 
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -138,6 +150,7 @@ export default function GlobalBackground() {
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, [theme]);

@@ -118,6 +118,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   const glowRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     const card = cardRef.current;
     const glow = glowRef.current;
     if (!card || !glow) return;
@@ -126,18 +127,20 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
     const y = e.clientY - rect.top;
     glow.style.left = `${x}px`;
     glow.style.top = `${y}px`;
-    const tx = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
-    const ty = ((e.clientY - rect.top) / rect.height - 0.5) * -16;
+    const tx = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+    const ty = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
     gsap.to(card, { rotateY: tx, rotateX: ty, duration: 0.4, ease: 'power2.out', transformPerspective: 900 });
   };
 
   const handleMouseEnter = () => {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     if (glowRef.current) glowRef.current.style.opacity = '1';
   };
 
   const handleMouseLeave = () => {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     if (glowRef.current) glowRef.current.style.opacity = '0';
-    gsap.to(cardRef.current, { rotateY: 0, rotateX: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
+    gsap.to(cardRef.current, { rotateY: 0, rotateX: 0, duration: 0.5, ease: 'power2.out' });
   };
 
   return (
@@ -146,7 +149,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="service-card group relative p-8 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#16132A]/85 to-[#0D0B1A] overflow-hidden hover:border-[#6DD5C4]/40 transition-all duration-300 cursor-default h-full flex flex-col justify-between"
+      className="service-card group relative p-6 sm:p-8 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#16132A]/85 to-[#0D0B1A] overflow-hidden hover:border-[#6DD5C4]/40 transition-all duration-300 cursor-default h-full flex flex-col justify-between"
       style={{ transformStyle: 'preserve-3d' }}
     >
       {/* Cursor spotlight */}
@@ -168,32 +171,31 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         </div>
 
         {/* Animated Icon Badge */}
-        <div className="relative mb-6 w-14 h-14 rounded-2xl bg-[#6DD5C4]/5 border border-[#B8C0FF]/15 flex items-center justify-center text-[#B8C0FF] group-hover:text-[#6DD5C4] group-hover:border-[#6DD5C4]/50 group-hover:bg-[#6DD5C4]/15 group-hover:shadow-[0_0_25px_rgba(109,213,196,0.35)] group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 ease-out">
+        <div className="relative mb-6 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#6DD5C4]/5 border border-[#B8C0FF]/15 flex items-center justify-center text-[#B8C0FF] group-hover:text-[#6DD5C4] group-hover:border-[#6DD5C4]/50 group-hover:bg-[#6DD5C4]/15 group-hover:shadow-[0_0_25px_rgba(109,213,196,0.35)] group-hover:scale-110 transition-all duration-500 ease-out">
           <div className="transform transition-transform duration-500 group-hover:scale-105">
             {service.icon}
           </div>
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#6DD5C4]/0 to-[#B8C0FF]/0 group-hover:from-[#6DD5C4]/20 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
         </div>
 
-        <h3 className="text-lg font-bold text-white mb-3 group-hover:text-white transition-colors duration-300 font-display">
+        <h3 className="text-base sm:text-lg font-bold text-white mb-2.5 group-hover:text-white transition-colors duration-300 font-display">
           {service.title}
         </h3>
-        <p className="text-[#E7D8FF]/60 text-sm leading-relaxed mb-6 font-light">{service.desc}</p>
+        <p className="text-[#E7D8FF]/60 text-xs sm:text-sm leading-relaxed mb-6 font-light">{service.desc}</p>
       </div>
 
       <div>
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
           {service.tags.map((tag) => (
-            <span key={tag} className="text-[10px] px-3 py-1 rounded-full bg-[#B8C0FF]/8 text-[#B8C0FF]/80 border border-[#B8C0FF]/15 group-hover:border-[#6DD5C4]/30 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
+            <span key={tag} className="text-[9px] sm:text-[10px] px-2.5 sm:px-3 py-1 rounded-full bg-[#B8C0FF]/8 text-[#B8C0FF]/80 border border-[#B8C0FF]/15 group-hover:border-[#6DD5C4]/30 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
               {tag}
             </span>
           ))}
         </div>
 
         {/* Animated arrow */}
-        <div className="flex items-center gap-2 text-[#6DD5C4]/0 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
-          <span className="text-xs tracking-wider uppercase">Inquire Solution</span>
+        <div className="flex items-center gap-2 text-[#6DD5C4]/80 sm:text-[#6DD5C4]/0 group-hover:text-[#6DD5C4] transition-all duration-300 font-mono">
+          <span className="text-[11px] sm:text-xs tracking-wider uppercase">Inquire Solution</span>
           <span className="translate-x-0 group-hover:translate-x-1.5 transition-transform duration-300 inline-block font-bold">→</span>
         </div>
       </div>
@@ -275,26 +277,26 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-32 md:py-44 bg-transparent relative overflow-hidden font-body">
+    <section id="services" ref={sectionRef} className="py-20 sm:py-28 md:py-44 bg-transparent relative overflow-hidden font-body w-full">
       {/* Ambient blobs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#6DD5C4]/4 blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#B8C0FF]/4 blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="services-header text-center mb-20 opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">What We Build</p>
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-display tracking-tight">
+        <div className="services-header text-center mb-12 sm:mb-20 opacity-0">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">What We Build</p>
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight font-display tracking-tight break-words">
             Websites, POS &{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">Custom Apps</span>
           </h2>
-          <p className="max-w-xl mx-auto text-[#E7D8FF]/70 text-lg leading-relaxed font-light">
+          <p className="max-w-xl mx-auto text-[#E7D8FF]/70 text-base sm:text-lg leading-relaxed font-light px-2">
             We engineer high-performance websites, custom POS systems, mobile applications, and bespoke business software at flexible, budget-friendly rates.
           </p>
         </div>
 
         {/* Grid */}
-        <div ref={scrollRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-16">
+        <div ref={scrollRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full mb-12 sm:mb-16">
           {services.map((service, i) => (
             <div key={service.title} className="service-card-wrap opacity-0">
               <ServiceCard service={service} index={i} />
@@ -303,23 +305,23 @@ export default function Services() {
         </div>
 
         {/* Budget-Friendly Custom Systems Highlight Banner */}
-        <div className="services-budget-banner opacity-0 p-8 md:p-12 rounded-[32px] border border-[#6DD5C4]/35 bg-gradient-to-r from-[#1A1630]/90 via-[#120F26]/95 to-[#0D0B1A] relative overflow-hidden backdrop-blur-xl shadow-[0_10px_45px_rgba(109,213,196,0.09)]">
+        <div className="services-budget-banner opacity-0 p-6 sm:p-8 md:p-12 rounded-[28px] sm:rounded-[32px] border border-[#6DD5C4]/35 bg-gradient-to-r from-[#1A1630]/90 via-[#120F26]/95 to-[#0D0B1A] relative overflow-hidden backdrop-blur-xl shadow-[0_10px_45px_rgba(109,213,196,0.09)]">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#6DD5C4]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 text-center lg:text-left">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#6DD5C4]/10 border border-[#6DD5C4]/30 text-[#6DD5C4] text-xs font-mono font-semibold tracking-wider uppercase mb-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#6DD5C4]/10 border border-[#6DD5C4]/30 text-[#6DD5C4] text-[11px] sm:text-xs font-mono font-semibold tracking-wider uppercase mb-3 sm:mb-4">
                 <span>⚡</span> Flexible & Budget-Friendly Pricing
               </div>
-              <h3 className="text-2xl md:text-4xl font-bold text-white mb-3 font-display">
+              <h3 className="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-2.5 sm:mb-3 font-display">
                 Need a Custom POS System, ERP, or Mobile App at a <span className="text-gradient-mint">Budget Price</span>?
               </h3>
-              <p className="text-sm md:text-base text-[#E7D8FF]/75 font-light leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-[#E7D8FF]/75 font-light leading-relaxed">
                 Whether you need a specialized retail POS, restaurant billing software, delivery tracking system, or custom business portal — we design and develop any system tailored exactly to your budget and operational needs.
               </p>
             </div>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="shrink-0 px-9 py-4 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-xs md:text-sm uppercase tracking-wider font-mono shadow-[0_0_35px_rgba(109,213,196,0.35)] hover:shadow-[0_0_50px_rgba(109,213,196,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              className="w-full sm:w-auto shrink-0 px-7 sm:px-9 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-xs md:text-sm uppercase tracking-wider font-mono shadow-[0_0_35px_rgba(109,213,196,0.35)] hover:shadow-[0_0_50px_rgba(109,213,196,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer text-center"
             >
               Get Any System on Your Budget →
             </button>

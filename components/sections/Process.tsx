@@ -106,25 +106,25 @@ export default function Process() {
   }, []);
 
   return (
-    <section id="process" ref={sectionRef} className="py-32 md:py-40 bg-transparent relative overflow-hidden font-body">
+    <section id="process" ref={sectionRef} className="py-20 sm:py-28 md:py-40 bg-transparent relative overflow-hidden font-body w-full">
       {/* Background Glow Meshes */}
       <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full bg-[#6DD5C4]/4 blur-[130px] pointer-events-none" />
       <div className="absolute top-2/4 right-0 w-[450px] h-[450px] rounded-full bg-[#B8C0FF]/4 blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 left-1/3 w-[500px] h-[300px] rounded-full bg-[#E7D8FF]/3 blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-24">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Workflow</p>
+        <div className="text-center mb-12 sm:mb-24">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">Workflow</p>
           <h2
-            className="text-4xl md:text-6xl font-bold text-white mb-6 font-display tracking-tight"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 font-display tracking-tight break-words"
           >
             Our{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
               Process
             </span>
           </h2>
-          <p className="max-w-xl mx-auto text-[#E7D8FF]/60 text-lg leading-relaxed font-light">
+          <p className="max-w-xl mx-auto text-[#E7D8FF]/60 text-base sm:text-lg leading-relaxed font-light px-2">
             A proven, structured methodology calibrated to consistently engineer exceptional outcomes.
           </p>
         </div>
@@ -144,10 +144,10 @@ export default function Process() {
           </div>
 
           {/* Straight Dashed Line (Mobile) */}
-          <div className="absolute top-0 bottom-0 left-5 w-px bg-gradient-to-b from-[#B8C0FF]/20 to-transparent border-l border-dashed border-[#B8C0FF]/20 md:hidden" />
+          <div className="absolute top-0 bottom-0 left-4 sm:left-5 w-px bg-gradient-to-b from-[#B8C0FF]/20 to-transparent border-l border-dashed border-[#B8C0FF]/20 md:hidden" />
 
           {/* Rows Container */}
-          <div className="space-y-16 md:space-y-24 relative">
+          <div className="space-y-10 sm:space-y-16 md:space-y-24 relative">
             {steps.map((step, i) => {
               const isLeft = i % 2 === 0;
               const Icon = step.icon;
@@ -160,31 +160,31 @@ export default function Process() {
                   }`}
                 >
                   {/* Card Container */}
-                  <div className="w-full md:w-[44%] pl-14 md:pl-0">
+                  <div className="w-full md:w-[44%] pl-10 sm:pl-14 md:pl-0">
                     <div className="process-card-wrapper w-full">
                       <div
-                        className="process-card w-full p-8 md:p-10 rounded-[32px] border border-[#B8C0FF]/15 bg-[#120F26]/70 backdrop-blur-md transition-all duration-500 hover:border-[#6DD5C4]/40 group hover:-translate-y-1.5 shadow-xl hover:shadow-[0_15px_40px_rgba(109,213,196,0.08)]"
+                        className="process-card w-full p-5 sm:p-8 md:p-10 rounded-[24px] sm:rounded-[32px] border border-[#B8C0FF]/15 bg-[#120F26]/70 backdrop-blur-md transition-all duration-500 hover:border-[#6DD5C4]/40 group hover:-translate-y-1.5 shadow-xl hover:shadow-[0_15px_40px_rgba(109,213,196,0.08)]"
                         style={{ boxShadow: `0 0 50px -12px ${step.glow}` }}
                       >
-                        <div className="flex items-center justify-between mb-6">
-                          <div className="w-12 h-12 rounded-2xl bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 flex items-center justify-center text-[#6DD5C4] group-hover:scale-110 group-hover:rotate-6 group-hover:border-[#6DD5C4]/60 group-hover:bg-[#6DD5C4]/20 group-hover:shadow-[0_0_20px_rgba(109,213,196,0.35)] transition-all duration-500 ease-out">
-                            <Icon className="w-5 h-5 text-[#6DD5C4] group-hover:text-white transition-colors duration-300" />
+                        <div className="flex items-center justify-between mb-4 sm:mb-6">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 flex items-center justify-center text-[#6DD5C4] group-hover:scale-110 group-hover:rotate-6 group-hover:border-[#6DD5C4]/60 group-hover:bg-[#6DD5C4]/20 transition-all duration-500 ease-out">
+                            <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#6DD5C4] group-hover:text-white transition-colors duration-300" />
                           </div>
-                          <span className="text-xs font-mono text-[#6DD5C4]/60 tracking-widest">{step.num} / STEP</span>
+                          <span className="text-[10px] sm:text-xs font-mono text-[#6DD5C4]/60 tracking-widest">{step.num} / STEP</span>
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white mb-4 font-display">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-4 font-display">
                           {step.title}
                         </h3>
-                        <p className="text-sm text-[#E7D8FF]/70 leading-relaxed font-light">{step.desc}</p>
+                        <p className="text-xs sm:text-sm text-[#E7D8FF]/70 leading-relaxed font-light">{step.desc}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Central Timeline Node (Desktop / Mobile Connector) */}
                   <div className="absolute left-0 md:left-1/2 top-4 md:top-auto md:-translate-x-1/2 z-10">
-                    <div className="process-node w-10 h-10 rounded-full border border-[#6DD5C4]/40 bg-[#0D0B1A] flex items-center justify-center shadow-[0_0_20px_rgba(109,213,196,0.2)] relative">
+                    <div className="process-node w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#6DD5C4]/40 bg-[#0D0B1A] flex items-center justify-center shadow-[0_0_20px_rgba(109,213,196,0.2)] relative">
                       <div className="absolute inset-0 rounded-full bg-[#6DD5C4]/20 animate-ping opacity-60 pointer-events-none" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] relative z-10 shadow-sm" />
+                      <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] relative z-10 shadow-sm" />
                     </div>
                   </div>
 
@@ -196,28 +196,27 @@ export default function Process() {
           </div>
         </div>
 
-        {/* Footer Button and Text like the German layout */}
-        <div className="mt-28 flex flex-col items-center justify-center text-center">
+        {/* Footer Button and Text */}
+        <div className="mt-14 sm:mt-24 flex flex-col items-center justify-center text-center">
           <a
-            href="#connect"
-            className="group px-8 py-4 rounded-full bg-gradient-to-r from-[#B8C0FF]/10 to-[#E7D8FF]/10 border border-[#B8C0FF]/35 text-white font-semibold text-sm hover:border-[#B8C0FF] transition-all duration-300 flex items-center gap-2.5 shadow-lg shadow-[#B8C0FF]/5 hover:shadow-[#B8C0FF]/10"
+            href="#contact"
+            className="group px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#B8C0FF]/10 to-[#E7D8FF]/10 border border-[#B8C0FF]/35 text-white font-semibold text-xs sm:text-sm hover:border-[#B8C0FF] transition-all duration-300 flex items-center gap-2.5 shadow-lg shadow-[#B8C0FF]/5 hover:shadow-[#B8C0FF]/10 cursor-pointer"
           >
             Initialize Project Scope
             <ArrowUpRight className="w-4 h-4 text-[#B8C0FF] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
           </a>
 
-          <div className="mt-20 border-t border-[#B8C0FF]/10 pt-10 w-full max-w-2xl">
+          <div className="mt-12 sm:mt-16 border-t border-[#B8C0FF]/10 pt-8 sm:pt-10 w-full max-w-2xl">
             <h4
-              className="text-2xl md:text-3xl font-bold text-white mb-3"
-              style={{ fontFamily: 'Clash Display, sans-serif' }}
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3 font-display"
             >
               You receive a{' '}
               <span className="bg-gradient-to-r from-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
                 proven system
               </span>
             </h4>
-            <p className="text-[#E7D8FF]/40 text-sm">
-              A premium, conversion-optimized website built to convert visitors and dominate search rankings.
+            <p className="text-[#E7D8FF]/50 text-xs sm:text-sm font-light">
+              A premium, conversion-optimized website or custom system built to convert visitors and dominate search rankings.
             </p>
           </div>
         </div>

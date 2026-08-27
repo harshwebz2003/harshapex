@@ -28,9 +28,9 @@ export default function HomePage() {
   return (
     <>
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
-      <main className={`transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+      <main className="w-full max-w-full overflow-x-clip">
         <Navigation />
-        <Hero isLoaded={loaded} />
+        <Hero isLoaded={true} />
         <TrustedBy />
         <AgencyIntro />
         <Services />

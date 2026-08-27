@@ -130,63 +130,6 @@ export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [projectList, setProjectList] = useState<any[]>(initialProjects);
 
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    let intervalId: NodeJS.Timeout;
-
-    const startAutoScroll = () => {
-      intervalId = setInterval(() => {
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        if (maxScroll <= 0) return; // Only scroll if content overflows (e.g. mobile list)
-
-        const cards = Array.from(container.children) as HTMLElement[];
-        if (cards.length === 0) return;
-
-        let currentIndex = 0;
-        let minDiff = Infinity;
-        const containerLeft = container.getBoundingClientRect().left;
-
-        cards.forEach((card, idx) => {
-          const rect = card.getBoundingClientRect();
-          const diff = Math.abs(rect.left - containerLeft);
-          if (diff < minDiff) {
-            minDiff = diff;
-            currentIndex = idx;
-          }
-        });
-
-        const nextIndex = (currentIndex + 1) % cards.length;
-        const nextCard = cards[nextIndex];
-        if (nextCard) {
-          const targetLeft = container.scrollLeft + nextCard.getBoundingClientRect().left - container.getBoundingClientRect().left;
-          container.scrollTo({
-            left: targetLeft,
-            behavior: 'smooth'
-          });
-        }
-      }, 3500);
-    };
-
-    startAutoScroll();
-
-    const pause = () => clearInterval(intervalId);
-    const resume = () => {
-      clearInterval(intervalId);
-      startAutoScroll();
-    };
-
-    container.addEventListener('touchstart', pause);
-    container.addEventListener('touchend', resume);
-
-    return () => {
-      clearInterval(intervalId);
-      container.removeEventListener('touchstart', pause);
-      container.removeEventListener('touchend', resume);
-    };
-  }, []);
-
   // Load projects dynamically from Firebase Realtime Database
   useEffect(() => {
     const projectsRef = ref(db, 'projects');
@@ -334,14 +277,14 @@ export default function Projects() {
   }, [activeFilter]);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-32 md:py-40 bg-transparent font-body">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="projects" ref={sectionRef} className="py-20 sm:py-28 md:py-40 bg-transparent font-body w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="projects-header flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 opacity-0">
+        <div className="projects-header flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-12 sm:mb-16 opacity-0">
           <div>
-            <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Our Work</p>
+            <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">Our Work</p>
             <h2
-              className="text-4xl md:text-6xl font-bold text-white font-display tracking-tight"
+              className="text-3xl sm:text-5xl md:text-6xl font-bold text-white font-display tracking-tight break-words"
             >
               Featured{' '}
               <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
@@ -351,12 +294,12 @@ export default function Projects() {
           </div>
 
           {/* Filter tabs */}
-          <div className="flex flex-wrap gap-2 font-mono">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 font-mono">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-5 py-2 rounded-full text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   activeFilter === f
                     ? 'bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] text-[#0D0B1A] font-semibold shadow-[0_0_20px_rgba(109,213,196,0.3)]'
                     : 'border border-[#B8C0FF]/20 text-[#E7D8FF]/60 hover:border-[#6DD5C4]/40 hover:text-white'
@@ -369,8 +312,8 @@ export default function Projects() {
         </div>
 
         {/* Modern 3-Column Grid */}
-        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-8 snap-x snap-mandatory scrollbar-none pb-6 md:pb-0 w-full">
-          {filtered.map((project, i) => (
+        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-5 sm:gap-8 snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full">
+          {filtered.map((project) => (
             <div
               key={project.title}
               onClick={() => {
@@ -378,39 +321,41 @@ export default function Projects() {
                   window.open(project.link, '_blank');
                 }
               }}
-              className="project-card group flex flex-col gap-4 cursor-pointer w-[85vw] md:w-full shrink-0 snap-center opacity-0"
+              className="project-card group flex flex-col gap-3 sm:gap-4 cursor-pointer w-[80vw] sm:w-[340px] md:w-full shrink-0 snap-center opacity-0"
             >
               {/* Image Frame */}
-              <div className="relative w-full aspect-square overflow-hidden rounded-[24px] border border-[#B8C0FF]/15 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#6DD5C4]/40 transition-all duration-500 shadow-md group-hover:shadow-[0_12px_40px_rgba(109,213,196,0.12)]">
+              <div className="relative w-full aspect-square overflow-hidden rounded-[20px] sm:rounded-[24px] border border-[#B8C0FF]/15 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#6DD5C4]/40 transition-all duration-500 shadow-md group-hover:shadow-[0_12px_40px_rgba(109,213,196,0.12)]">
                 <Image
                   src={project.img}
                   alt={project.title}
                   fill
+                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw, 33vw"
+                  quality={80}
                   className="object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
                 />
                 
                 {/* Recent Badge */}
                 {project.recent && (
-                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] text-[#0D0B1A] text-[9px] font-extrabold px-3.5 py-1.5 rounded-full shadow-lg border border-[#6DD5C4]/30 tracking-wider font-mono">
+                  <div className="absolute top-3.5 left-3.5 z-10 bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] text-[#0D0B1A] text-[9px] font-extrabold px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-lg border border-[#6DD5C4]/30 tracking-wider font-mono">
                     RECENT
                   </div>
                 )}
 
                 {/* Dark Hover overlay for arrow icon */}
                 <div className="absolute inset-0 bg-[#0D0B1A]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="w-11 h-11 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    <span className="text-white text-base">→</span>
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    <span className="text-white text-sm sm:text-base">→</span>
                   </div>
                 </div>
               </div>
 
               {/* Title & Category Details below the card */}
-              <div className="flex flex-col gap-1 px-1">
-                <span className="text-[10px] tracking-[0.2em] uppercase text-[#6DD5C4]/80 font-mono font-medium">
+              <div className="flex flex-col gap-0.5 sm:gap-1 px-1">
+                <span className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#6DD5C4]/80 font-mono font-medium">
                   {project.category}
                 </span>
                 <h3 
-                  className="text-lg font-bold text-white group-hover:text-[#B8C0FF] transition-colors duration-300 font-display"
+                  className="text-base sm:text-lg font-bold text-white group-hover:text-[#B8C0FF] transition-colors duration-300 font-display"
                 >
                   {project.title}
                 </h3>

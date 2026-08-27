@@ -322,6 +322,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="canonical" href="https://harshapex.com.lk" />
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
@@ -329,7 +330,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://api.fontshare.com" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://harshapex-default-rtdb.firebaseio.com" />
+        <link rel="dns-prefetch" href="https://harshapex-7e3f7-default-rtdb.firebaseio.com" />
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,600,700&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        />
         <meta name="theme-color" content="#0D0B1A" />
         <script
           dangerouslySetInnerHTML={{
@@ -343,7 +352,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="bg-[#0D0B1A] text-white antialiased overflow-x-hidden transition-colors duration-500">
+      <body className="bg-[#0D0B1A] text-white antialiased overflow-x-hidden w-full max-w-full min-h-screen transition-colors duration-500">
         <ThemeProvider>
           <LenisProvider>
             <GlobalBackground />

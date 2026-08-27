@@ -9,9 +9,9 @@ export default function CustomCursor() {
   const [hasMouse, setHasMouse] = useState(false);
 
   useEffect(() => {
-    // Only activate cursor on desktop pointer devices
-    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-    if (!isFinePointer) return;
+    // Only activate cursor on desktop pointer devices with hover capability
+    const isDesktopPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth >= 768;
+    if (!isDesktopPointer) return;
     setHasMouse(true);
 
     const ring = cursorRingRef.current;
