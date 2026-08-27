@@ -116,13 +116,20 @@ export default function Statistics() {
           </div>
 
           {/* Owner photo */}
-          <div className="relative z-10 flex-shrink-0 mt-2 md:mt-0">
-            <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-2xl overflow-hidden border border-[#6DD5C4]/30 shadow-xl mx-auto">
-              <Image src="/images/owner.jpg" alt="Founder" fill sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, 176px" quality={85} className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D0B1A]/40 via-transparent to-transparent" />
+          <div className="relative z-10 flex-shrink-0 mt-6 md:mt-0 flex flex-col items-center">
+            <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-3xl overflow-hidden border-2 border-[#6DD5C4]/40 shadow-[0_10px_40px_rgba(109,213,196,0.25)] mx-auto group">
+              <Image
+                src="/images/owner.jpg"
+                alt="Founder"
+                fill
+                sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, 300px"
+                quality={90}
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0D0B1A]/50 via-transparent to-transparent pointer-events-none" />
             </div>
             {/* Floating badge */}
-            <div className="absolute -top-2.5 -right-2.5 sm:-top-3 sm:-right-3 bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF] text-[#0D0B1A] text-[8px] sm:text-[9px] font-bold px-2.5 sm:px-3 py-1 rounded-full shadow-lg font-mono tracking-wider">
+            <div className="absolute -top-3 bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-[10px] sm:text-xs font-black px-4 py-1.5 rounded-full shadow-[0_4px_20px_rgba(109,213,196,0.4)] font-mono tracking-wider z-20 uppercase">
               FOUNDER &amp; CEO
             </div>
           </div>
