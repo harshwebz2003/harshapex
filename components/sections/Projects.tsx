@@ -347,12 +347,13 @@ export default function Projects() {
   }, [activeFilter]);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 sm:py-28 md:py-40 bg-transparent font-body w-full overflow-hidden">
+  return (
+    <section id="projects" ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent font-body w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="projects-header flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-12 sm:mb-16 opacity-0">
+        <div className="projects-header flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-8 mb-8 sm:mb-14">
           <div>
-            <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">Our Work</p>
+            <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-3 font-mono">Our Work</p>
             <h2
               className="text-3xl sm:text-5xl md:text-6xl font-bold text-white font-display tracking-tight break-words"
             >
@@ -381,8 +382,8 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Modern 3-Column Grid */}
-        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-5 sm:gap-8 snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full">
+        {/* Modern 3-Column Grid / Mobile Auto-Scroller */}
+        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-4 sm:gap-8 snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full">
           {filtered.map((project) => (
             <div
               key={project.title}
@@ -391,10 +392,10 @@ export default function Projects() {
                   window.open(project.link, '_blank');
                 }
               }}
-              className="project-card group flex flex-col gap-3 sm:gap-4 cursor-pointer w-[80vw] sm:w-[340px] md:w-full shrink-0 snap-center opacity-0"
+              className="project-card group flex flex-col gap-3 sm:gap-4 cursor-pointer w-[80vw] max-w-[340px] md:max-w-none md:w-full shrink-0 snap-center"
             >
-              {/* Image Frame */}
-              <div className="relative w-full aspect-square overflow-hidden rounded-[20px] sm:rounded-[24px] border border-[#B8C0FF]/15 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#6DD5C4]/40 transition-all duration-500 shadow-md group-hover:shadow-[0_12px_40px_rgba(109,213,196,0.12)]">
+              {/* Image Frame with guaranteed min-height */}
+              <div className="relative w-full aspect-square min-h-[260px] sm:min-h-[300px] md:min-h-0 overflow-hidden rounded-[20px] sm:rounded-[24px] border border-[#B8C0FF]/15 bg-[#120F26]/60 backdrop-blur-md group-hover:border-[#6DD5C4]/40 transition-all duration-500 shadow-md group-hover:shadow-[0_12px_40px_rgba(109,213,196,0.12)]">
                 <Image
                   src={project.img}
                   alt={project.title}

@@ -93,13 +93,13 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 md:py-40 bg-transparent font-body">
-      <div className="max-w-3xl mx-auto px-6">
+    <section ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent font-body w-full">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="faq-header text-center mb-16 opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Questions</p>
+        <div className="faq-header text-center mb-8 sm:mb-14">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-4 font-mono">Questions</p>
           <h2
-            className="text-4xl md:text-6xl font-bold text-white mb-6 font-display tracking-tight"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-6 font-display tracking-tight break-words"
           >
             Frequently Asked{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
@@ -109,11 +109,11 @@ export default function FAQ() {
         </div>
 
         {/* Accordion */}
-        <div className="space-y-3.5">
+        <div className="space-y-3 sm:space-y-3.5">
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className={`faq-item rounded-2xl border transition-all duration-500 overflow-hidden opacity-0 ${
+              className={`faq-item rounded-2xl border transition-all duration-500 overflow-hidden ${
                 openIndex === i
                   ? 'border-[#6DD5C4]/40 bg-gradient-to-br from-[#1A1630]/80 to-[#0D0B1A]/95 shadow-[0_4px_30px_rgba(109,213,196,0.08)]'
                   : 'border-[#B8C0FF]/15 bg-[#1A1630]/25 hover:border-[#B8C0FF]/30'

@@ -107,27 +107,27 @@ export default function WhyChooseUs() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 md:py-40 bg-transparent font-body">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+    <section ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent font-body w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-20 items-center">
           {/* Left Column */}
-          <div className="why-left-content opacity-0">
-            <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Why Choose Us</p>
+          <div className="why-left-content">
+            <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">Why Choose Us</p>
             <h2
-              className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight font-display tracking-tight"
+              className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight font-display tracking-tight break-words"
             >
               What Sets Us{' '}
               <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
                 Apart
               </span>
             </h2>
-            <p className="text-[#E7D8FF]/70 text-lg leading-relaxed font-light">
+            <p className="text-[#E7D8FF]/70 text-base sm:text-lg leading-relaxed font-light">
               We combine creative excellence with technical precision to deliver digital solutions that are as
               effective as they are beautiful.
             </p>
 
             {/* Progress bars */}
-            <div className="mt-10 space-y-6">
+            <div className="mt-8 sm:mt-10 space-y-5 sm:space-y-6">
               {[
                 { label: 'Design Quality & Optical Balance', value: 98 },
                 { label: 'Client Satisfaction & Retention', value: 97 },
@@ -153,20 +153,22 @@ export default function WhyChooseUs() {
           </div>
 
           {/* Right — cards */}
-          <div className="grid sm:grid-cols-2 gap-5">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
             {reasons.map((r) => (
               <div
                 key={r.num}
-                className="why-item p-6 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/60 to-[#0D0B1A]/80 hover:border-[#6DD5C4]/40 transition-all duration-500 group opacity-0 hover:scale-[1.02] shadow-lg hover:shadow-[0_10px_35px_rgba(109,213,196,0.08)]"
+                className="why-item p-5 sm:p-6 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/60 to-[#0D0B1A]/80 hover:border-[#6DD5C4]/40 transition-all duration-500 group hover:scale-[1.02] shadow-lg hover:shadow-[0_10px_35px_rgba(109,213,196,0.08)]"
               >
-                <div className="relative mb-4 w-12 h-12 rounded-2xl bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 flex items-center justify-center text-xl text-[#6DD5C4] group-hover:scale-110 group-hover:rotate-12 group-hover:bg-[#6DD5C4]/20 group-hover:border-[#6DD5C4]/60 group-hover:shadow-[0_0_20px_rgba(109,213,196,0.4)] transition-all duration-500 ease-out">
-                  <span className="transform transition-transform duration-500 group-hover:scale-110 inline-block">{r.icon}</span>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 flex items-center justify-center text-lg text-[#6DD5C4]">
+                    <span>{r.icon}</span>
+                  </div>
+                  <span className="text-xs text-[#6DD5C4]/60 font-mono tracking-widest">{r.num}</span>
                 </div>
-                <div className="text-xs text-[#6DD5C4]/60 mb-2 font-mono tracking-widest">{r.num}</div>
                 <h3 className="text-base font-bold text-white mb-2 font-display">
                   {r.title}
                 </h3>
-                <p className="text-xs text-[#E7D8FF]/60 leading-relaxed font-light">{r.desc}</p>
+                <p className="text-xs sm:text-sm text-[#E7D8FF]/60 leading-relaxed font-light">{r.desc}</p>
               </div>
             ))}
           </div>

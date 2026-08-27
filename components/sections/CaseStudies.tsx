@@ -42,11 +42,11 @@ export default function CaseStudies() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="case-studies" ref={sectionRef} className="py-20 sm:py-28 md:py-40 bg-transparent font-body w-full overflow-hidden">
+    <section id="case-studies" ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent font-body w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="casestudies-header mb-12 sm:mb-20 opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">Deep Dives</p>
+        <div className="casestudies-header mb-8 sm:mb-14">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-3 font-mono">Deep Dives</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
             <h2
               className="text-3xl sm:text-5xl md:text-6xl font-bold text-white max-w-lg leading-tight font-display tracking-tight break-words"
@@ -63,11 +63,11 @@ export default function CaseStudies() {
         </div>
 
         {/* Case cards */}
-        <div ref={scrollRef} className="flex md:flex-col flex-row overflow-x-auto md:overflow-visible gap-5 sm:gap-8 snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full">
+        <div ref={scrollRef} className="flex md:flex-col flex-row overflow-x-auto md:overflow-visible gap-4 sm:gap-8 snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full">
           {cases.map((c, i) => (
             <div
               key={c.client}
-              className="case-card group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-[#B8C0FF]/15 hover:border-[#6DD5C4]/40 transition-all duration-500 w-[82vw] sm:w-[420px] md:w-full shrink-0 snap-center opacity-0 shadow-lg hover:shadow-[0_15px_50px_rgba(109,213,196,0.1)]"
+              className="case-card group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-[#B8C0FF]/15 hover:border-[#6DD5C4]/40 transition-all duration-500 w-[82vw] max-w-[420px] md:max-w-none md:w-full shrink-0 snap-center shadow-lg hover:shadow-[0_15px_50px_rgba(109,213,196,0.1)]"
             >
               {/* Image side */}
               <div className={`relative aspect-[16/10] md:aspect-auto min-h-[200px] sm:min-h-[260px] md:min-h-[320px] overflow-hidden ${i % 2 === 1 ? 'md:order-2' : ''}`}>

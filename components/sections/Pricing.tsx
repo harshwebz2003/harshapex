@@ -13,7 +13,7 @@ const plans = [
     period: 'one-time',
     desc: 'Perfect for small businesses and solo entrepreneurs looking to establish a professional digital presence.',
     features: [
-      '5-Page Website',
+      'One Landing Page',
       'Mobile Responsive Design',
       'Basic SEO Setup',
       'Contact Form Integration',
@@ -27,11 +27,11 @@ const plans = [
   },
   {
     name: 'Growth',
-    price: 'Rs. 50,000',
+    price: 'Rs. 30,000',
     period: 'one-time',
     desc: 'Ideal for growing businesses that need a powerful, feature-rich digital presence to scale.',
     features: [
-      '10-Page Website',
+      '5-Page Website',
       'Premium UI/UX Design',
       'Advanced SEO Optimisation',
       'CMS Integration',
@@ -189,13 +189,13 @@ export default function Pricing() {
   }, []);
 
   return (
-    <section id="pricing" ref={sectionRef} className="py-20 sm:py-28 md:py-40 bg-transparent font-body w-full overflow-hidden">
+    <section id="pricing" ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent font-body w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="pricing-header text-center mb-12 sm:mb-16 opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">Investment</p>
+        <div className="pricing-header text-center mb-8 sm:mb-14">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-3 font-mono">Investment</p>
           <h2
-            className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 font-display tracking-tight break-words"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-4 font-display tracking-tight break-words"
           >
             Transparent{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
@@ -208,11 +208,11 @@ export default function Pricing() {
         </div>
 
         {/* Pricing cards */}
-        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-5 sm:gap-8 items-stretch snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full">
+        <div ref={scrollRef} className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-4 sm:gap-8 items-stretch snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full">
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`pricing-card relative rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-all duration-500 w-[82vw] sm:w-[350px] md:w-full shrink-0 snap-center opacity-0 ${
+              className={`pricing-card relative rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-all duration-500 w-[82vw] max-w-[350px] md:max-w-none md:w-full shrink-0 snap-center ${
                 plan.popular
                   ? 'border-2 border-[#6DD5C4]/50 bg-gradient-to-b from-[#1A1630]/90 to-[#0D0B1A]/95 shadow-[0_0_50px_rgba(109,213,196,0.15)] md:-translate-y-2'
                   : 'border border-[#B8C0FF]/15 bg-gradient-to-b from-[#1A1630]/50 to-[#0D0B1A]/80 hover:border-[#6DD5C4]/40 shadow-lg'

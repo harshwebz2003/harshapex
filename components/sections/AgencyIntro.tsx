@@ -82,19 +82,19 @@ export default function AgencyIntro() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-32 md:py-40 bg-transparent overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="about" ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent overflow-hidden w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Big bg text */}
-        <div className="relative mb-20">
+        <div className="relative mb-8 sm:mb-16">
           <span
-            className="absolute -top-10 left-0 text-[120px] md:text-[200px] font-bold text-[#B8C0FF]/5 select-none pointer-events-none leading-none"
+            className="absolute -top-6 sm:-top-10 left-0 text-[80px] sm:text-[140px] md:text-[200px] font-bold text-[#B8C0FF]/5 select-none pointer-events-none leading-none"
             style={{ fontFamily: 'Clash Display, sans-serif' }}
           >
             ABOUT
           </span>
-          <p className="relative text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-body">Who We Are</p>
+          <p className="relative text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-4 font-body">Who We Are</p>
           <h2
-            className="relative text-4xl md:text-6xl font-bold text-white max-w-2xl leading-[1.08] tracking-[-0.03em] font-display"
+            className="relative text-3xl sm:text-5xl md:text-6xl font-bold text-white max-w-2xl leading-[1.08] tracking-[-0.03em] font-display"
           >
             A Studio That Turns{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">

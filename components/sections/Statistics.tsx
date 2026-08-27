@@ -59,8 +59,8 @@ export default function Statistics() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 sm:py-28 md:py-40 bg-transparent relative overflow-hidden font-body w-full">
-      {/* Grid overlay texture */}
+    <section ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent font-body relative overflow-hidden w-full">
+      {/* Grid texture */}
       <div
         className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
@@ -75,11 +75,11 @@ export default function Statistics() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Stats grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-14 sm:mb-24">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-8 sm:mb-16">
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className="stat-card text-center p-4 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-b from-[#1A1630]/60 to-[#0D0B1A]/85 hover:border-[#6DD5C4]/40 transition-all duration-500 group opacity-0 hover:scale-[1.02]"
+              className="stat-card text-center p-4 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-b from-[#1A1630]/60 to-[#0D0B1A]/85 hover:border-[#6DD5C4]/40 transition-all duration-500 group hover:scale-[1.02]"
             >
               <div className="text-3xl sm:text-4xl md:text-6xl font-bold mb-1 tabular-nums font-display tracking-tight">
                 <span

@@ -368,16 +368,16 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-20 sm:py-28 md:py-44 bg-transparent relative overflow-hidden font-body w-full">
+    <section id="services" ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent relative overflow-hidden font-body w-full">
       {/* Ambient blobs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#6DD5C4]/4 blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#B8C0FF]/4 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="services-header text-center mb-12 sm:mb-20 opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">What We Build</p>
-          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight font-display tracking-tight break-words">
+        <div className="services-header text-center mb-8 sm:mb-16">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-4 font-mono">What We Build</p>
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-3 sm:mb-6 leading-tight font-display tracking-tight break-words">
             Websites, POS &{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">Custom Apps</span>
           </h2>
@@ -392,14 +392,14 @@ export default function Services() {
           className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-4 sm:gap-6 snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full mb-4 md:mb-16"
         >
           {services.map((service, i) => (
-            <div key={service.title} className="service-card-wrap opacity-0 w-[84vw] max-w-[360px] md:w-full shrink-0 snap-center">
+            <div key={service.title} className="service-card-wrap w-[84vw] max-w-[360px] md:w-full shrink-0 snap-center">
               <ServiceCard service={service} index={i} />
             </div>
           ))}
         </div>
 
         {/* Mobile Pagination Indicator */}
-        <div className="flex md:hidden items-center justify-center gap-1.5 mb-10">
+        <div className="flex md:hidden items-center justify-center gap-1.5 mb-6 sm:mb-10">
           {services.map((_, idx) => (
             <button
               key={idx}
@@ -431,7 +431,7 @@ export default function Services() {
         </div>
 
         {/* Budget-Friendly Custom Systems Highlight Banner */}
-        <div className="services-budget-banner opacity-0 p-6 sm:p-8 md:p-12 rounded-[28px] sm:rounded-[32px] border border-[#6DD5C4]/35 bg-gradient-to-r from-[#1A1630]/90 via-[#120F26]/95 to-[#0D0B1A] relative overflow-hidden backdrop-blur-xl shadow-[0_10px_45px_rgba(109,213,196,0.09)]">
+        <div className="services-budget-banner p-6 sm:p-8 md:p-12 rounded-[28px] sm:rounded-[32px] border border-[#6DD5C4]/35 bg-gradient-to-r from-[#1A1630]/90 via-[#120F26]/95 to-[#0D0B1A] relative overflow-hidden backdrop-blur-xl shadow-[0_10px_45px_rgba(109,213,196,0.09)]">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#6DD5C4]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 text-center lg:text-left">
             <div className="max-w-2xl">

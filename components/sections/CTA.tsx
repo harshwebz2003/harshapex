@@ -85,17 +85,17 @@ export default function CTA() {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 sm:py-28 md:py-44 bg-transparent relative overflow-hidden font-body w-full">
+    <section id="contact" ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent relative overflow-hidden font-body w-full">
       {/* Background glow meshes */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#6DD5C4]/4 blur-[160px] pointer-events-none" />
       <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[#B8C0FF]/4 blur-[130px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="cta-header text-center mb-12 sm:mb-16 opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">Let&apos;s Connect</p>
+        <div className="cta-header text-center mb-8 sm:mb-14">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-3 font-mono">Let&apos;s Connect</p>
           <h2
-            className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight font-display tracking-tight break-words"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-4 leading-tight font-display tracking-tight break-words"
           >
             Start Your Next{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
@@ -108,7 +108,7 @@ export default function CTA() {
         </div>
 
         {/* Form Container */}
-        <div className="cta-form-container p-6 sm:p-8 md:p-12 rounded-[28px] sm:rounded-[32px] border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/80 via-[#120F26]/90 to-[#0D0B1A]/95 backdrop-blur-xl shadow-2xl opacity-0">
+        <div className="cta-form-container p-6 sm:p-8 md:p-12 rounded-[28px] sm:rounded-[32px] border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/80 via-[#120F26]/90 to-[#0D0B1A]/95 backdrop-blur-xl shadow-2xl">
           {submitted ? (
             <div ref={successRef} className="text-center py-12 sm:py-16">
               <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#6DD5C4] to-[#B8C0FF] flex items-center justify-center mx-auto mb-5 sm:mb-6 shadow-[0_0_30px_rgba(109,213,196,0.4)]">

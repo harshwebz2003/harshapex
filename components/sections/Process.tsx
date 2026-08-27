@@ -106,7 +106,7 @@ export default function Process() {
   }, []);
 
   return (
-    <section id="process" ref={sectionRef} className="py-20 sm:py-28 md:py-40 bg-transparent relative overflow-hidden font-body w-full">
+    <section id="process" ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent relative overflow-hidden font-body w-full">
       {/* Background Glow Meshes */}
       <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full bg-[#6DD5C4]/4 blur-[130px] pointer-events-none" />
       <div className="absolute top-2/4 right-0 w-[450px] h-[450px] rounded-full bg-[#B8C0FF]/4 blur-[150px] pointer-events-none" />
@@ -114,10 +114,10 @@ export default function Process() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-24">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">Workflow</p>
+        <div className="text-center mb-8 sm:mb-16">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-3 font-mono">Workflow</p>
           <h2
-            className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 font-display tracking-tight break-words"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-4 font-display tracking-tight break-words"
           >
             Our{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">

@@ -98,19 +98,19 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 md:py-40 bg-transparent overflow-hidden font-body">
-      <div className="max-w-7xl mx-auto px-6 mb-16">
-        <div className="testimonials-header text-center opacity-0">
-          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-4 font-mono">Client Endorsements</p>
+    <section ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent overflow-hidden font-body w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-14">
+        <div className="testimonials-header text-center">
+          <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-4 font-mono">Client Endorsements</p>
           <h2
-            className="text-4xl md:text-6xl font-bold text-white mb-6 font-display tracking-tight"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-6 font-display tracking-tight break-words"
           >
             What Our{' '}
             <span className="bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] bg-clip-text text-transparent">
               Clients Say
             </span>
           </h2>
-          <p className="max-w-lg mx-auto text-[#E7D8FF]/60 text-lg font-light leading-relaxed">
+          <p className="max-w-lg mx-auto text-[#E7D8FF]/60 text-base sm:text-lg font-light leading-relaxed px-2">
             Authentic feedback from business leaders and founders who partnered with Harsh Apex.
           </p>
         </div>
