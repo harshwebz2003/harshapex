@@ -130,6 +130,76 @@ export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [projectList, setProjectList] = useState<any[]>(initialProjects);
 
+  // Left to right auto-scroll on mobile view
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let isInteracting = false;
+    let timeoutId: NodeJS.Timeout;
+    let intervalId: NodeJS.Timeout;
+
+    const autoScrollNext = () => {
+      if (window.innerWidth >= 768 || isInteracting) return;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      if (maxScroll <= 10) return;
+
+      const cards = Array.from(container.children).filter((el) =>
+        el.classList.contains('project-card')
+      ) as HTMLElement[];
+      if (cards.length === 0) return;
+
+      const containerLeft = container.getBoundingClientRect().left;
+      let currentIndex = 0;
+      let minDiff = Infinity;
+
+      cards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        const diff = Math.abs(rect.left - containerLeft);
+        if (diff < minDiff) {
+          minDiff = diff;
+          currentIndex = idx;
+        }
+      });
+
+      const nextIndex = (currentIndex + 1) % cards.length;
+      const nextCard = cards[nextIndex];
+      if (nextCard) {
+        const targetLeft =
+          container.scrollLeft +
+          nextCard.getBoundingClientRect().left -
+          container.getBoundingClientRect().left;
+        container.scrollTo({
+          left: targetLeft,
+          behavior: 'smooth',
+        });
+      }
+    };
+
+    intervalId = setInterval(autoScrollNext, 3500);
+
+    const onTouchStart = () => {
+      isInteracting = true;
+      clearTimeout(timeoutId);
+    };
+
+    const onTouchEnd = () => {
+      timeoutId = setTimeout(() => {
+        isInteracting = false;
+      }, 2500);
+    };
+
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    container.addEventListener('touchend', onTouchEnd, { passive: true });
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+      container.removeEventListener('touchstart', onTouchStart);
+      container.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [activeFilter, projectList]);
+
   // Load projects dynamically from Firebase Realtime Database
   useEffect(() => {
     const projectsRef = ref(db, 'projects');

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -209,6 +209,97 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let isInteracting = false;
+    let timeoutId: NodeJS.Timeout;
+    let intervalId: NodeJS.Timeout;
+
+    const autoScrollNext = () => {
+      if (window.innerWidth >= 768 || isInteracting) return;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      if (maxScroll <= 10) return;
+
+      const cards = Array.from(container.children).filter(
+        (el) => el.classList.contains('service-card-wrap')
+      ) as HTMLElement[];
+      if (cards.length === 0) return;
+
+      const containerLeft = container.getBoundingClientRect().left;
+      let currentIndex = 0;
+      let minDiff = Infinity;
+
+      cards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        const diff = Math.abs(rect.left - containerLeft);
+        if (diff < minDiff) {
+          minDiff = diff;
+          currentIndex = idx;
+        }
+      });
+
+      const nextIndex = (currentIndex + 1) % cards.length;
+      setActiveMobileIndex(nextIndex);
+      const nextCard = cards[nextIndex];
+      if (nextCard) {
+        const targetLeft =
+          container.scrollLeft +
+          nextCard.getBoundingClientRect().left -
+          container.getBoundingClientRect().left;
+        container.scrollTo({
+          left: targetLeft,
+          behavior: 'smooth',
+        });
+      }
+    };
+
+    intervalId = setInterval(autoScrollNext, 3200);
+
+    const onTouchStart = () => {
+      isInteracting = true;
+      clearTimeout(timeoutId);
+    };
+
+    const onTouchEnd = () => {
+      timeoutId = setTimeout(() => {
+        isInteracting = false;
+      }, 2500);
+    };
+
+    const onScroll = () => {
+      const cards = Array.from(container.children).filter(
+        (el) => el.classList.contains('service-card-wrap')
+      ) as HTMLElement[];
+      if (cards.length === 0) return;
+      const containerLeft = container.getBoundingClientRect().left;
+      let closestIdx = 0;
+      let minDiff = Infinity;
+      cards.forEach((card, idx) => {
+        const diff = Math.abs(card.getBoundingClientRect().left - containerLeft);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIdx = idx;
+        }
+      });
+      setActiveMobileIndex(closestIdx);
+    };
+
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    container.addEventListener('touchend', onTouchEnd, { passive: true });
+    container.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+      container.removeEventListener('touchstart', onTouchStart);
+      container.removeEventListener('touchend', onTouchEnd);
+      container.removeEventListener('scroll', onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -295,12 +386,47 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Grid */}
-        <div ref={scrollRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full mb-12 sm:mb-16">
+        {/* Grid (Horizontal swipeable auto-scroll on mobile, 3-column grid on desktop) */}
+        <div
+          ref={scrollRef}
+          className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-4 sm:gap-6 snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full mb-4 md:mb-16"
+        >
           {services.map((service, i) => (
-            <div key={service.title} className="service-card-wrap opacity-0">
+            <div key={service.title} className="service-card-wrap opacity-0 w-[84vw] max-w-[360px] md:w-full shrink-0 snap-center">
               <ServiceCard service={service} index={i} />
             </div>
+          ))}
+        </div>
+
+        {/* Mobile Pagination Indicator */}
+        <div className="flex md:hidden items-center justify-center gap-1.5 mb-10">
+          {services.map((_, idx) => (
+            <button
+              key={idx}
+              aria-label={`Go to service ${idx + 1}`}
+              onClick={() => {
+                const container = scrollRef.current;
+                if (!container) return;
+                const cards = Array.from(container.children).filter(
+                  (el) => el.classList.contains('service-card-wrap')
+                ) as HTMLElement[];
+                const target = cards[idx];
+                if (target) {
+                  container.scrollTo({
+                    left:
+                      container.scrollLeft +
+                      target.getBoundingClientRect().left -
+                      container.getBoundingClientRect().left,
+                    behavior: 'smooth',
+                  });
+                }
+              }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                activeMobileIndex === idx
+                  ? 'w-6 bg-gradient-to-r from-[#6DD5C4] to-[#B8C0FF]'
+                  : 'w-1.5 bg-white/20 hover:bg-white/40'
+              }`}
+            />
           ))}
         </div>
 
