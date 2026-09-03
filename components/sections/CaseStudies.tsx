@@ -9,12 +9,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const cases = [
   {
-    client: 'Serendib Tourism Webpage',
-    category: 'Travel & Tourism',
-    headline: '40% increase in bookings in 30 days',
-    desc: 'A complete digital transformation — new brand identity, performance-optimised website, and targeted SEO strategy drove a 40% increase in bookings within the first month of launch.',
-    img: '/projects/Serendib.png',
-    results: ['+40% Bookings', '98 Lighthouse Score', '3× Organic Traffic'],
+    client: 'Kekulama Eco Cabana',
+    category: 'Eco Resort & Hospitality',
+    headline: '40% increase in direct bookings in 30 days',
+    desc: 'A complete digital transformation — new brand identity, performance-optimised website, ambient sounds, and targeted SEO strategy drove a 40% increase in bookings within the first month of launch.',
+    img: '/projects/Kekulama Eco Cabana.jpg',
+    results: ['+40% Direct Bookings', '98 Lighthouse Score', '3× Organic Traffic'],
     color: '#6DD5C4',
   },
   {

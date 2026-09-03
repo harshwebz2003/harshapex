@@ -27,6 +27,14 @@ const db = getDatabase(app);
 
 const initialProjects = [
   {
+    title: 'Anu Villa Unawatuna',
+    category: 'Luxury Villa & Resort',
+    img: '/projects/Anu Villa Unawatuna.png',
+    tags: ['Web', 'Tourism', 'Brand'],
+    link: 'https://www.msaanuvilla.com/',
+    recent: true
+  },
+  {
     title: 'Apex Moon Chocolates & Treats',
     category: 'An E-Commerce Website',
     img: '/projects/Apex Moon E-Commerce.png',
@@ -43,11 +51,11 @@ const initialProjects = [
     recent: true
   },
   {
-    title: 'Serendib Tourism Webpage',
-    category: 'Tourism Webpage',
-    img: '/projects/Serendib.png',
-    tags: ['Web', 'Tourism'],
-    link: 'https://harshwebz2003.github.io/tourism-webpage/#hero',
+    title: 'Kekulama Eco Cabana',
+    category: 'Eco Cabana Resort',
+    img: '/projects/Kekulama Eco Cabana.jpg',
+    tags: ['Web', 'Tourism', 'Brand'],
+    link: 'https://www.kekulamaecocabanagalle.com/',
     recent: true
   },
   {
@@ -131,7 +139,7 @@ const initialProjects = [
   },
 ];
 
-const filters = ['All', 'Web', 'Photography', 'E-Commerce', 'Brand', 'App'];
+const filters = ['All', 'Web', 'Tourism', 'E-Commerce', 'Photography', 'Brand', 'App'];
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -254,12 +262,12 @@ export default function Projects() {
           }
         });
 
-        // Reorder so that Apex Moon, Tilnogz, Serendib, Neat Construction, and 3D Scrolling Tourism are always at the top
+        // Reorder so that Anu Villa, Apex Moon, Tilnogz, Serendib, Neat Construction, and 3D Scrolling Tourism are always at the top
         const sorted = [...combined].sort((a, b) => {
           const titleA = a.title.toLowerCase();
           const titleB = b.title.toLowerCase();
           
-          const order = ['apex moon', 'tilnogz', 'serendib', 'neat construction', '3d scrolling', 'luxeceylon'];
+          const order = ['anu villa', 'apex moon', 'kekulama', 'tilnogz', 'neat construction', '3d scrolling', 'luxeceylon'];
           const idxA = order.findIndex(term => titleA.includes(term));
           const idxB = order.findIndex(term => titleB.includes(term));
 
@@ -278,7 +286,7 @@ export default function Projects() {
 
         const finalProjects = sorted.map((p, idx) => ({
           ...p,
-          recent: idx < 5
+          recent: idx < 6
         }));
 
         setProjectList(finalProjects);
