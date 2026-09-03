@@ -89,12 +89,12 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
         {/* 1. Logo & Brand Heading */}
         <div className="flex flex-col items-center mb-8">
-          <div className="relative w-16 h-16 rounded-full bg-white/[0.03] border border-[#B8C0FF]/25 p-3 flex items-center justify-center mb-4 shadow-[0_0_25px_rgba(109,213,196,0.15)] group hover:border-[#6DD5C4]/60 transition-all duration-500">
+          <div className="relative w-28 h-28 rounded-full bg-white/[0.03] border border-[#B8C0FF]/25 p-4 flex items-center justify-center mb-5 shadow-[0_0_35px_rgba(109,213,196,0.2)] group hover:border-[#6DD5C4]/60 transition-all duration-500">
             <Image
               src="/logo.png"
               alt="Harsh Apex Logo"
-              width={48}
-              height={48}
+              width={84}
+              height={84}
               className="object-contain transform group-hover:scale-110 transition-transform duration-500"
             />
           </div>
