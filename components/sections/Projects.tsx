@@ -26,6 +26,14 @@ const db = getDatabase(app);
 
 const initialProjects = [
   {
+    title: 'Apex Moon Chocolates & Treats',
+    category: 'An E-Commerce Website',
+    img: '/projects/Apex Moon E-Commerce.png',
+    tags: ['E-Commerce', 'Web', 'Brand'],
+    link: 'https://e-commerce-one-rho-34.vercel.app/',
+    recent: true
+  },
+  {
     title: 'Tilnogz Photography',
     category: 'Photography Website',
     img: '/projects/Tilnogz Photography.png',
@@ -236,21 +244,30 @@ export default function Projects() {
           };
         });
 
-        // Reorder so that Tilnogz, Serendib, Neat Construction, and 3D Scrolling Tourism are always at the top
-        const sorted = [...formatted].sort((a, b) => {
+        // Merge Firebase projects with initial local projects so newly added items are never lost
+        const combined: any[] = [...formatted];
+        initialProjects.forEach((initP) => {
+          if (!combined.some((p) => p.link === initP.link || p.title.toLowerCase() === initP.title.toLowerCase())) {
+            combined.unshift({ ...initP, recent: !!initP.recent });
+          }
+        });
+
+        // Reorder so that Apex Moon, Tilnogz, Serendib, Neat Construction, and 3D Scrolling Tourism are always at the top
+        const sorted = [...combined].sort((a, b) => {
           const titleA = a.title.toLowerCase();
           const titleB = b.title.toLowerCase();
           
-          const isA_Top = titleA.includes('tilnogz') || titleA.includes('serendib') || titleA.includes('neat construction') || titleA.includes('3d scrolling') || titleA.includes('luxeceylon');
-          const isB_Top = titleB.includes('tilnogz') || titleB.includes('serendib') || titleB.includes('neat construction') || titleB.includes('3d scrolling') || titleB.includes('luxeceylon');
+          const order = ['apex moon', 'tilnogz', 'serendib', 'neat construction', '3d scrolling', 'luxeceylon'];
+          const idxA = order.findIndex(term => titleA.includes(term));
+          const idxB = order.findIndex(term => titleB.includes(term));
+
+          const isA_Top = idxA !== -1;
+          const isB_Top = idxB !== -1;
           
           if (isA_Top && !isB_Top) return -1;
           if (!isA_Top && isB_Top) return 1;
           
           if (isA_Top && isB_Top) {
-            const order = ['tilnogz', 'serendib', 'neat construction', '3d scrolling', 'luxeceylon'];
-            const idxA = order.findIndex(term => titleA.includes(term));
-            const idxB = order.findIndex(term => titleB.includes(term));
             return idxA - idxB;
           }
           
@@ -259,7 +276,7 @@ export default function Projects() {
 
         const finalProjects = sorted.map((p, idx) => ({
           ...p,
-          recent: idx < 4
+          recent: idx < 5
         }));
 
         setProjectList(finalProjects);

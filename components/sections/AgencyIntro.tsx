@@ -8,10 +8,10 @@ import Image from 'next/image';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { num: '50+', label: 'Projects' },
-  { num: '5+', label: 'Years' },
+  { num: '25+', label: 'Projects' },
+  { num: '3+', label: 'Years' },
   { num: '98%', label: 'Satisfaction' },
-  { num: '15', label: 'Countries' },
+  { num: '3+', label: 'Countries' },
 ];
 
 export default function AgencyIntro() {
