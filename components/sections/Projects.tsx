@@ -31,7 +31,7 @@ const initialProjects = [
     category: 'An E-Commerce Website',
     img: '/projects/Apex Moon E-Commerce.png',
     tags: ['E-Commerce', 'Web', 'Brand'],
-    link: 'https://e-commerce-one-rho-34.vercel.app/',
+    link: 'https://apexmoon.vercel.app/',
     recent: true
   },
   {
