@@ -444,35 +444,15 @@ export default function Projects() {
           <span className="hidden sm:inline text-[#E7D8FF]/50">{filtered.length} Projects Showcase</span>
         </div>
 
-        {/* View Mode: Auto Slider */}
+        {/* View Mode: Auto Slider (Single Track) */}
         {viewMode === 'slider' ? (
-          <div className="w-full flex flex-col gap-6 -mx-4 sm:mx-0 overflow-hidden">
-            {activeFilter === 'All' ? (
-              <>
-                {/* Track 1: Forward Infinite Stream */}
-                <ImageAutoSlider
-                  items={filtered.slice(0, Math.ceil(filtered.length / 2))}
-                  reverse={false}
-                  speedSeconds={38}
-                  pauseOnHover={true}
-                />
-                {/* Track 2: Reverse Infinite Stream */}
-                <ImageAutoSlider
-                  items={filtered.slice(Math.ceil(filtered.length / 2))}
-                  reverse={true}
-                  speedSeconds={44}
-                  pauseOnHover={true}
-                />
-              </>
-            ) : (
-              /* Single focused infinite stream for selected category */
-              <ImageAutoSlider
-                items={filtered}
-                reverse={false}
-                speedSeconds={Math.max(26, filtered.length * 8)}
-                pauseOnHover={true}
-              />
-            )}
+          <div className="w-full -mx-4 sm:mx-0 overflow-hidden py-2">
+            <ImageAutoSlider
+              items={filtered}
+              reverse={false}
+              speedSeconds={Math.max(28, filtered.length * 4)}
+              pauseOnHover={true}
+            />
           </div>
         ) : (
           /* View Mode: Modern 3-Column Responsive Grid */
