@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { BreathingText } from '@/components/ui/breathing-text';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,7 +121,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
       gsap.set(
         [
           containerRef.current?.querySelector('.hero-badge'),
-          headlineRef.current,
+          headlineRef.current.querySelectorAll('.word-inner'),
           subRef.current,
           ctaRef.current,
           containerRef.current?.querySelectorAll('.hero-stat'),
@@ -133,6 +132,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
     }
 
     const badge = containerRef.current?.querySelector('.hero-badge');
+    const wordInners = headlineRef.current.querySelectorAll('.word-inner');
     const stats = containerRef.current?.querySelectorAll('.hero-stat');
 
     const tl = gsap.timeline({ delay: 0.1 });
@@ -145,32 +145,31 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
       );
     }
 
-    if (headlineRef.current) {
-      tl.fromTo(
-        headlineRef.current,
-        { opacity: 0, y: 25, filter: 'blur(8px)' },
-        {
-          opacity: 1,
-          y: 0,
-          filter: 'blur(0px)',
-          duration: 1.0,
-          ease: 'expo.out',
-        },
-        '-=0.45'
-      );
-    }
-
     tl.fromTo(
-      subRef.current,
-      { opacity: 0, y: 22, filter: 'blur(6px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.85, ease: 'expo.out' },
-      '-=0.6'
-    ).fromTo(
-      ctaRef.current,
-      { opacity: 0, y: 18 },
-      { opacity: 1, y: 0, duration: 0.75, ease: 'expo.out' },
-      '-=0.55'
-    );
+      wordInners,
+      { yPercent: 105, opacity: 0, filter: 'blur(8px)' },
+      {
+        yPercent: 0,
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 1.0,
+        ease: 'expo.out',
+        stagger: 0.05,
+      },
+      '-=0.45'
+    )
+      .fromTo(
+        subRef.current,
+        { opacity: 0, y: 22, filter: 'blur(6px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.85, ease: 'expo.out' },
+        '-=0.6'
+      )
+      .fromTo(
+        ctaRef.current,
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.75, ease: 'expo.out' },
+        '-=0.55'
+      );
 
     if (stats && stats.length > 0) {
       tl.fromTo(
@@ -202,6 +201,9 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
 
     return () => ctx.revert();
   }, [isLoaded]);
+
+  const headline = 'We Craft Digital Experiences That Convert';
+  const words = headline.split(' ');
 
   const scrollDown = () => {
     document.getElementById('trusted')?.scrollIntoView({ behavior: 'smooth' });
@@ -250,51 +252,29 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
           </span>
         </div>
 
-        {/* Headline with BreathingText */}
+        {/* Headline */}
         <h1
           ref={headlineRef}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.12] sm:leading-[1.08] tracking-[-0.03em] mb-6 sm:mb-8 font-display break-words"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] sm:leading-[1.05] tracking-[-0.03em] text-white mb-6 sm:mb-8 font-display break-words"
         >
-          <div className="flex flex-wrap justify-center items-baseline gap-x-[0.26em]">
-            <BreathingText
-              label="We Craft"
-              className="text-white"
-              fromFontVariationSettings="'wght' 500, 'slnt' 0"
-              toFontVariationSettings="'wght' 800, 'slnt' -6"
-              staggerDuration={0.06}
-              staggerFrom="first"
-            />
-            <BreathingText
-              label="Digital"
-              className="text-gradient-periwinkle"
-              fromFontVariationSettings="'wght' 500, 'slnt' 0"
-              toFontVariationSettings="'wght' 800, 'slnt' -6"
-              staggerDuration={0.06}
-              staggerFrom="center"
-            />
-          </div>
-
-          <div className="flex flex-wrap justify-center items-baseline gap-x-[0.26em] mt-1 sm:mt-2">
-            <BreathingText
-              label="Experiences That"
-              className="text-white"
-              fromFontVariationSettings="'wght' 500, 'slnt' 0"
-              toFontVariationSettings="'wght' 800, 'slnt' -6"
-              staggerDuration={0.06}
-              staggerFrom="center"
-            />
-          </div>
-
-          <div className="flex flex-wrap justify-center items-baseline gap-x-[0.26em] mt-1 sm:mt-2">
-            <BreathingText
-              label="Convert"
-              className="text-gradient-mint"
-              fromFontVariationSettings="'wght' 500, 'slnt' 0"
-              toFontVariationSettings="'wght' 800, 'slnt' -6"
-              staggerDuration={0.06}
-              staggerFrom="last"
-            />
-          </div>
+          {words.map((word, i) => (
+            <span
+              key={i}
+              className="word inline-block mr-[0.22em] last:mr-0 overflow-hidden align-top"
+            >
+              <span
+                className={`word-inner inline-block opacity-0 ${
+                  word === 'Convert'
+                    ? 'text-gradient-mint'
+                    : word === 'Digital'
+                    ? 'text-gradient-periwinkle'
+                    : ''
+                }`}
+              >
+                {word}
+              </span>
+            </span>
+          ))}
         </h1>
 
         {/* Subtitle */}
