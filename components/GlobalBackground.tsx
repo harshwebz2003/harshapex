@@ -40,9 +40,9 @@ export default function GlobalBackground() {
         glow={1.0}
         exposure={0.9}
         vignette={0.28}
-        steps={240}
-        resolution={0.7}
-        maxDpr={1.5}
+        steps={140}
+        resolution={0.6}
+        maxDpr={1.15}
         className={`w-full h-full transition-opacity duration-700 ${
           isLight ? 'opacity-85' : 'opacity-95'
         }`}

@@ -18,12 +18,12 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
 
     // Calibrated luxury inertial scroll for desktop
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.95,
+      wheelMultiplier: 1.05,
       touchMultiplier: 1.0,
     });
 
@@ -36,7 +36,7 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     };
 
     gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
       gsap.ticker.remove(updateTicker);
