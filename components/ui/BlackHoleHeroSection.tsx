@@ -918,13 +918,14 @@ export function BlackHoleHeroSection({
     }
 
     /* --- loop --- */
+    /* --- loop --- */
     function tick(now: number) {
       if (!running) return;
       raf = requestAnimationFrame(tick);
-      if (!visible) { lastFrame = now; return; }
+      if (document.hidden) { lastFrame = now; return; }
       const dt = lastFrame ? Math.min(0.05, (now - lastFrame) / 1000) : 0;
       lastFrame = now;
-      if (!props.current.paused && !reduced) clock += dt;
+      if (!props.current.paused) clock += dt;
       render(clock);
     }
 
@@ -933,22 +934,16 @@ export function BlackHoleHeroSection({
       return;
     }
     resize();
-    settle(reduced ? 16 : 1);
-    if (!reduced) raf = requestAnimationFrame(tick);
+    settle(1);
+    raf = requestAnimationFrame(tick);
 
     const ro = new ResizeObserver(() => {
       resize();
-      if (reduced || props.current.paused) settle(16);
+      if (props.current.paused) settle(16);
     });
     ro.observe(host);
 
-    const io = new IntersectionObserver(
-      (entries) => { visible = entries[0]?.isIntersecting ?? true; },
-      { threshold: 0 }
-    );
-    io.observe(host);
-
-    const onVisibility = () => { visible = !document.hidden; lastFrame = 0; };
+    const onVisibility = () => { lastFrame = 0; };
     const onLost = (e: Event) => {
       e.preventDefault();
       running = false;
@@ -966,8 +961,8 @@ export function BlackHoleHeroSection({
       resize();
       running = true;
       lastFrame = 0;
-      settle(reduced ? 16 : 1);
-      if (!reduced) raf = requestAnimationFrame(tick);
+      settle(1);
+      raf = requestAnimationFrame(tick);
     };
 
     document.addEventListener('visibilitychange', onVisibility);
@@ -978,7 +973,6 @@ export function BlackHoleHeroSection({
       running = false;
       cancelAnimationFrame(raf);
       ro.disconnect();
-      io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
       canvas.removeEventListener('webglcontextlost', onLost);
       canvas.removeEventListener('webglcontextrestored', onRestored);
