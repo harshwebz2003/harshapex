@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 const socials = [
   {
@@ -177,7 +178,22 @@ export default function Footer() {
         {/* 6. Thin Divider */}
         <div className="w-full max-w-4xl border-t border-white/10 my-6" />
 
-        {/* 7. Bottom Copyright & Admin lock icon */}
+        {/* 7. Legal Policy Documents (PayHere & Bank Compliance) */}
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-white/60 font-mono mb-4">
+          <Link href="/return-policy" className="hover:text-[#6DD5C4] transition-colors">
+            Return & Refund Policy
+          </Link>
+          <span className="text-white/20">&bull;</span>
+          <Link href="/privacy-policy" className="hover:text-[#6DD5C4] transition-colors">
+            Privacy Policy
+          </Link>
+          <span className="text-white/20">&bull;</span>
+          <Link href="/terms-and-conditions" className="hover:text-[#6DD5C4] transition-colors">
+            Terms & Conditions
+          </Link>
+        </div>
+
+        {/* 8. Bottom Copyright & Admin lock icon */}
         <div className="flex items-center justify-center gap-2 text-xs text-white/45 font-mono text-center">
           <p>Copyright © {new Date().getFullYear()} Harsh Apex Digital Solutions. All Rights Reserved.</p>
           <a
