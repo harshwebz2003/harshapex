@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* ——— Magoa Luxury Editorial Font ——— */
+@font-face {
+  font-family: 'Magoa';
+  src: url('/fonts/Magoa-FreeDemo.otf') format('opentype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ——— Tailwind v4 Theme Tokens ——— */
 @theme {
   --color-apex-bg: #0D0B1A;
@@ -34,9 +43,10 @@
   --color-apex-muted: #9AA0D4;
 
   /* Luxury Font Family Tokens */
-  --font-display: 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: var(--font-magoa, 'Magoa'), 'Magoa', 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-magoa: var(--font-magoa, 'Magoa'), 'Magoa', serif;
+  --font-editorial: var(--font-magoa, 'Magoa'), 'Magoa', 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-editorial: 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'Space Grotesk', monospace;
   --font-inter: 'Inter', sans-serif;
 
@@ -139,8 +149,8 @@
 
   /* Headings defaults */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif;
-    letter-spacing: -0.025em;
+    font-family: var(--font-magoa, 'Magoa'), 'Magoa', 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.015em;
     line-height: 1.15;
     font-weight: 700;
   }
@@ -175,9 +185,10 @@
 
 /* ——— Luxury Utility Classes ——— */
 @layer utilities {
-  .font-display   { font-family: 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif; }
+  .font-display   { font-family: var(--font-magoa, 'Magoa'), 'Magoa', 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif; }
+  .font-magoa     { font-family: var(--font-magoa, 'Magoa'), 'Magoa', serif; }
   .font-body      { font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif; }
-  .font-editorial { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-editorial { font-family: var(--font-magoa, 'Magoa'), 'Magoa', 'Cormorant Garamond', Georgia, serif; }
   .font-mono      { font-family: 'Space Grotesk', monospace; }
 
   /* Eyebrow / Kicker Haute-Horlogerie Badge */

@@ -1,9 +1,16 @@
 import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 import './globals.css';
 import LenisProvider from '@/components/LenisProvider';
 import CustomCursor from '@/components/CustomCursor';
 import GlobalBackground from '@/components/GlobalBackground';
 import { ThemeProvider } from '@/components/ThemeProvider';
+
+const magoa = localFont({
+  src: './fonts/Magoa-FreeDemo.otf',
+  variable: '--font-magoa',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://harshapex.com.lk'),
@@ -352,7 +359,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="bg-[#0D0B1A] text-white antialiased overflow-x-hidden w-full max-w-full min-h-screen transition-colors duration-500">
+      <body className={`${magoa.variable} bg-[#0D0B1A] text-white antialiased overflow-x-hidden w-full max-w-full min-h-screen transition-colors duration-500`}>
         <ThemeProvider>
           <LenisProvider>
             <GlobalBackground />
