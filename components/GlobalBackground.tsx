@@ -7,12 +7,10 @@ export default function GlobalBackground() {
   const { theme } = useTheme();
   const isLight = theme === 'light';
 
-  // Theme-specific colors:
-  // Dark Theme: Mint Lagoon & Dreamy Periwinkle cosmic singularity
-  // Light Theme: Midnight Gold & Champagne Radiance singularity
-  const hotColor = isLight ? '#FFFFFF' : '#FFF5E4';
-  const midColor = isLight ? '#E0C29B' : '#6DD5C4';
-  const coolColor = isLight ? '#5E4B43' : '#B8C0FF';
+  // Original iconic Interstellar accretion disk colors
+  const hotColor = '#FFF3DE';
+  const midColor = '#FF9838';
+  const coolColor = '#8E3A0B';
 
   return (
     <div
@@ -30,31 +28,31 @@ export default function GlobalBackground() {
         fov={44}
         diskInner={3}
         diskOuter={15}
-        diskThickness={0.25}
-        diskDensity={1.1}
-        brightness={isLight ? 1.2 : 1.05}
-        grain={0.46}
-        doppler={0.4}
+        diskThickness={0.26}
+        diskDensity={1.0}
+        brightness={1.0}
+        grain={0.48}
+        doppler={0.35}
         hotColor={hotColor}
         midColor={midColor}
         coolColor={coolColor}
-        starBrightness={0.45}
-        glow={isLight ? 1.35 : 1.2}
-        exposure={isLight ? 1.05 : 0.96}
-        vignette={isLight ? 0.35 : 0.4}
-        steps={220}
+        starBrightness={0.4}
+        glow={1.0}
+        exposure={0.9}
+        vignette={0.28}
+        steps={240}
         resolution={0.7}
         maxDpr={1.5}
         className={`w-full h-full transition-opacity duration-700 ${
-          isLight ? 'opacity-80' : 'opacity-90'
+          isLight ? 'opacity-85' : 'opacity-95'
         }`}
       />
-      {/* Ambient gradient overlay to seamlessly integrate with brand palette */}
+      {/* Ambient gradient overlay to seamlessly integrate with page content */}
       <div
         className={`absolute inset-0 pointer-events-none transition-colors duration-700 ${
           isLight
-            ? 'bg-gradient-to-b from-[#1A1A1A]/40 via-transparent to-[#1A1A1A]/75'
-            : 'bg-gradient-to-b from-[#0D0B1A]/40 via-transparent to-[#0D0B1A]/80'
+            ? 'bg-gradient-to-b from-[#1A1A1A]/30 via-transparent to-[#1A1A1A]/70'
+            : 'bg-gradient-to-b from-[#0D0B1A]/30 via-transparent to-[#0D0B1A]/70'
         }`}
       />
     </div>

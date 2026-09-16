@@ -212,7 +212,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent w-full"
+      className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0D0B1A] [.light_&]:bg-[#1A1A1A] w-full z-10"
     >
       {/* Canvas blobs (Desktop only) */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" />
