@@ -148,7 +148,7 @@
   }
 
   body {
-    background-color: #0D0B1A;
+    background-color: transparent;
     color: #ffffff;
     font-family: 'Satoshi', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 1rem;
@@ -161,12 +161,13 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Headings defaults */
-  h1, h2, h3, h4, h5, h6 {
+  /* Headings defaults with high-contrast protection against glowing space canvas */
+  h1, h2, h3, h4, h5, h6, .font-display {
     font-family: var(--font-magoa, 'Magoa'), 'Magoa', 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif;
     letter-spacing: -0.015em;
     line-height: 1.15;
     font-weight: 700;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.85);
   }
 
   /* Scrollbar */
@@ -294,15 +295,8 @@
 /* ——— Light Theme Mode (Midnight Gold Gradient Palette — #1A1A1A ➔ #5E4B43) ——— */
 html.light,
 html.light body {
-  background-color: #1A1A1A !important;
-  background-image: 
-    radial-gradient(at 0% 0%, #5E4B43 0px, transparent 55%),
-    radial-gradient(at 100% 0%, #382C27 0px, transparent 50%),
-    radial-gradient(at 50% 50%, #1A1A1A 0px, transparent 65%),
-    radial-gradient(at 100% 100%, #5E4B43 0px, transparent 55%),
-    radial-gradient(at 0% 100%, #302621 0px, transparent 50%),
-    linear-gradient(135deg, #1A1A1A 0%, #382C27 35%, #5E4B43 70%, #1A1A1A 100%) !important;
-  background-attachment: fixed !important;
+  background-color: transparent !important;
+  background-image: none !important;
   color: #F5EBE1 !important;
 }
 

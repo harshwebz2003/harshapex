@@ -359,7 +359,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={`${magoa.variable} bg-[#0D0B1A] text-white antialiased overflow-x-hidden w-full max-w-full min-h-screen transition-colors duration-500`}>
+      <body className={`${magoa.variable} bg-transparent text-white antialiased overflow-x-hidden w-full max-w-full min-h-screen transition-colors duration-500`}>
         <ThemeProvider>
           <LenisProvider>
             <GlobalBackground />

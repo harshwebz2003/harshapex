@@ -111,7 +111,7 @@ export default function WhyChooseUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-20 items-center">
           {/* Left Column */}
-          <div className="why-left-content">
+          <div className="why-left-content p-6 sm:p-8 lg:p-10 rounded-3xl bg-[#0D0B1A]/65 [.light_&]:bg-[#1A1A1A]/75 backdrop-blur-md border border-[#B8C0FF]/15 shadow-[0_12px_45px_rgba(0,0,0,0.5)]">
             <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-3 sm:mb-4 font-mono">Why Choose Us</p>
             <h2
               className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight font-display tracking-tight break-words"

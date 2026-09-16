@@ -19,6 +19,22 @@ export default function GlobalBackground() {
         isLight ? 'bg-[#1A1A1A]' : 'bg-[#0D0B1A]'
       }`}
     >
+      {/* Light mode midnight gold ambient glow UNDER the black hole */}
+      {isLight && (
+        <div
+          className="absolute inset-0 pointer-events-none transition-opacity duration-700 opacity-60"
+          style={{
+            backgroundImage: `
+              radial-gradient(at 0% 0%, #5E4B43 0px, transparent 55%),
+              radial-gradient(at 100% 0%, #382C27 0px, transparent 50%),
+              radial-gradient(at 50% 50%, #1A1A1A 0px, transparent 65%),
+              radial-gradient(at 100% 100%, #5E4B43 0px, transparent 55%),
+              radial-gradient(at 0% 100%, #302621 0px, transparent 50%),
+              linear-gradient(135deg, #1A1A1A 0%, #382C27 35%, #5E4B43 70%, #1A1A1A 100%)
+            `,
+          }}
+        />
+      )}
       <BlackHoleHeroSection
         distance={22}
         elevation={-6}
@@ -43,16 +59,14 @@ export default function GlobalBackground() {
         steps={140}
         resolution={0.6}
         maxDpr={1.15}
-        className={`w-full h-full transition-opacity duration-700 ${
-          isLight ? 'opacity-85' : 'opacity-95'
-        }`}
+        className="w-full h-full transition-opacity duration-700 opacity-95"
       />
       {/* Ambient gradient overlay to seamlessly integrate with page content */}
       <div
         className={`absolute inset-0 pointer-events-none transition-colors duration-700 ${
           isLight
-            ? 'bg-gradient-to-b from-[#1A1A1A]/30 via-transparent to-[#1A1A1A]/70'
-            : 'bg-gradient-to-b from-[#0D0B1A]/30 via-transparent to-[#0D0B1A]/70'
+            ? 'bg-gradient-to-b from-[#1A1A1A]/20 via-transparent to-[#1A1A1A]/60'
+            : 'bg-gradient-to-b from-[#0D0B1A]/20 via-transparent to-[#0D0B1A]/60'
         }`}
       />
     </div>
