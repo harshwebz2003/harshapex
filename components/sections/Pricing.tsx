@@ -327,7 +327,7 @@ export default function Pricing() {
               {/* Demo Site Link — Smart Business Suite only */}
               {activeTab === 'suite' && (
                 <a
-                  href="https://harsh-apex-smart-business-suite.vercel.app/login"
+                  href="https://saas.harshapex.com.lk/login"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 w-full py-2.5 rounded-full text-[10px] uppercase tracking-[0.1em] font-semibold font-mono flex items-center justify-center gap-1.5 border border-[#6DD5C4]/25 text-[#6DD5C4]/80 hover:text-[#6DD5C4] hover:border-[#6DD5C4]/60 hover:bg-[#6DD5C4]/8 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
