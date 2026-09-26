@@ -124,7 +124,7 @@ export default function Statistics() {
                 fill
                 sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, 300px"
                 quality={90}
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D0B1A]/50 via-transparent to-transparent pointer-events-none" />
             </div>

@@ -106,14 +106,15 @@ export default function AgencyIntro() {
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Image */}
-          <div ref={imageRef} className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-[#B8C0FF]/15 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+          <div ref={imageRef} className="relative rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-[3/4] max-w-md mx-auto md:max-w-none w-full border border-[#B8C0FF]/15 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
             <Image
               src="/images/owner.jpg"
-              alt="Harsh Apex Team"
+              alt="Harsh Apex Founder & CEO"
               fill
-              className="object-cover"
+              className="object-cover object-top"
+              priority
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#6DD5C4]/15 via-transparent to-[#B8C0FF]/10 mix-blend-overlay" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#6DD5C4]/10 via-transparent to-[#B8C0FF]/10 mix-blend-overlay" />
           </div>
 
           {/* Text */}
