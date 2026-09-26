@@ -5,6 +5,7 @@ import LenisProvider from '@/components/LenisProvider';
 import CustomCursor from '@/components/CustomCursor';
 import GlobalBackground from '@/components/GlobalBackground';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { Analytics } from '@vercel/analytics/next';
 
 const magoa = localFont({
   src: './fonts/Magoa-FreeDemo.otf',
@@ -367,6 +368,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </LenisProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
