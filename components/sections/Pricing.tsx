@@ -30,12 +30,12 @@ const businessSuitePlans: PricingPlan[] = [
       'POS & Billing System (Fast & Easy)',
       'Real-time Inventory Management',
       'Customer Database (CRM)',
-      'Professional Invoices & Basic Reports',
+      'Invoices & Basic Financial Reports',
       'Free Setup & Training Included',
       'Lifetime System Support',
       'No Monthly Hidden Charges (One-Time)',
     ],
-    cta: 'FREE DEMO එකක් ඉල්ලන්න',
+    cta: 'Request Free Demo',
     whatsappMessage: 'Hello Harsh Apex, I would like to request a FREE Demo for the Starter Business Suite (Rs. 49,900).',
     popular: false,
   },
@@ -57,7 +57,7 @@ const businessSuitePlans: PricingPlan[] = [
       'Free Setup & Hands-on Staff Training',
       'Lifetime Technical Support',
     ],
-    cta: 'FREE DEMO එකක් ඉල්ලන්න',
+    cta: 'Request Free Demo',
     whatsappMessage: 'Hello Harsh Apex, I would like to request a FREE Demo for the Business Suite (Rs. 89,900).',
   },
   {
@@ -78,7 +78,7 @@ const businessSuitePlans: PricingPlan[] = [
       'VIP Priority Lifetime Support',
       'Complete Onboarding & Staff Training',
     ],
-    cta: 'FREE DEMO එකක් ඉල්ලන්න',
+    cta: 'Request Free Demo',
     whatsappMessage: 'Hello Harsh Apex, I would like to request a FREE Demo for the Ultimate Business Suite (Rs. 149,900).',
   },
 ];
@@ -160,16 +160,15 @@ const suiteCapabilities = [
 const suiteGuarantees = [
   { icon: '🌐', title: '1 Year Free Domain & Hosting', subtitle: 'Included with Website Integration' },
   { icon: '🎓', title: 'Free Setup & Training', subtitle: 'Complete hands-on staff onboarding' },
-  { icon: '🛡️', title: 'Lifetime Support', subtitle: 'Always here to keep your business running' },
+  { icon: '🛡️', title: 'Lifetime Technical Support', subtitle: 'Always here to keep your business running' },
   { icon: '⚙️', title: 'Custom Features Available', subtitle: 'Tailored specifically to your business flow' },
   { icon: '💳', title: 'No Monthly Hidden Charges', subtitle: 'One-time investment, zero subscription fees' },
-  { icon: '🏷️', title: 'Flexible Packages', subtitle: 'Customizable based on exact requirements' },
+  { icon: '🏷️', title: 'Flexible Scalability', subtitle: 'Customizable based on exact requirements' },
 ];
 
 export default function Pricing() {
   const [activeTab, setActiveTab] = useState<'suite' | 'web'>('suite');
   const sectionRef = useRef<HTMLElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const currentPlans = activeTab === 'suite' ? businessSuitePlans : webPlans;
 
@@ -220,75 +219,6 @@ export default function Pricing() {
     return () => ctx.revert();
   }, [activeTab]);
 
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    let isInteracting = false;
-    let timeoutId: NodeJS.Timeout;
-    let intervalId: NodeJS.Timeout;
-
-    const autoScrollNext = () => {
-      if (window.innerWidth >= 768 || isInteracting) return;
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      if (maxScroll <= 10) return;
-
-      const cards = Array.from(container.children).filter((el) =>
-        el.classList.contains('pricing-card')
-      ) as HTMLElement[];
-      if (cards.length === 0) return;
-
-      const containerLeft = container.getBoundingClientRect().left;
-      let currentIndex = 0;
-      let minDiff = Infinity;
-
-      cards.forEach((card, idx) => {
-        const rect = card.getBoundingClientRect();
-        const diff = Math.abs(rect.left - containerLeft);
-        if (diff < minDiff) {
-          minDiff = diff;
-          currentIndex = idx;
-        }
-      });
-
-      const nextIndex = (currentIndex + 1) % cards.length;
-      const nextCard = cards[nextIndex];
-      if (nextCard) {
-        const targetLeft =
-          container.scrollLeft +
-          nextCard.getBoundingClientRect().left -
-          container.getBoundingClientRect().left;
-        container.scrollTo({
-          left: targetLeft,
-          behavior: 'smooth',
-        });
-      }
-    };
-
-    intervalId = setInterval(autoScrollNext, 4200);
-
-    const onTouchStart = () => {
-      isInteracting = true;
-      clearTimeout(timeoutId);
-    };
-
-    const onTouchEnd = () => {
-      timeoutId = setTimeout(() => {
-        isInteracting = false;
-      }, 2500);
-    };
-
-    container.addEventListener('touchstart', onTouchStart, { passive: true });
-    container.addEventListener('touchend', onTouchEnd, { passive: true });
-
-    return () => {
-      clearInterval(intervalId);
-      clearTimeout(timeoutId);
-      container.removeEventListener('touchstart', onTouchStart);
-      container.removeEventListener('touchend', onTouchEnd);
-    };
-  }, [activeTab]);
-
   const handleCtaClick = (plan: PricingPlan) => {
     const encoded = encodeURIComponent(plan.whatsappMessage);
     window.open(`https://wa.me/94770663154?text=${encoded}`, '_blank');
@@ -298,7 +228,7 @@ export default function Pricing() {
     <section id="pricing" ref={sectionRef} className="py-12 sm:py-20 md:py-32 bg-transparent font-body w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="pricing-header text-center mb-8 sm:mb-12">
+        <div className="pricing-header text-center mb-10 sm:mb-14">
           <p className="text-xs tracking-[0.35em] uppercase text-[#6DD5C4] font-semibold mb-2 sm:mb-3 font-mono">
             Smart Solutions & Investment
           </p>
@@ -309,7 +239,7 @@ export default function Pricing() {
             </span>
           </h2>
           <p className="max-w-2xl mx-auto text-[#E7D8FF]/70 text-base sm:text-lg font-light leading-relaxed px-2">
-            වෙන වෙනම Software 5 ක් ඕන නෑ — එක SYSTEM එකක් ඇති! Run your entire business from one place with zero monthly hidden charges.
+            Why pay for 5 separate software tools when 1 integrated system does it all? Run your entire enterprise from one high-performance dashboard with zero monthly subscription fees.
           </p>
 
           {/* Category Toggle Tabs */}
@@ -337,41 +267,15 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Suite Capabilities Ticker / Grid (Shown for Business Suite) */}
-        {activeTab === 'suite' && (
-          <div className="mb-10 sm:mb-14">
-            <div className="text-center mb-5">
-              <span className="text-[11px] uppercase tracking-widest text-[#6DD5C4] font-mono font-semibold">
-                Included in Harsh Apex Business Suite
-              </span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
-              {suiteCapabilities.map((cap) => (
-                <div
-                  key={cap.name}
-                  className="p-3.5 sm:p-4 rounded-2xl border border-[#B8C0FF]/15 bg-[#1A1630]/40 backdrop-blur-sm hover:border-[#6DD5C4]/40 transition-all duration-300 group"
-                >
-                  <div className="text-2xl mb-1.5 group-hover:scale-110 transition-transform duration-300">{cap.icon}</div>
-                  <div className="text-xs sm:text-sm font-bold text-white font-display leading-tight">{cap.name}</div>
-                  <div className="text-[10px] sm:text-[11px] text-[#E7D8FF]/60 mt-1 leading-snug font-light">{cap.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Pricing Cards */}
-        <div
-          ref={scrollRef}
-          className="flex md:grid flex-row md:grid-cols-3 overflow-x-auto md:overflow-visible gap-4 sm:gap-8 items-stretch snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 w-full"
-        >
+        {/* 3 Main Pricing Packages in a Balanced Grid Layout (One After One) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch mb-12 sm:mb-16 w-full">
           {currentPlans.map((plan) => (
             <div
               key={plan.name}
-              className={`pricing-card relative rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-all duration-500 w-[82vw] max-w-[350px] md:max-w-none md:w-full shrink-0 snap-center ${
+              className={`pricing-card relative rounded-3xl p-6 sm:p-8 md:p-9 flex flex-col justify-between transition-all duration-500 w-full ${
                 plan.popular
                   ? 'border-2 border-[#6DD5C4]/60 bg-gradient-to-b from-[#1A1630]/95 to-[#0D0B1A]/98 shadow-[0_0_50px_rgba(109,213,196,0.2)] md:-translate-y-2'
-                  : 'border border-[#B8C0FF]/15 bg-gradient-to-b from-[#1A1630]/60 to-[#0D0B1A]/85 hover:border-[#6DD5C4]/40 shadow-lg'
+                  : 'border border-[#B8C0FF]/15 bg-gradient-to-b from-[#1A1630]/60 to-[#0D0B1A]/85 hover:border-[#6DD5C4]/40 shadow-lg hover:shadow-[0_10px_35px_rgba(109,213,196,0.1)]'
               }`}
             >
               {/* Badge */}
@@ -423,18 +327,44 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Value Guarantees Banner (from Flyer) */}
+        {/* 10 Suite Capabilities in a Clean Structured Grid (Shown for Business Suite) */}
         {activeTab === 'suite' && (
-          <div className="mt-10 sm:mt-14 p-6 sm:p-8 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/60 to-[#0D0B1A]/80 backdrop-blur-md shadow-xl">
+          <div className="mb-12 sm:mb-16">
+            <div className="text-center mb-6">
+              <span className="text-xs uppercase tracking-widest text-[#6DD5C4] font-mono font-bold">
+                10 Built-In Power Modules Included In The Suite
+              </span>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white font-display mt-1">
+                Everything Your Business Needs In One Place
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
+              {suiteCapabilities.map((cap) => (
+                <div
+                  key={cap.name}
+                  className="p-4 sm:p-5 rounded-2xl border border-[#B8C0FF]/15 bg-[#1A1630]/40 backdrop-blur-sm hover:border-[#6DD5C4]/40 hover:bg-[#1A1630]/70 transition-all duration-300 group shadow-md"
+                >
+                  <div className="text-2xl sm:text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">{cap.icon}</div>
+                  <div className="text-xs sm:text-sm font-bold text-white font-display leading-tight">{cap.name}</div>
+                  <div className="text-[10px] sm:text-[11px] text-[#E7D8FF]/60 mt-1.5 leading-snug font-light">{cap.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Value Guarantees Grid (from Flyer) */}
+        {activeTab === 'suite' && (
+          <div className="mb-10 sm:mb-14 p-6 sm:p-8 rounded-3xl border border-[#B8C0FF]/15 bg-gradient-to-br from-[#1A1630]/60 to-[#0D0B1A]/80 backdrop-blur-md shadow-xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
               {suiteGuarantees.map((g) => (
                 <div key={g.title} className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 flex items-center justify-center text-lg shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#6DD5C4]/10 border border-[#6DD5C4]/25 flex items-center justify-center text-xl shrink-0">
                     {g.icon}
                   </div>
                   <div>
-                    <h5 className="text-sm font-bold text-white font-display">{g.title}</h5>
-                    <p className="text-xs text-[#E7D8FF]/60 font-light mt-0.5">{g.subtitle}</p>
+                    <h5 className="text-sm sm:text-base font-bold text-white font-display">{g.title}</h5>
+                    <p className="text-xs text-[#E7D8FF]/65 font-light mt-0.5">{g.subtitle}</p>
                   </div>
                 </div>
               ))}
@@ -442,18 +372,18 @@ export default function Pricing() {
           </div>
         )}
 
-        {/* Free Demo CTA Banner */}
-        <div className="mt-8 sm:mt-12 p-6 sm:p-8 rounded-3xl border border-[#6DD5C4]/40 bg-gradient-to-r from-[#1A1630]/90 via-[#120F26]/95 to-[#0D0B1A] flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-2xl">
+        {/* Free Demo CTA Banner (100% English) */}
+        <div className="p-6 sm:p-8 md:p-10 rounded-3xl border border-[#6DD5C4]/40 bg-gradient-to-r from-[#1A1630]/90 via-[#120F26]/95 to-[#0D0B1A] flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-2xl">
           <div>
             <div className="text-[11px] sm:text-xs uppercase font-mono tracking-widest text-[#6DD5C4] font-bold mb-1.5 flex items-center justify-center md:justify-start gap-2">
               <span className="inline-block w-2 h-2 rounded-full bg-[#6DD5C4] animate-pulse" />
               Live Demo Available Now
             </div>
             <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-white font-display">
-              ඔබේ ව්‍යාපාරයට ගැළපෙන System එක නොමිලේ අත්හදා බලන්න!
+              Test Drive Your Custom System with a Free Live Walkthrough
             </h4>
             <p className="text-xs md:text-sm text-[#E7D8FF]/75 mt-2 font-light max-w-2xl leading-relaxed">
-              Contact us right now via WhatsApp to get a 100% free live walkthrough demonstration tailored to your exact store, restaurant, or business operations.
+              Contact our engineering team directly via WhatsApp for an interactive live demo tailored specifically to your retail store, restaurant, or business operations.
             </p>
           </div>
           <a
@@ -462,7 +392,7 @@ export default function Pricing() {
             rel="noopener noreferrer"
             className="w-full sm:w-auto shrink-0 px-8 py-4 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-xs sm:text-sm font-bold uppercase tracking-wider font-mono shadow-[0_0_30px_rgba(109,213,196,0.35)] hover:scale-105 active:scale-95 transition-all duration-300 text-center flex items-center justify-center gap-2.5"
           >
-            <span>FREE DEMO එකක් ඉල්ලන්න</span>
+            <span>Request Free Demo on WhatsApp</span>
             <span className="text-base">→</span>
           </a>
         </div>
