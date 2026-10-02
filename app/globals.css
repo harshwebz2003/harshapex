@@ -554,29 +554,3 @@ html.light #trusted span {
   color: #D1C2B4 !important;
 }
 
-html.light footer .text-white {
-  color: #1E2229 !important;
-}
-
-html.light footer a {
-  color: #5D5E60 !important;
-}
-
-html.light footer a:hover {
-  color: #1E2229 !important;
-}
-
-/* Light Mode Marquee items */
-html.light #trusted {
-  border-color: rgba(177, 178, 180, 0.4) !important;
-}
-
-html.light #trusted div[class*="border-[#B8C0FF]"] {
-  background-color: #F0F0F0 !important;
-  border-color: rgba(177, 178, 180, 0.5) !important;
-}
-
-html.light #trusted span {
-  color: #5D5E60 !important;
-}
-

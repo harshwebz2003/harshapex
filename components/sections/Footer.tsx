@@ -62,7 +62,8 @@ const socials = [
 
 const mainNav = [
   { label: 'HOME', href: '#' },
-  { label: 'SERVICES', href: '#services' },
+  { label: 'SOLUTIONS', href: '#solutions' },
+  { label: 'PRODUCTS', href: '#products' },
   { label: 'PROCESS', href: '#process' },
   { label: 'PROJECTS', href: '#projects' },
   { label: 'TESTIMONIALS', href: '#testimonials' },
@@ -72,13 +73,12 @@ const mainNav = [
 ];
 
 const serviceTags = [
-  'Web Design & Development',
-  'Custom POS Systems',
-  'Mobile Apps (iOS & Android)',
-  'UI/UX Prototyping',
-  'E-Commerce Solutions',
-  'Brand Identity',
-  'Custom Business Software & ERP',
+  'Websites & E-Commerce',
+  'POS & Billing Systems',
+  'ERP & Business Management',
+  'SaaS Platforms & Web Apps',
+  'AI & WhatsApp Automation',
+  'Custom Software Development',
 ];
 
 export default function Footer() {

@@ -202,7 +202,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
     return () => ctx.revert();
   }, [isLoaded]);
 
-  const headline = 'We Craft Digital Experiences That Convert';
+  const headline = 'We Build Digital Systems That Move Businesses Forward';
   const words = headline.split(' ');
 
   const scrollDown = () => {
@@ -248,7 +248,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
         <div className="hero-badge inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#6DD5C4]/30 bg-[#6DD5C4]/5 mb-6 sm:mb-8 opacity-0">
           <span className="w-1.5 h-1.5 rounded-full bg-[#6DD5C4] animate-pulse" />
           <span className="text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] text-gradient-dual font-medium uppercase font-mono">
-            Premium Digital Agency
+            DIGITAL SOLUTIONS & SOFTWARE COMPANY
           </span>
         </div>
 
@@ -264,9 +264,9 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
             >
               <span
                 className={`word-inner inline-block opacity-0 ${
-                  word === 'Convert'
+                  word === 'Businesses' || word === 'Forward'
                     ? 'text-gradient-mint'
-                    : word === 'Digital'
+                    : word === 'Digital' || word === 'Systems'
                     ? 'text-gradient-periwinkle'
                     : ''
                 }`}
@@ -282,22 +282,22 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
           ref={subRef}
           className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-[#E7D8FF]/70 leading-relaxed mb-8 sm:mb-12 opacity-0 font-body font-light px-2"
         >
-          Harsh Apex Digital Solutions crafts high-performance websites, custom POS systems, mobile apps, and tailor-made business software at budget-friendly rates.
+          Harsh Apex Digital Solutions engineers high-performance web applications, custom POS systems, ERPs, SaaS platforms, and AI automation for modern businesses.
         </p>
 
         {/* CTAs */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center items-center opacity-0 font-body w-full max-w-md sm:max-w-none mx-auto">
           <button
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => (document.getElementById('projects') || document.getElementById('products'))?.scrollIntoView({ behavior: 'smooth' })}
             className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-sm sm:text-base hover:shadow-[0_0_40px_rgba(109,213,196,0.35)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
           >
-            Start Your Project →
+            Explore Our Work
           </button>
           <button
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-full border border-[#B8C0FF]/30 text-[#E7D8FF] text-sm sm:text-base hover:border-[#6DD5C4] hover:text-white hover:bg-[#6DD5C4]/10 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
-            View Our Work
+            Start a Project
           </button>
         </div>
 

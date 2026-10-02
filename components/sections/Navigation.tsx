@@ -10,11 +10,11 @@ import { useTheme } from '../ThemeProvider';
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-  { label: 'Services', href: '#services' },
+  { label: 'Solutions', href: '#solutions' },
+  { label: 'Products', href: '#products' },
   { label: 'Work', href: '#projects' },
-  { label: 'Process', href: '#process' },
-  { label: 'Pricing', href: '#pricing' },
   { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export default function Navigation() {
@@ -121,7 +121,7 @@ export default function Navigation() {
               onClick={() => scrollTo('#contact')}
               className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] text-xs font-semibold uppercase tracking-[0.08em] shadow-[0_0_25px_rgba(109,213,196,0.3)] hover:shadow-[0_0_35px_rgba(109,213,196,0.5)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] cursor-pointer font-mono"
             >
-              Book a Call
+              Start a Project ↗
             </button>
           </div>
 
@@ -205,7 +205,7 @@ export default function Navigation() {
                 onClick={() => scrollTo('#contact')}
                 className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#6DD5C4] via-[#B8C0FF] to-[#E7D8FF] text-[#0D0B1A] font-semibold text-sm shadow-[0_0_30px_rgba(109,213,196,0.4)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer font-mono uppercase tracking-wider text-center"
               >
-                Book a Call
+                Start a Project ↗
               </button>
             </li>
           </ul>
